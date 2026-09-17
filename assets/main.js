@@ -33,3 +33,34 @@ document.addEventListener('click', (event) => {
 window.matchMedia('(min-width: 768px)').addEventListener('change', (event) => {
   if (event.matches) closeMenu();
 });
+
+const contactDialog = document.querySelector('#contact-dialog');
+let contactTrigger;
+
+document.querySelectorAll('[data-contact-open]').forEach((button) => {
+  button.addEventListener('click', () => {
+    contactTrigger = button;
+    contactDialog.showModal();
+    document.body.classList.add('contact-dialog-open');
+  });
+});
+
+contactDialog.querySelector('.contact-dialog-close').addEventListener('click', () => contactDialog.close());
+contactDialog.addEventListener('click', (event) => {
+  const bounds = contactDialog.getBoundingClientRect();
+  if (event.target === contactDialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) contactDialog.close();
+});
+contactDialog.addEventListener('close', () => {
+  document.body.classList.remove('contact-dialog-open');
+  contactTrigger.focus();
+});
+
+document.querySelector('#contact-line-copy').addEventListener('click', async () => {
+  const status = document.querySelector('#contact-copy-status');
+  try {
+    await navigator.clipboard.writeText(document.querySelector('#contact-line-id').textContent);
+    status.textContent = '已複製 LINE ID，請貼到 LINE 搜尋。';
+  } catch {
+    status.textContent = '無法自動複製，請長按或選取上方 LINE ID。';
+  }
+});
