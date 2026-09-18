@@ -34,6 +34,19 @@ window.matchMedia('(min-width: 768px)').addEventListener('change', (event) => {
   if (event.matches) closeMenu();
 });
 
+const sectionLinks = [...navigation.querySelectorAll('a[href^="#"]')];
+const sectionObserver = new IntersectionObserver((entries) => {
+  const current = entries.find((entry) => entry.isIntersecting);
+  if (!current) return;
+  sectionLinks.forEach((link) => {
+    const active = link.hash === `#${current.target.id}`;
+    link.classList.toggle('is-current', active);
+    if (active) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+}, { rootMargin: '-20% 0px -65% 0px' });
+document.querySelectorAll('main > section[id]').forEach((section) => sectionObserver.observe(section));
+
 const contactDialog = document.querySelector('#contact-dialog');
 let contactTrigger;
 
