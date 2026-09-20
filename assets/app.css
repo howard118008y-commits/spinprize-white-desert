@@ -29,7 +29,7 @@
 .app-enhanced .section-heading h1{font-size:32px;line-height:1.35;letter-spacing:-.04em;margin-bottom:8px}
 .app-enhanced .section-heading h1 span{color:var(--muted);font-weight:400}
 .app-enhanced .works-intro{font-size:12px;line-height:1.6}
-.orbit-stage{--plane-width:360px;--plane-height:272px;--orbit-radius:375px;--camera-distance:-260px;height:clamp(380px,48dvh,480px);position:relative;perspective:1300px;overflow:hidden;isolation:isolate;touch-action:pan-y;cursor:grab;outline-offset:-4px;margin-top:-12px}
+.orbit-stage{--plane-width:360px;--plane-height:272px;--orbit-radius:375px;--camera-distance:-260px;height:clamp(420px,48dvh,480px);position:relative;perspective:1300px;overflow:hidden;isolation:isolate;touch-action:pan-y;cursor:grab;outline-offset:-4px;margin-top:-12px}
 .orbit-stage.is-dragging{cursor:grabbing}
 .orbit-space{position:absolute;left:50%;top:43%;width:0;height:0;transform-style:preserve-3d;transform:translateZ(var(--camera-distance)) rotateX(-14deg);pointer-events:none}
 .orbit-ring{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.22,.8,.24,1)}
