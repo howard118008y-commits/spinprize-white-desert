@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "Hey Cheng｜旋賞數位",
+  "short_name": "Hey Cheng",
+  "description": "旋轉瀏覽 Hey Cheng 的網站作品，查看建置方案與聯絡方式。",
+  "lang": "zh-Hant-TW",
+  "start_url": "./#works",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080B0D",
+  "theme_color": "#080B0D",
+  "icons": [
+    { "src": "assets/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
