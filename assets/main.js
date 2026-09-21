@@ -53,6 +53,7 @@ let contactTrigger;
 
 document.querySelectorAll('[data-contact-open]').forEach((button) => {
   button.addEventListener('click', () => {
+    cancelInteraction();
     contactTrigger = button;
     contactDialog.showModal();
     document.body.classList.add('contact-dialog-open');
@@ -170,6 +171,7 @@ let selected = 0;
 let rotation = 0;
 let gesture = null;
 let drawFrame = 0;
+let motionFrame = 0;
 let suppressClickUntil = 0;
 
 projects.forEach((project, index) => {
@@ -213,6 +215,7 @@ projects.forEach((project, index) => {
 const cards = [...ring.children];
 
 function drawRing() {
+  cancelAnimationFrame(drawFrame);
   drawFrame = 0;
   ring.style.transform = `rotateY(${rotation}deg)`;
 }
@@ -221,11 +224,8 @@ function queueDraw() {
   if (!drawFrame) drawFrame = requestAnimationFrame(drawRing);
 }
 
-function selectProject(index, updateHash = false) {
-  selected = (index + projects.length) % projects.length;
-  const target = -selected * step;
-  rotation += ((target - rotation + 540) % 360 + 360) % 360 - 180;
-  queueDraw();
+function updateSelection(index, updateHash = false) {
+  selected = ((index % projects.length) + projects.length) % projects.length;
   const project = projects[selected];
   document.querySelector('#orbit-current').textContent = String(selected + 1).padStart(2, '0');
   document.querySelector('#orbit-title').textContent = project.name;
@@ -239,10 +239,73 @@ function selectProject(index, updateHash = false) {
     if (position === selected) link.setAttribute('aria-current', 'true');
     else link.removeAttribute('aria-current');
   });
+  const directory = chooser[selected].parentElement;
+  const item = chooser[selected];
+  if (item.offsetLeft < directory.scrollLeft) directory.scrollLeft = item.offsetLeft;
+  else if (item.offsetLeft + item.offsetWidth > directory.scrollLeft + directory.clientWidth) {
+    directory.scrollLeft = item.offsetLeft + item.offsetWidth - directory.clientWidth;
+  }
   if (updateHash) history.replaceState(null, '', `#work-${project.id}`);
 }
 
+function stopMotion() {
+  cancelAnimationFrame(motionFrame);
+  motionFrame = 0;
+  stage.classList.remove('is-moving');
+  document.querySelector('.orbit-selection').setAttribute('aria-busy', 'false');
+}
+
+function moveRing(target = null, velocity = 0, updateHash = true) {
+  stopMotion();
+  if (reducedMotion.matches) {
+    rotation = target ?? Math.round(rotation / step) * step;
+    drawRing();
+    updateSelection(Math.round(-rotation / step), updateHash);
+    return;
+  }
+  stage.classList.add('is-moving');
+  document.querySelector('.orbit-selection').setAttribute('aria-busy', 'true');
+  let previous = performance.now();
+  function advance(now) {
+    const elapsed = Math.min(now - previous, 32);
+    previous = now;
+    if (target === null) {
+      const decay = Math.exp(-elapsed / 325);
+      rotation += velocity * 325 * (1 - decay);
+      velocity *= decay;
+      if (Math.abs(velocity) < .04) target = Math.round(rotation / step) * step;
+    } else {
+      velocity += ((target - rotation) * .00025 - velocity * .032) * elapsed;
+      rotation += velocity * elapsed;
+    }
+    drawRing();
+    const nearest = Math.round(-rotation / step);
+    if (((nearest % projects.length) + projects.length) % projects.length !== selected) updateSelection(nearest);
+    if (target !== null && Math.abs(target - rotation) < .08 && Math.abs(velocity) < .003) {
+      rotation = target;
+      drawRing();
+      stopMotion();
+      updateSelection(Math.round(-rotation / step), updateHash);
+      return;
+    }
+    motionFrame = requestAnimationFrame(advance);
+  }
+  motionFrame = requestAnimationFrame(advance);
+}
+
+function selectProject(index, updateHash = false, immediate = false) {
+  cancelInteraction();
+  updateSelection(index);
+  const target = rotation + ((-selected * step - rotation + 540) % 360 + 360) % 360 - 180;
+  if (immediate || reducedMotion.matches) {
+    rotation = target;
+    drawRing();
+    if (updateHash) updateSelection(selected, true);
+  } else moveRing(target, 0, updateHash);
+}
+
 function openSelectedProject(trigger) {
+  cancelInteraction();
   projects[selected].trigger.click();
   workTrigger = trigger;
 }
@@ -253,19 +316,41 @@ function endGesture(cancelled = false) {
   gesture = null;
   stage.classList.remove('is-dragging');
   if (stage.hasPointerCapture(ended.id)) stage.releasePointerCapture(ended.id);
-  if (!ended.dragged) return;
+  if (!ended.dragged) {
+    if (ended.interrupted) suppressClickUntil = performance.now() + 350;
+    return;
+  }
   suppressClickUntil = performance.now() + 350;
-  if (cancelled) rotation = ended.rotation;
-  const closest = Math.round(-rotation / step);
-  selectProject((closest % projects.length + projects.length) % projects.length, !cancelled);
+  document.querySelector('.orbit-selection').setAttribute('aria-busy', 'false');
+  updateSelection(Math.round(-rotation / step));
+  if (cancelled) return;
+  const recent = ended.samples.filter((sample) => performance.now() - sample.time < 100);
+  const first = recent[0];
+  const last = recent[recent.length - 1];
+  const velocity = recent.length > 1 && last.time > first.time
+    ? Math.max(-1.5, Math.min(1.5, (last.rotation - first.rotation) / (last.time - first.time))) : 0;
+  moveRing(Math.abs(velocity) < .04 ? Math.round(rotation / step) * step : null, velocity);
+}
+
+function cancelInteraction() {
+  endGesture(true);
+  stopMotion();
+  cancelAnimationFrame(drawFrame);
+  drawFrame = 0;
+  drawRing();
 }
 
 stage.addEventListener('pointerdown', (event) => {
   if (!event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) {
-    endGesture(true);
+    cancelInteraction();
     return;
   }
-  gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, rotation, dragged: false };
+  const interrupted = !!motionFrame;
+  cancelInteraction();
+  if (interrupted) suppressClickUntil = performance.now() + 350;
+  gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, rotation, dragged: false, interrupted,
+    sensitivity: Math.min(.7, 360 / (stage.clientWidth * 1.45)),
+    samples: [{ time: performance.now(), rotation }] };
 });
 stage.addEventListener('pointermove', (event) => {
   if (!gesture || gesture.id !== event.pointerId) return;
@@ -277,36 +362,46 @@ stage.addEventListener('pointermove', (event) => {
     gesture.dragged = true;
     stage.setPointerCapture(event.pointerId);
     stage.classList.add('is-dragging');
+    document.querySelector('.orbit-selection').setAttribute('aria-busy', 'true');
   }
-  rotation = gesture.rotation + dx * (stage.clientWidth < 768 ? 0.4 : 0.22);
+  rotation = gesture.rotation + dx * gesture.sensitivity;
+  const now = performance.now();
+  gesture.samples.push({ time: now, rotation });
+  gesture.samples = gesture.samples.filter((sample) => now - sample.time < 100);
   queueDraw();
 });
-stage.addEventListener('pointerup', () => endGesture());
-stage.addEventListener('pointercancel', () => endGesture(true));
-stage.addEventListener('lostpointercapture', () => endGesture(true));
+stage.addEventListener('pointerup', (event) => {
+  if (gesture?.id === event.pointerId) endGesture();
+});
+stage.addEventListener('pointercancel', (event) => {
+  if (gesture?.id === event.pointerId) cancelInteraction();
+});
+stage.addEventListener('lostpointercapture', (event) => {
+  if (event.target === stage && gesture?.id === event.pointerId) cancelInteraction();
+});
 stage.addEventListener('dragstart', (event) => event.preventDefault());
 stage.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     event.preventDefault();
-    selectProject(selected + (event.key === 'ArrowRight' ? 1 : -1), true);
+    selectProject(selected + (event.key === 'ArrowRight' ? 1 : -1), true, true);
   } else if (event.key === 'Home' || event.key === 'End') {
     event.preventDefault();
-    selectProject(event.key === 'Home' ? 0 : projects.length - 1, true);
+    selectProject(event.key === 'Home' ? 0 : projects.length - 1, true, true);
   } else if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault();
     openSelectedProject(stage);
   }
 });
-document.querySelector('#orbit-previous').addEventListener('click', () => selectProject(selected - 1, true));
-document.querySelector('#orbit-next').addEventListener('click', () => selectProject(selected + 1, true));
+document.querySelector('#orbit-previous').addEventListener('click', (event) => selectProject(selected - 1, true, event.detail === 0));
+document.querySelector('#orbit-next').addEventListener('click', (event) => selectProject(selected + 1, true, event.detail === 0));
 document.querySelector('#orbit-open').addEventListener('click', (event) => openSelectedProject(event.currentTarget));
 chooser.forEach((link, index) => link.addEventListener('click', (event) => {
   event.preventDefault();
-  selectProject(index, true);
+  selectProject(index, true, event.detail === 0);
 }));
 
 function showView(moveFocus = false) {
-  endGesture(true);
+  cancelInteraction();
   const hash = location.hash.slice(1);
   const projectIndex = projects.findIndex((project) => `work-${project.id}` === hash);
   const target = views.find((view) => view.id === hash)?.id || 'works';
@@ -318,7 +413,7 @@ function showView(moveFocus = false) {
     if (current) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
-  if (projectIndex >= 0) selectProject(projectIndex);
+  if (projectIndex >= 0) selectProject(projectIndex, false, true);
   closeMenu();
   requestAnimationFrame(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -334,14 +429,14 @@ originalHeading.replaceWith(appHeading);
 views.forEach((view) => view.classList.add('app-view'));
 orbitApp.hidden = false;
 document.body.classList.add('app-enhanced');
-selectProject(0);
+selectProject(0, false, true);
 showView();
 window.addEventListener('hashchange', () => showView(true));
-window.addEventListener('resize', () => endGesture(true));
+window.addEventListener('resize', cancelInteraction);
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden) endGesture(true);
+  if (document.hidden) cancelInteraction();
 });
-reducedMotion.addEventListener('change', () => endGesture(true));
+reducedMotion.addEventListener('change', cancelInteraction);
 viewLinks.forEach((link) => link.addEventListener('click', () => {
   if (location.hash === link.hash) showView(true);
 }));
@@ -361,6 +456,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
   updateInstallButton();
 });
 installButton.addEventListener('click', async () => {
+  cancelInteraction();
   if (installPrompt) {
     const prompt = installPrompt;
     installPrompt = null;
