@@ -38,6 +38,7 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 
 - 公司資料、服務與五級含稅報價沿用改版前正式官網 https://heycheng.com.tw/ ，本次改版未調整價格；核對日期 2026-09-25。
 - 作品連結：山遇民宿 https://shanyu2015.com 、鋮馨租賃 https://cx468.com.tw 、Go Shoot https://goshoot.com.tw 、線上一番賞平台 https://goshoot-ichiban.vercel.app 、台北建安宮 https://taipeijianantemple.com.tw 、永貞豆腐店 https://yongzhen-tofu.com.tw 。
+- 2026-09-25 GitHub 作品擴充：junlin 織織怪 https://zhizhiguai-production.up.railway.app/ 、BTCUCC 費率雷達 https://btcucc.onrender.com/ ，以及尚無公開網址的 test shirt、Jev Talk 好好說話、539 K 線分析三件作品預覽。未公開作品只展示實際介面截圖，不公開原始碼、帳號或內部資料。Jev Talk 使用預先編寫範例；539 使用專案內建樣本。
 - 圖片沿用既有公開官網素材，轉換為 WebP 降低傳輸量。出處見 `assets/CREDITS.md`。
 - 電話與 Email 直接使用 `tel:`、`mailto:`；Email 連結開啟使用者郵件程式，網站不收集或儲存表單資料。
 - 頁面所列 GA4 是建置方案包含項目，本展示頁並未加入 GA4 或其他追蹤程式。
@@ -46,13 +47,14 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 
 最初版本以使用者選定的 Awwwards／White Desert 頁面截圖，透過開源工具 `abi/screenshot-to-code` 產生第一版。2026-09-25 依使用者提供的單檔沉浸式框架，改為 Hey Cheng 黑色與 Tiffany 綠的 3D 作品球體、全螢幕選單及圖文內容頁。
 
-球體的 21 個圖層取自六個真實網站的首頁及內容區段，作品一覽仍只列六案；點選後可捲動完整頁面或前往原站。開場使用既有作品截圖，不使用範例的野生動物素材或攝影師資料。字型使用系統字型，無外部字型請求。本頁與 Awwwards、White Desert 或原設計作者無隸屬關係。
+球體圖層取自作品的真實首頁及內容區段；至少 21 個圖層，作品超過 21 件時每案仍至少有一層。作品一覽每案只列一次；點選後可捲動完整頁面，已公開上線的作品可前往原站。尚無公開網址的作品明確標示「作品預覽」，不提供虛構外連或私人儲存庫連結。開場使用既有作品截圖，不使用範例的野生動物素材或攝影師資料。字型使用系統字型，無外部字型請求。本頁與 Awwwards、White Desert 或原設計作者無隸屬關係。
 
 原始截圖、原始生成稿、對話內容與 API key 不屬公開網站檔案。
 
 ## 維護
 
-- 文字、價格、SEO、內嵌樣式與互動：`index.html`；作品資料位於頁尾 `projects` 陣列。
+- 文字、價格、SEO、內嵌樣式與互動：`index.html`；作品資料位於頁尾 `projects` 陣列。每案需唯一 `id`、真實 `name`／`kind`／`note`、完整截圖 `width`／`height`；`capturedAt` 記錄實際截圖日期。`url` 僅填可公開驗證的網站；缺省時顯示「作品預覽」，可用 `status`／`previewLabel` 補充實際狀態。
+- 每案圖片：`assets/case-<id>.webp`（首屏；既有作品 1440×900、新增作品 1280×720）、`assets/work-<id>-overview.webp`（約寬 960 的全頁縮圖）、`assets/work-<id>-full.webp`（完整頁面）。新增案須同步 `<noscript>` 的文字入口；已完成但尚無公開網站者提供本機作品全頁圖，不放私人專案 URL。
 - 路由：`#works` 為球體、`#grid` 為作品一覽，`#services`／`#pricing`／`#about`／`#contact` 為四個內容頁；`#work-<id>` 可定位指定作品。
 - 框架：`#world` 共用球心，`#orb` 放圖層，`#headline` 是同層元素；保留標題的負半寬 margin 與 `.inner` 垂直置中，避免修改後旋轉偏移。手機水平滑動旋轉、垂直滑動縮放；鍵盤方向鍵旋轉，Enter 開啟前方作品，也可直接使用作品一覽。
 - 舊 `assets/styles.css`、`assets/app.css` 與 `assets/main.js` 仍保留於版本庫，最新版入口不再載入；新版樣式與互動請修改 `index.html`。
