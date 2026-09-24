@@ -1,6 +1,6 @@
 # 旋賞數位展示網站
 
-旋賞數位有限公司的靜態展示頁，使用公開公司內容與既有作品素材。HTML、原生 CSS 與少量原生 JavaScript，無框架、網站無執行時套件或 CDN、無分析追蹤程式；開發套件僅供交付驗收使用。
+旋賞數位有限公司的靜態展示頁，使用公開公司內容與既有作品素材。頁面、樣式與互動集中在單一 `index.html`：一個內嵌 `<style>` 與頁尾原生 JavaScript；圖片仍使用 `assets/` 本機素材。無框架、無建置步驟、無執行時套件或 CDN、無分析追蹤程式；開發套件僅供交付驗收使用。
 
 ## 本機啟動
 
@@ -20,23 +20,23 @@ python3 -m http.server 5180 --bind 127.0.0.1
 npm run audit:a11y
 ```
 
-axe-core 以 Chromium 檢查桌機 1440×1000、手機 390×844 的作品、服務、方案、關於、聯絡共五個頁面狀態，以及聯絡／作品預覽對話框，共 14 次。本站沒有資料輸入表單；未來加入表單時，須增加開啟及錯誤提示狀態。本工具不點擊外部聯絡連結、不送出資料；不載入內部網站或作品原站。
+axe-core 以 Chromium 檢查桌機 1440×1000、手機 390×844，各含作品球體、服務、方案、關於、聯絡、全螢幕選單、作品一覽、作品全頁預覽、放大細節、加入主畫面說明共 10 種狀態，合計 20 次。作品預覽須等真正的全頁圖載入後才檢查；聯絡方式改為頁內入口，不再使用舊聯絡對話框。本站沒有資料輸入表單；未來加入表單時，須增加開啟及錯誤提示狀態。本工具不點擊外部聯絡連結、不送出資料；不載入內部網站或作品原站。
 
 完整結果寫入已忽略的 `.qa/a11y/report.json`、`.qa/a11y/report.md`，包括時間、URL、引擎版本、違規與待人工確認項目；每次覆寫，交付前請另存當次報告。可用 `A11Y_URL=http://127.0.0.1:5181/` 指定網站位置，`A11Y_OUTPUT=/path/to/report` 指定輸出目錄。
 
-退出碼 `1` 表示任何規則找到違規，`2` 表示頁面／對話框未成功檢查或執行出錯，兩者均不可當作交付通過。退出碼 `0` 只表示這 14 個狀態沒有自動偵測到違規；`incomplete` 仍須人工確認，另保留鍵盤、螢幕閱讀器與實機觸控驗收，**不代表 WCAG 合規**。使用 axe-core 預設規則，沒有忽略規則或既有違規基準線；既有問題照實列入結果。依賴只在檢查時注入，不修改正式頁面或設計。
+退出碼 `1` 表示任何規則找到違規，`2` 表示頁面／對話框未成功檢查或執行出錯，兩者均不可當作交付通過。退出碼 `0` 只表示這 20 個狀態沒有自動偵測到違規；`incomplete` 仍須人工確認，另保留鍵盤、螢幕閱讀器與實機觸控驗收，**不代表 WCAG 合規**。使用 axe-core 預設規則，沒有忽略規則或既有違規基準線；既有問題照實列入結果。依賴只在檢查時注入，不修改正式頁面或設計。
 
 API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md)。
 
 ## GitHub Pages
 
-預定公開網址：https://howard118008y-commits.github.io/spinprize-white-desert/
+正式公開網址：https://heycheng.com.tw/
 
 將此目錄的靜態檔部署到 GitHub Pages。資產使用相對路徑，無建置步驟；`.nojekyll` 保留原始靜態檔。若變更公開網址，請同步更新 `index.html` 內的 canonical、Open Graph 與 Twitter 圖片網址。
 
 ## 內容來源
 
-- 公開公司資料、服務與五級含稅報價：https://howard118008y-commits.github.io/spinprize/ ，核對日期 2026-09-11。
+- 公司資料、服務與五級含稅報價沿用改版前正式官網 https://heycheng.com.tw/ ，本次改版未調整價格；核對日期 2026-09-25。
 - 作品連結：山遇民宿 https://shanyu2015.com 、鋮馨租賃 https://cx468.com.tw 、Go Shoot https://goshoot.com.tw 、線上一番賞平台 https://goshoot-ichiban.vercel.app 、台北建安宮 https://taipeijianantemple.com.tw 、永貞豆腐店 https://yongzhen-tofu.com.tw 。
 - 圖片沿用既有公開官網素材，轉換為 WebP 降低傳輸量。出處見 `assets/CREDITS.md`。
 - 電話與 Email 直接使用 `tel:`、`mailto:`；Email 連結開啟使用者郵件程式，網站不收集或儲存表單資料。
@@ -44,17 +44,20 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 
 ## 版型來源與調整
 
-以使用者選定的 Awwwards／White Desert 頁面截圖，透過開源工具 `abi/screenshot-to-code` 產生 HTML + Tailwind 第一版，保留其銀灰底、超大標題、寬幅深灰框主視覺、桌機雙欄作品格與留白節奏，再套入旋賞公開內容。
+最初版本以使用者選定的 Awwwards／White Desert 頁面截圖，透過開源工具 `abi/screenshot-to-code` 產生第一版。2026-09-25 依使用者提供的單檔沉浸式框架，改為 Hey Cheng 黑色與 Tiffany 綠的 3D 作品球體、全螢幕選單及圖文內容頁。
 
-原版執行時 Tailwind CDN 已移除，其主要視覺本來即使用原生 CSS，現以 `assets/styles.css` 實作並補齊響應式版面、鍵盤焦點與手機選單。字型使用系統字型，無外部字型請求。原版的南極人物、旅遊文案、作者署名、獎項分數與無功能控制項均已移除；沒有保留原站商標、照片或獎項宣稱。本頁與 Awwwards、White Desert 或原設計作者無隸屬關係。
+球體的 21 個圖層取自六個真實網站的首頁及內容區段，作品一覽仍只列六案；點選後可捲動完整頁面或前往原站。開場使用既有作品截圖，不使用範例的野生動物素材或攝影師資料。字型使用系統字型，無外部字型請求。本頁與 Awwwards、White Desert 或原設計作者無隸屬關係。
 
 原始截圖、原始生成稿、對話內容與 API key 不屬公開網站檔案。
 
 ## 維護
 
-- 文字、價格與 URL：`index.html`
-- 視覺、桌機與手機版：`assets/styles.css`
-- 手機選單：`assets/main.js`
+- 文字、價格、SEO、內嵌樣式與互動：`index.html`；作品資料位於頁尾 `projects` 陣列。
+- 路由：`#works` 為球體、`#grid` 為作品一覽，`#services`／`#pricing`／`#about`／`#contact` 為四個內容頁；`#work-<id>` 可定位指定作品。
+- 框架：`#world` 共用球心，`#orb` 放圖層，`#headline` 是同層元素；保留標題的負半寬 margin 與 `.inner` 垂直置中，避免修改後旋轉偏移。手機水平滑動旋轉、垂直滑動縮放；鍵盤方向鍵旋轉，Enter 開啟前方作品，也可直接使用作品一覽。
+- 舊 `assets/styles.css`、`assets/app.css` 與 `assets/main.js` 仍保留於版本庫，最新版入口不再載入；新版樣式與互動請修改 `index.html`。
+- App 安裝資訊與圖示：`manifest.webmanifest`、`assets/app-icon-*.png`；不提供離線快取，瀏覽作品仍需要網路。
+- 無障礙驗收狀態與選擇器：`scripts/audit-a11y.mjs`，頁面結構調整時同步更新。
 - 公開素材出處：`assets/CREDITS.md`
 
 維運、第三方服務與 API 費用請按頁面說明及實際專案約定確認。

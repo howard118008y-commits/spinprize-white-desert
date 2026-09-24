@@ -22,8 +22,11 @@ const viewports = [
 ];
 const states = [
   ...['works', 'services', 'pricing', 'about', 'contact'].map((view) => ({ name: view, view })),
-  { name: 'contact-dialog', view: 'contact', trigger: '.contact-cta', dialog: '#contact-dialog' },
-  { name: 'work-dialog', view: 'works', trigger: '#orbit-open', dialog: '#work-dialog' },
+  { name: 'menu', view: 'works', trigger: '#menuBtn', dialog: '#menu' },
+  { name: 'grid', view: 'grid' },
+  { name: 'work-dialog', view: 'grid', trigger: '#grid .grid-card[data-project="shanyu"]', dialog: '#lit' },
+  { name: 'work-full-zoom', view: 'grid', trigger: '#grid .grid-card[data-project="shanyu"]', dialog: '#lit', zoom: true },
+  { name: 'install-dialog', view: 'contact', trigger: '#contact [data-install]', dialog: '#install-dialog', nativeDialog: true },
 ];
 
 async function audit(page, state) {
@@ -31,17 +34,35 @@ async function audit(page, state) {
   url.hash = state.view;
   const response = await page.goto(url.href, { waitUntil: 'load' });
   if (!response?.ok()) throw new Error(`Page returned HTTP ${response?.status() ?? 'no response'}`);
-  await page.locator('body.app-enhanced').waitFor();
-  await page.locator(`#${state.view}:not([hidden])`).waitFor();
+  await page.locator('body.revealed').waitFor();
+  const viewSelector = state.view === 'works' ? '#stage:not([inert])'
+    : state.view === 'grid' ? '#grid[aria-hidden="false"]:not([inert])'
+      : `#${state.view}:not([hidden])`;
+  await page.locator(viewSelector).waitFor();
+  await page.waitForFunction((selector) => {
+    const view = document.querySelector(selector);
+    return view && Number(getComputedStyle(view).opacity) >= 0.99;
+  }, viewSelector);
   if (state.trigger) {
     await page.locator(state.trigger).click();
-    await page.locator(`${state.dialog}[open]`).waitFor();
+    await page.locator(state.nativeDialog ? `${state.dialog}[open]` : `${state.dialog}[aria-hidden="false"]:not([inert])`).waitFor();
+    await page.waitForFunction((selector) => {
+      const dialog = document.querySelector(selector);
+      return dialog && Number(getComputedStyle(dialog).opacity) >= 0.99;
+    }, state.dialog);
   }
-  if (state.name === 'work-dialog') {
+  if (state.dialog === '#lit') {
     await page.waitForFunction(() => {
       const img = document.querySelector('#work-full-image');
-      return img.complete && img.naturalWidth > 0 && !img.hidden;
+      return img.complete && img.naturalWidth > 0 && img.naturalHeight > 1000
+        && new URL(img.currentSrc).pathname.endsWith('/assets/work-shanyu-full.webp')
+        && !document.querySelector('#work-zoom').disabled;
     });
+  }
+  if (state.zoom) {
+    await page.locator('#work-zoom').click();
+    await page.locator('#work-scroll.zoomed').waitFor();
+    await page.locator('#work-zoom[aria-pressed="true"]').waitFor();
   }
   await page.evaluate(() => document.fonts.ready);
   await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
