@@ -337,7 +337,7 @@ html:not(.js) #stage,html:not(.js) #splash,html:not(.js) #intro,html:not(.js) #m
 <div id="intro" aria-hidden="true" inert><div class="intro-scene"><img src="assets/case-shanyu.webp" alt="" width="1440" height="900"><img src="assets/case-goshoot.webp" alt="" width="1440" height="900"><img src="assets/case-tofu.webp" alt="" width="1440" height="900"></div><div class="intro-brand"><img src="assets/hey-cheng-logo.png" alt="" width="2061" height="763"><p>YOUR BUSINESS. A NEW PERSPECTIVE.</p></div><div class="veil"></div><button id="skip" class="skip" type="button">跳過開場</button></div>
 <div id="splash" role="status" aria-label="正在準備作品"><img class="splash-logo" src="assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763"><div class="splash-bar" aria-hidden="true"><s id="bar"></s></div><p class="splash-tag">DESIGNED AROUND YOUR BUSINESS</p><button class="splash-skip" type="button" id="splash-skip">直接看作品</button></div>
 <div id="dot" aria-hidden="true"></div>
-<noscript><div class="no-js-note"><p>此作品展廳需要 JavaScript 才能旋轉。你仍可閱讀下方服務與方案，或直接查看我們的網站作品。</p><p><a href="https://zhizhiguai-production.up.railway.app/">junlin 織織怪 ↗</a> · <a href="assets/work-fashion-full.webp">test shirt（本機作品預覽）</a> · <a href="assets/work-jevtalk-full.webp">Jev Talk 好好說話（本機作品預覽）</a> · <a href="https://btcucc.onrender.com/">BTCUCC 費率雷達 ↗</a> · <a href="assets/work-kline539-full.webp">539 K 線分析（本機作品預覽）</a> · <a href="https://shanyu2015.com">山遇民宿 ↗</a> · <a href="https://goshoot.com.tw">Go Shoot ↗</a> · <a href="https://yongzhen-tofu.com.tw">永貞豆腐店 ↗</a> · <a href="https://taipeijianantemple.com.tw">台北建安宮 ↗</a> · <a href="https://cx468.com.tw">鋮馨租賃 ↗</a> · <a href="https://goshoot-ichiban.vercel.app">線上一番賞平台 ↗</a></p><a href="https://howard118008y-commits.github.io/spinprize/internal/">內部網頁 ↗</a></div></noscript>
+<noscript><div class="no-js-note"><p>此作品展廳需要 JavaScript 才能旋轉。你仍可閱讀下方服務與方案，或直接查看我們的網站作品。</p><p><a href="https://howard118008y-commits.github.io/Hey-World/">Hey World ↗</a> · <a href="https://howard118008y-commits.github.io/toonhub-island-duel/">TOONHUB 島嶼對決 ↗</a> · <a href="https://test-shirt.hoho0219.chatgpt.site">test shirt ↗</a> · <a href="https://zhizhiguai-production.up.railway.app/">junlin 織織怪 ↗</a> · <a href="assets/work-jevtalk-full.webp">Jev Talk 好好說話（本機作品預覽）</a> · <a href="https://btcucc.onrender.com/">BTCUCC 費率雷達 ↗</a> · <a href="assets/work-kline539-full.webp">539 K 線分析（本機作品預覽）</a> · <a href="https://shanyu2015.com">山遇民宿 ↗</a> · <a href="https://goshoot.com.tw">Go Shoot ↗</a> · <a href="https://yongzhen-tofu.com.tw">永貞豆腐店 ↗</a> · <a href="https://taipeijianantemple.com.tw">台北建安宮 ↗</a> · <a href="https://cx468.com.tw">鋮馨租賃 ↗</a> · <a href="https://goshoot-ichiban.vercel.app">線上一番賞平台 ↗</a></p><a href="https://howard118008y-commits.github.io/spinprize/internal/">內部網頁 ↗</a></div></noscript>
 
 <script>
 
@@ -350,8 +350,10 @@ const body = document.body;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 const projects = [
+  {"id":"heyworld","name":"Hey World","url":"https://howard118008y-commits.github.io/Hey-World/","kind":"沉浸式互動 / 行星探索與 3D 場景","note":"以行星場景、雙語資訊與目的地切換，把探索內容轉成沉浸式互動體驗。","previewLabel":"行星互動介面截圖","width":1280,"height":720,"capturedAt":"2026.09.25"},
+  {"id":"toonhub","name":"TOONHUB 島嶼對決","url":"https://howard118008y-commits.github.io/toonhub-island-duel/","kind":"角色展示 / 公仔輪播與卡牌遊戲","note":"以全彩公仔輪播串接島嶼對決卡牌遊戲，讓角色展示與互動體驗在同一個入口呈現。","previewLabel":"公仔展示介面截圖","width":1280,"height":720,"capturedAt":"2026.09.25"},
+  {"id":"fashion","name":"test shirt","url":"https://test-shirt.hoho0219.chatgpt.site","kind":"服飾品牌 / 沉浸式穿搭展示","note":"以首頁造型、滾動展場與穿搭取景呈現服飾品牌。展示版尚未開放結帳，穿搭圖為原作品內標示的 AI 合成示意。","previewLabel":"穿搭互動介面截圖","width":1280,"height":720,"capturedAt":"2026.09.25"},
   {"id":"zhizhiguai","name":"junlin 織織怪","url":"https://zhizhiguai-production.up.railway.app/","kind":"手作品牌 / 3D 角色與客製體驗","note":"從互動怪獸、角色圖鑑到客製孵化，把手作品牌的故事轉成可探索的網站體驗。","width":1280,"height":5234,"capturedAt":"2026.09.25"},
-  {"id":"fashion","name":"test shirt","url":null,"status":"作品預覽","kind":"服飾品牌 / 沉浸式穿搭展示","note":"以首頁造型、滾動展場與穿搭取景呈現服飾品牌。展示版尚未開放結帳，穿搭圖為原作品內標示的 AI 合成示意。","previewLabel":"穿搭互動介面截圖","width":1280,"height":720,"capturedAt":"2026.09.25"},
   {"id":"jevtalk","name":"Jev Talk 好好說話","url":null,"status":"作品預覽","kind":"AI 溝通工具 / 對話整理與回覆草稿","note":"將對話情境、可能意圖與不同語氣回覆整理到同一個介面。此為本機作品預覽，畫面使用預先編寫範例，沒有呼叫模型。","previewLabel":"示範介面全頁截圖","width":1280,"height":2035,"capturedAt":"2026.09.25"},
   {"id":"btcucc","name":"BTCUCC 費率雷達","url":"https://btcucc.onrender.com/","kind":"數據工具 / 市場資料與費率比較","note":"整合多交易所資金費率、歷史資料與篩選介面，讓複雜市場資訊清楚呈現。畫面數值為擷取當下的市場資料。","width":1280,"height":1842,"capturedAt":"2026.09.25"},
   {"id":"kline539","name":"539 K 線分析","url":null,"status":"作品預覽","kind":"互動圖表 / 號碼統計與視覺化","note":"把號碼出現間隔與熱度轉成可篩選的 K 線圖表。此畫面使用專案內建樣本資料，展示統計介面。","previewLabel":"樣本資料介面截圖","width":1280,"height":720,"capturedAt":"2026.09.25"},
@@ -361,7 +363,7 @@ const projects = [
   {id:'jianan',name:'台北建安宮',url:'https://taipeijianantemple.com.tw',kind:'文化信仰 / 活動與線上登記',note:'整理廟宇介紹、活動資訊與線上登記入口，讓不同年齡的訪客都能找到需要的資訊。此預覽為平板響應式版本。',width:900,height:3914},
   {id:'cx468',name:'鋮馨租賃',url:'https://cx468.com.tw',kind:'企業服務 / 諮詢與 AI 助理',note:'把服務、諮詢流程與 AI 助理串成清楚的數位入口，讓訪客了解企業，也能順手開始詢問。',width:1440,height:4400},
   {id:'ichiban',name:'線上一番賞平台',url:'https://goshoot-ichiban.vercel.app',kind:'客製系統 / 商品與會員流程',note:'整合會員、點數、金流、庫存與亂數驗證，依照實際營運流程安排操作介面。功能與體驗一起設計。',width:1440,height:2679}
-].map((project,index)=>({capturedAt:'2026.09.18',status:project.url?'公開網站':'作品預覽',...project,index,thumb:`assets/case-${project.id}.webp`,overview:`assets/work-${project.id}-overview.webp`,full:`assets/work-${project.id}-full.webp`}));
+].map((project,index)=>({capturedAt:'2026.09.18',status:project.url?'已上線':'作品預覽',...project,index,thumb:`assets/case-${project.id}.webp`,overview:`assets/work-${project.id}-overview.webp`,full:`assets/work-${project.id}-full.webp`}));
 const stage=$('#stage'), world=$('#world'), orb=$('#orb'), headline=$('#headline');
 const grid=$('#grid'), gridButton=$('#gridBtn'), panel=$('#content-panel'), menu=$('#menu');
 const lit=$('#lit'), plate=$('.plate'), fullImage=$('#work-full-image'), shot=$('#work-scroll'), zoomButton=$('#work-zoom');
@@ -392,7 +394,7 @@ sphereVariants.forEach((record,index)=>{
 projects.forEach((project,index)=>{
   const button=document.createElement('button');button.type='button';button.className='grid-card';button.id=`work-${project.id}`;button.dataset.project=project.id;
   button.setAttribute('aria-label',`${project.name}，${project.url?'查看完整網站':'查看作品預覽'}`);button.setAttribute('aria-haspopup','dialog');button.setAttribute('aria-controls','lit');
-  button.innerHTML=`<figure><img src="${project.thumb}" alt="${project.name}${project.url?'網站首頁':'作品介面'}" width="1440" height="900" decoding="async"><span class="grid-number">${String(index+1).padStart(2,'0')} / ${projectCount}</span></figure><span class="grid-caption"><span>${project.name}</span><span aria-hidden="true">↗</span></span><small>${project.kind}${project.url?'':` · ${project.status}`}</small>`;
+  button.innerHTML=`<figure><img src="${project.thumb}" alt="${project.name}${project.url?'網站首頁':'作品介面'}" width="1440" height="900" decoding="async"><span class="grid-number">${String(index+1).padStart(2,'0')} / ${projectCount}</span></figure><span class="grid-caption"><span>${project.name}</span><span aria-hidden="true">↗</span></span><small>${project.kind} · ${project.status}</small>`;
   button.addEventListener('click',()=>openProject(project,button));$('#grid-rows').append(button);gridButtons.push(button);
 });
 function setInactive(element,inactive){element.inert=inactive;element.setAttribute('aria-hidden',String(inactive))}
@@ -559,11 +561,11 @@ window.addEventListener('hashchange',()=>showRoute());
 function openProject(project,source,cardIndex=-1){
   clearTimeout(closeTimer);const token=++imageToken;sourceElement=source;focusedCard=cardIndex;litOpen=true;
   body.classList.remove('lit-closing');body.classList.add('lit');cancelGesture();dirty=true;
-  $('#litTitle').textContent=project.name;$('#litWhere').textContent=project.kind+(project.url?'':` · ${project.status}`);$('#litNote').textContent=project.note;
+  $('#litTitle').textContent=project.name;$('#litWhere').textContent=`${project.kind} · ${project.status}`;$('#litNote').textContent=project.note;
   $('#lit-capture').textContent=project.previewLabel||(project.url?(project.id==='jianan'?'完整網站預覽 · 平板版':'完整網站預覽'):'作品預覽');
   const liveLink=$('#work-live-link');liveLink.hidden=!project.url;if(project.url)liveLink.href=project.url;else liveLink.removeAttribute('href');
   $('#work-load-status').textContent='正在載入完整頁面…';
-  fullImage.alt=project.url?`${project.name}網站完整頁面，由頁首至頁尾`:`${project.name}作品介面截圖`;fullImage.width=project.width;fullImage.height=900;
+  fullImage.alt=project.previewLabel?`${project.name}作品介面截圖`:`${project.name}網站完整頁面，由頁首至頁尾`;fullImage.width=project.width;fullImage.height=900;
   const immediate=source?.querySelector('img')?.src||project.thumb;fullImage.src=immediate;
   shot.classList.remove('zoomed');shot.scrollTop=0;shot.scrollLeft=0;shot.style.setProperty('--full-width',`${project.width}px`);
   zoomButton.disabled=true;zoomButton.setAttribute('aria-pressed','false');zoomButton.textContent='放大細節';$('#shot-hint').textContent='完整頁面載入後，可上下滑動';
@@ -576,7 +578,7 @@ function openProject(project,source,cardIndex=-1){
   requestAnimationFrame(()=>{if(token!==imageToken)return;plate.style.transition='';plate.style.transform='';plate.style.opacity=''});
   $('[data-close]',plate).focus({preventScroll:true});
   const full=new Image();full.decoding='async';
-  full.onload=()=>{if(token!==imageToken||!litOpen)return;fullImage.src=project.full;fullImage.height=project.height;$('#work-load-status').textContent=`${project.url?'全頁截圖':'介面截圖'} · ${project.capturedAt}`;$('#shot-hint').textContent=full.naturalHeight/full.naturalWidth*shot.clientWidth>shot.clientHeight?'上下滑動，查看完整頁面':'可放大查看細節';zoomButton.disabled=false;shot.scrollTop=0};
+  full.onload=()=>{if(token!==imageToken||!litOpen)return;fullImage.src=project.full;fullImage.height=project.height;$('#work-load-status').textContent=`${project.previewLabel?'介面截圖':'全頁截圖'} · ${project.capturedAt}`;$('#shot-hint').textContent=full.naturalHeight/full.naturalWidth*shot.clientWidth>shot.clientHeight?'上下滑動，查看完整頁面':'可放大查看細節';zoomButton.disabled=false;shot.scrollTop=0};
   full.onerror=()=>{if(token!==imageToken||!litOpen)return;$('#work-load-status').textContent=project.url?'全頁圖片暫時無法載入，仍可前往原網站。':'全頁圖片暫時無法載入，目前顯示作品預覽。';$('#shot-hint').textContent='目前顯示作品預覽'};
   full.src=project.full;
 }

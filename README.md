@@ -38,7 +38,9 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 
 - 公司資料、服務與五級含稅報價沿用改版前正式官網 https://heycheng.com.tw/ ，本次改版未調整價格；核對日期 2026-09-25。
 - 作品連結：山遇民宿 https://shanyu2015.com 、鋮馨租賃 https://cx468.com.tw 、Go Shoot https://goshoot.com.tw 、線上一番賞平台 https://goshoot-ichiban.vercel.app 、台北建安宮 https://taipeijianantemple.com.tw 、永貞豆腐店 https://yongzhen-tofu.com.tw 。
-- 2026-09-25 GitHub 作品擴充：junlin 織織怪 https://zhizhiguai-production.up.railway.app/ 、BTCUCC 費率雷達 https://btcucc.onrender.com/ ，以及尚無公開網址的 test shirt、Jev Talk 好好說話、539 K 線分析三件作品預覽。未公開作品只展示實際介面截圖，不公開原始碼、帳號或內部資料。Jev Talk 使用預先編寫範例；539 使用專案內建樣本。
+- 2026-09-25 GitHub 作品擴充：junlin 織織怪 https://zhizhiguai-production.up.railway.app/ 、BTCUCC 費率雷達 https://btcucc.onrender.com/ 。
+- 2026-09-25 上線連結更新：新增 Hey World https://howard118008y-commits.github.io/Hey-World/ 、TOONHUB 島嶼對決 https://howard118008y-commits.github.io/toonhub-island-duel/ ；test shirt 更新為公開網站 https://test-shirt.hoho0219.chatgpt.site 。展廳共 13 案，11 案標示「已上線」，Jev Talk 好好說話與 539 K 線分析保留「作品預覽」。
+- 尚無公開網址的作品只展示實際介面截圖，不公開原始碼、帳號或內部資料。Jev Talk 使用預先編寫範例；539 使用專案內建樣本。
 - 圖片沿用既有公開官網素材，轉換為 WebP 降低傳輸量。出處見 `assets/CREDITS.md`。
 - 電話與 Email 直接使用 `tel:`、`mailto:`；Email 連結開啟使用者郵件程式，網站不收集或儲存表單資料。
 - 頁面所列 GA4 是建置方案包含項目，本展示頁並未加入 GA4 或其他追蹤程式。
