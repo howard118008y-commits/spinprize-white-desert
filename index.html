@@ -126,6 +126,11 @@ html:not(.js) #stage,html:not(.js) #splash,html:not(.js) #intro,html:not(.js) #m
 #content-panel .content-plan[open] .content-plan-toggle::after{transform:rotate(0deg)}
 #content-panel .content-plan[open] .content-plan-title{color:var(--content-accent)}
 #content-panel .content-plan-detail{padding:0 25px 24px 0;color:#d2cfca;font-size:15px;line-height:1.95}
+#content-panel .content-offer{display:grid;gap:15px;margin-top:26px;padding:24px;border:1px solid var(--content-line);border-left:2px solid var(--content-accent)}
+#content-panel .content-offer h3{font-size:18px;font-weight:400}
+#content-panel .content-offer p{font-size:14px;line-height:1.95;color:var(--content-muted)}
+#content-panel .content-offer .content-offer-price{font-size:24px;color:var(--content-accent);font-variant-numeric:tabular-nums}
+#content-panel .content-offer .content-link{justify-self:start}
 #content-panel .content-pricing-notes{display:grid;gap:24px;margin-top:34px;padding:27px 0;border-top:1px solid var(--content-line)}
 #content-panel .content-pricing-notes h3{font-size:14px;font-weight:500;letter-spacing:.03em;margin-bottom:10px}
 #content-panel .content-pricing-notes p{font-size:14px;color:var(--content-muted);line-height:1.95}
@@ -273,7 +278,19 @@ html:not(.js) #stage,html:not(.js) #splash,html:not(.js) #intro,html:not(.js) #m
       <details class="content-plan"><summary><span class="content-plan-title">系統<small>依營運流程訂製功能</small></span><span class="content-plan-price"><small>NT$</small>300,000<small>起</small></span><span class="content-plan-toggle" aria-hidden="true"></span></summary><div class="content-plan-detail"><p>諮詢流程、AI 助理、文件解析、自動發文、報表與資料串接，依規格報價；系統工具依約定授權。</p></div></details>
     </div>
   </div>
-  <div class="content-pricing-notes"><div><h3>維運另計</h3><p>新案第二年起 NT$20,000／年；首年網域、主機與 SSL 已含在建置費內。</p></div><div><h3>專案費用</h3><p>系統維運、第三方服務與 API 費用，另依專案約定。</p></div></div>
+  <aside class="content-offer" aria-labelledby="offer-title">
+    <h3 id="offer-title">入門方案・專屬優惠碼</h3>
+    <p>持旋賞數位提供的優惠碼，經確認可折抵 NT$10,000。入門方案原價 NT$42,000，適用後為：</p>
+    <p class="content-offer-price">NT$32,000 <small>含稅</small></p>
+    <p>優惠碼由旋賞數位個別提供，洽談報價時由專人確認與核銷。僅限入門方案，每案限用一次，不得與其他優惠併用；目前不設使用期限。</p>
+    <a class="content-link" href="#contact">洽談與確認優惠碼 <span aria-hidden="true">↗</span></a>
+  </aside>
+  <div class="content-pricing-notes">
+    <div><h3>年度維運</h3><p>一般網站新案第二年起 NT$20,000／年（含稅），含每年 2 次內容更新；新增功能另行報價。首年網域、主機與 SSL 已含在建置費內。</p></div>
+    <div><h3>付款與交期</h3><p>所有方案訂金 30%、驗收後支付尾款 70%。正式報價有效期為 30 日；交期依個案約定。</p></div>
+    <div><h3>製作與加購</h3><p>製作階段含 2 輪整批修改；超出約定範圍、加購項目與新增功能另行報價。</p></div>
+    <div><h3>搬遷與系統費用</h3><p>搬遷服務 NT$8,000（含稅）。系統維運、第三方服務與 API 費用，另依專案約定。</p></div>
+  </div>
   <div class="content-next"><p>帶著想法來，從你的生意需要開始談。</p><a class="content-link" href="#contact">聊聊你的網站 <span aria-hidden="true">↗</span></a></div>
 </section>
 
@@ -286,7 +303,7 @@ html:not(.js) #stage,html:not(.js) #splash,html:not(.js) #intro,html:not(.js) #m
   <div class="about-editorial">
     <article class="about-feature"><figure class="content-figure"><div class="content-image"><img src="assets/case-shanyu.webp" alt="山遇民宿網站呈現的建築、庭園與品牌特色" width="1440" height="900" loading="lazy" decoding="async"></div><figcaption>山遇民宿 · 空間與住宿體驗</figcaption></figure><div class="about-feature-copy"><span class="content-index" aria-hidden="true">01</span><h3>先理解你的生意</h3><p>從民宿、餐飲、廟宇到零售與企業服務，不同的生意，需要不同的網站。我們從實際營運出發，規劃資訊、內容與瀏覽流程，讓訪客看懂你的服務，也能順手找到下一步。</p></div></article>
     <article class="about-feature"><figure class="content-figure"><div class="content-image content-image-food"><img src="assets/work-tofu-overview.webp" alt="永貞豆腐店網站裡的餐點照片與內容呈現" width="960" height="5169" loading="lazy" decoding="async"></div><figcaption>永貞豆腐店 · 餐飲品牌與內容</figcaption></figure><div class="about-feature-copy"><span class="content-index" aria-hidden="true">02</span><h3>AI 協作，重視細節</h3><p>從形象網站、現場拍攝、文案整理到立體導覽與客製系統，依照你的現況安排。我們運用 AI 協助設計、內容整理與開發，把重點放在品牌細節與實際使用體驗。</p></div></article>
-    <article class="about-ownership"><span class="content-index" aria-hidden="true">03</span><h3>清楚交付，<br>歸你掌握。</h3><div><p>網域登記在客戶名下，網站檔案可以帶走。使用的服務、交付範圍與後續維運，依專案需求說明清楚，讓你知道網站如何使用、如何接續更新。</p><p class="content-fine-print">旋賞數位有限公司 · 統一編號 62149294</p></div></article>
+    <article class="about-ownership"><span class="content-index" aria-hidden="true">03</span><h3>清楚約定，<br>安心交付。</h3><div><p>網域登記在客戶名下；網站程式碼、設計成果的權利與交付範圍另依合約約定。客戶提供的商標、照片與內容，其權利不因委託而移轉給旋賞數位。</p><p>旋賞數位編製的報價、規劃、操作手冊與交付文件，其著作權歸旋賞數位有限公司所有。服務使用、交付項目與後續維運，會在合作前說明清楚。</p><p class="content-fine-print">旋賞數位有限公司 · 統一編號 62149294</p></div></article>
   </div>
   <div class="content-next"><p>不同的生意，各自合適的網站。</p><a class="content-link" href="#works">瀏覽網站作品 <span aria-hidden="true">↗</span></a></div>
 </section>
