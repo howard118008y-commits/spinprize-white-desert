@@ -1,0 +1,80 @@
+{
+  "asOf": "2026-09-25",
+  "source": "https://heycheng.com.tw/#pricing",
+  "currency": "TWD",
+  "constructionTax": "含稅",
+  "plans": [
+    {
+      "id": "entry",
+      "name": "入門",
+      "price": 42000,
+      "from": false,
+      "purpose": "把商家資訊完整上線",
+      "includes": "五頁形象站、手機版、首年網域、主機與 SSL，包含 Google 商家綁定及 GA4。"
+    },
+    {
+      "id": "plus",
+      "name": "入門＋",
+      "price": 62000,
+      "from": false,
+      "purpose": "照片與文案一起準備",
+      "includes": "入門方案內容，加上半日現場拍攝、30 張修圖與五頁文案代筆。"
+    },
+    {
+      "id": "standard",
+      "name": "標準",
+      "price": 88000,
+      "from": false,
+      "purpose": "做出自己的品牌樣貌",
+      "includes": "品牌視覺客製、文案、SEO 架構，以及可自行編輯的後台。"
+    },
+    {
+      "id": "advanced",
+      "name": "進階",
+      "price": 178000,
+      "from": false,
+      "purpose": "讓客戶走進你的空間",
+      "includes": "標準方案內容，加上可點選房間的立體導覽。"
+    },
+    {
+      "id": "system",
+      "name": "系統",
+      "price": 300000,
+      "from": true,
+      "purpose": "依營運流程訂製功能",
+      "includes": "諮詢流程、AI 助理、文件解析、自動發文、報表與資料串接，依規格報價；系統工具依約定授權。"
+    }
+  ],
+  "maintenance": {
+    "annual": 20000,
+    "startsYear": 2,
+    "tax": "含稅",
+    "updatesPerYear": 2,
+    "firstYear": "首年網域、主機與 SSL 已含在建置費內。",
+    "excluded": "系統維運、第三方服務與 API 費用，另依專案約定。",
+    "service": "年費包含每年 2 次內容更新；新增功能另行報價。"
+  },
+  "migration": {
+    "price": 8000,
+    "tax": "含稅",
+    "scope": "搬遷協助；平台部署、DNS、教學及資料搬移的實際範圍於個案報價確認。"
+  },
+  "coupon": {
+    "planId": "entry",
+    "amount": 10000,
+    "priceAfterDiscount": 32000,
+    "oncePerProject": true,
+    "combinable": false,
+    "expiresAt": null,
+    "method": "私下發放，由人工於正式報價確認與核銷。"
+  },
+  "terms": {
+    "payment": "所有方案訂金 30%，驗收後支付尾款 70%。",
+    "schedule": "交期依個案約定。",
+    "productionRevisions": "製作期間包含 2 輪整批修改；新增功能另行報價。",
+    "quoteValidityDays": 30,
+    "addons": "除已明列的搬遷協助外，加購項目另行報價；不提供舊介紹折扣或續約贈品。",
+    "documentCopyright": "旋賞編製的報價、規劃、部署及交付文件，其著作權與文件所有權歸旋賞數位有限公司。",
+    "websiteRights": "網站程式碼與設計權利另依合約約定；客戶素材、資料與網域權利不因文件所有權改變。"
+  }
+}
