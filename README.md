@@ -66,3 +66,17 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 - 公開素材出處：`assets/CREDITS.md`
 
 維運、第三方服務與 API 費用請按頁面說明及實際專案約定確認。
+
+## 獨立服務與案例頁
+
+六個可直接存取的頁面位於 `services/` 與 `work/`，共用 `assets/search-pages.css`。內容及頁面範本由 `scripts/build-search-pages.mjs` 維護；請勿直接修改生成的 HTML。
+
+```bash
+node scripts/build-search-pages.mjs
+```
+
+生成時讀取根目錄 `pricing-data.public.json`，更新三個服務頁、三個完整案例頁、`sitemap.xml` 與 `robots.txt`。價格、維運、修改及文件權利條件均取自此公開資料；不得另外寫入價格。可用 `PRICING_DATA=/absolute/path/pricing-data.public.json` 指定驗收資料。攝影文案頁的價格為含相關內容的整套網站建置方案，不代表單項服務售價。
+
+案例依官網既有作品資料與公開原站整理，使用現有全彩素材；全頁截圖標示實際擷取日期，不宣稱流量、成交、搜尋排名或客戶見證成效。`index.html` 的服務標題與作品一覽提供直接入口，獨立頁不需要 JavaScript 才能閱讀。
+
+SEO 依據（2026-09-27 查核）：[Google SEO 入門指南](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)、[實用內容](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)、[canonical](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) 與 [Sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)。每頁使用獨立標題、描述、self-canonical 與可爬取連結；結構化資料只標記公開組織、頁面、服務及麵包屑，不增加評分或排名保證。
