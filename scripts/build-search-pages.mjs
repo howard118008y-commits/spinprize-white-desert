@@ -25,7 +25,7 @@ const services = [
   {
     slug:'brand-content', name:'品牌攝影與文案', label:'PHOTOGRAPHY & CONTENT', title:'品牌攝影與網站文案｜現場拍攝與內容整理｜Hey Cheng 旋賞數位',
     description:'從現場拍攝到網站文案，Hey Cheng 旋賞數位協助整理品牌特色、產品與服務。查看品牌內容的準備方式、公開方案，以及永貞豆腐店和山遇民宿的圖文呈現案例。',
-    lead:'照片有畫面，文字有你的個性。', image:'case-tofu.webp', imageAlt:'永貞豆腐店網站的品牌標題與全彩餐點照片', caption:'永貞豆腐店 · 圖文呈現作品',
+    lead:'照片有畫面，文字有你的個性。', image:'case-tofu.webp', imageAlt:'永貞豆腐店網站的品牌標題', heroImage:'work-tofu-overview.webp', heroAlt:'永貞豆腐店網站裡的全彩餐點照片', caption:'永貞豆腐店 · 2026.09.18 網站截圖，活動內容以原站為準',
     intro:'網站的內容來自你的現場：產品怎麼做、空間怎麼使用、服務有什麼細節。品牌攝影與文案把這些資訊整理成訪客容易閱讀的內容，讓照片與文字共同說明特色，而不是各說各的。',
     sections:[
       ['拍攝之前，先知道要說什麼','可以先列出網站要介紹的主角：店面、商品、空間、製作過程或服務情境，再確認現場可拍攝的內容。拍攝清單與頁面規劃一起討論，較容易知道照片要放在哪裡、需要表現什麼。'],
@@ -144,7 +144,7 @@ function document(page, type, body) {
 }
 
 for (const s of services) {
-  const body = `<figure class="hero-image"><img src="/assets/${s.image}" alt="${escape(s.imageAlt)}" width="1440" height="900" fetchpriority="high"><figcaption>${escape(s.caption)}</figcaption></figure><div class="story section">${paragraphs(s.sections)}</div><section class="preparation section"><div><p class="eyebrow">BEFORE WE START</p><h2>先準備這些，<br>討論會更具體。</h2></div><ul>${s.checklist.map(item=>`<li>${escape(item)}</li>`).join('')}</ul></section>${pricingBlock(s.planIds)}<section class="section"><div class="section-head"><p class="eyebrow">SELECTED WORK</p><h2>用實際作品，看看不同做法</h2><p>以下為已公開的網站作品；各案內容與交付範圍不同。</p></div>${workCards(s.related)}</section><section class="section faqs"><div class="section-head"><p class="eyebrow">QUESTIONS</p><h2>開始之前，你可能想知道</h2></div>${s.faqs.map(([q,a])=>`<details><summary>${escape(q)}</summary><p>${escape(a)}</p></details>`).join('')}</section>`;
+  const body = `<figure class="hero-image${s.heroImage?' food-image':''}"><img src="/assets/${s.heroImage||s.image}" alt="${escape(s.heroAlt||s.imageAlt)}" width="${s.heroImage?960:1440}" height="${s.heroImage?5169:900}" fetchpriority="high"><figcaption>${escape(s.caption)}</figcaption></figure><div class="story section">${paragraphs(s.sections)}</div><section class="preparation section"><div><p class="eyebrow">BEFORE WE START</p><h2>先準備這些，<br>討論會更具體。</h2></div><ul>${s.checklist.map(item=>`<li>${escape(item)}</li>`).join('')}</ul></section>${pricingBlock(s.planIds)}<section class="section"><div class="section-head"><p class="eyebrow">SELECTED WORK</p><h2>用實際作品，看看不同做法</h2><p>以下為已公開的網站作品；各案內容與交付範圍不同。</p></div>${workCards(s.related)}</section><section class="section faqs"><div class="section-head"><p class="eyebrow">QUESTIONS</p><h2>開始之前，你可能想知道</h2></div>${s.faqs.map(([q,a])=>`<details><summary>${escape(q)}</summary><p>${escape(a)}</p></details>`).join('')}</section>`;
   const path = resolve(root, `services/${s.slug}/index.html`); await mkdir(dirname(path), {recursive:true}); await writeFile(path, document(s,'services',body));
 }
 for (const w of works) {
