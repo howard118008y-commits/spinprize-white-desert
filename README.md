@@ -1,6 +1,6 @@
 # 旋賞數位展示網站
 
-旋賞數位有限公司的靜態展示頁，使用公開公司內容與既有作品素材。頁面、樣式與互動集中在單一 `index.html`：一個內嵌 `<style>` 與頁尾原生 JavaScript；圖片仍使用 `assets/` 本機素材。無框架、無建置步驟、無執行時套件或 CDN、無分析追蹤程式；開發套件僅供交付驗收使用。
+旋賞數位有限公司的靜態展示頁，使用公開公司內容與既有作品素材。頁面與互動集中在 `index.html`：主要樣式內嵌，版面調整使用 `assets/site-refinement.css`，頁尾使用原生 JavaScript；圖片仍使用 `assets/` 本機素材。無框架、無建置步驟、無執行時套件或 CDN、無分析追蹤程式；開發套件僅供交付驗收使用。
 
 ## 本機啟動
 
@@ -59,7 +59,7 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 - 文字、價格、SEO、內嵌樣式與互動：`index.html`；作品資料位於頁尾 `projects` 陣列。每案需唯一 `id`、真實 `name`／`kind`／`note`、完整截圖 `width`／`height`；`capturedAt` 記錄實際截圖日期。`url` 僅填可公開驗證的網站；缺省時顯示「作品預覽」，可用 `status`／`previewLabel` 補充實際狀態。
 - 每案圖片：`assets/case-<id>.webp`（首屏；既有作品 1440×900、新增作品 1280×720）、`assets/work-<id>-overview.webp`（約寬 960 的全頁縮圖）、`assets/work-<id>-full.webp`（完整頁面）。新增案須同步 `<noscript>` 的文字入口；已完成但尚無公開網站者提供本機作品全頁圖，不放私人專案 URL。
 - 路由：`#works` 為球體、`#grid` 為作品一覽，`#services`／`#pricing`／`#about`／`#contact` 為四個內容頁；`#work-<id>` 可定位指定作品。
-- 框架：`#world` 共用球心，`#orb` 放圖層，`#headline` 是同層元素；保留標題的負半寬 margin 與 `.inner` 垂直置中，避免修改後旋轉偏移。手機水平滑動旋轉、垂直滑動縮放；鍵盤方向鍵旋轉，Enter 開啟前方作品，也可直接使用作品一覽。
+- 框架：`#world` 是球心，`#orb` 放圖層；`#headline` 位於獨立 `.hero-copy`，不進入 3D 空間。球體在有界 `#stage` 內保持完整。拖曳或鍵盤方向鍵上下左右旋轉，Enter 開啟前方作品，也可使用作品一覽；文字區保留原生捲動。
 - 舊 `assets/styles.css`、`assets/app.css` 與 `assets/main.js` 仍保留於版本庫，最新版入口不再載入；新版樣式與互動請修改 `index.html`。
 - App 安裝資訊與圖示：`manifest.webmanifest`、`assets/app-icon-*.png`；不提供離線快取，瀏覽作品仍需要網路。
 - 無障礙驗收狀態與選擇器：`scripts/audit-a11y.mjs`，頁面結構調整時同步更新。
@@ -69,14 +69,16 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 
 ## 獨立服務與案例頁
 
-六個可直接存取的頁面位於 `services/` 與 `work/`，共用 `assets/search-pages.css`。內容及頁面範本由 `scripts/build-search-pages.mjs` 維護；請勿直接修改生成的 HTML。
+七個可直接存取的頁面位於 `services/`、`work/` 與 `faq/`，共用 `assets/search-pages.css`。內容及頁面範本由 `scripts/build-search-pages.mjs` 維護；請勿直接修改生成的 HTML。
 
 ```bash
 node scripts/build-search-pages.mjs
 ```
 
-生成時讀取根目錄 `pricing-data.public.json`，更新三個服務頁、三個完整案例頁、`sitemap.xml` 與 `robots.txt`。價格、維運、修改及文件權利條件均取自此公開資料；不得另外寫入價格。可用 `PRICING_DATA=/absolute/path/pricing-data.public.json` 指定驗收資料。攝影文案頁的價格為含相關內容的整套網站建置方案，不代表單項服務售價。
+生成時讀取根目錄 `pricing-data.public.json`，更新三個服務頁、三個完整案例頁、常見問題頁、`sitemap.xml` 與 `robots.txt`。價格、維運、修改及文件權利條件均取自此公開資料；不得另外寫入價格。可用 `PRICING_DATA=/absolute/path/pricing-data.public.json` 指定驗收資料。攝影文案頁的價格為含相關內容的整套網站建置方案，不代表單項服務售價。
 
 案例依官網既有作品資料與公開原站整理，使用現有全彩素材；全頁截圖標示實際擷取日期，不宣稱流量、成交、搜尋排名或客戶見證成效。`index.html` 的服務標題與作品一覽提供直接入口，獨立頁不需要 JavaScript 才能閱讀。
 
 SEO 依據（2026-09-27 查核）：[Google SEO 入門指南](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)、[實用內容](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)、[canonical](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) 與 [Sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)。每頁使用獨立標題、描述、self-canonical 與可爬取連結；結構化資料只標記公開組織、頁面、服務及麵包屑，不增加評分或排名保證。
+
+2026-09-27 導覽更新：首頁文字與立體展廳分區，主要作品／服務／方案／聯絡入口常駐；版面修正放在 `assets/site-refinement.css`。手機方案先呈現金額，再顯示作品圖。`#grid` 支援直接進入、重新整理與前後頁；`/play/` 為可選的組裝官網挑戰，獨立載入。文件工作台入口使用 `/portal/`；此版面更新不變更帳號、文件或舊內部資料。

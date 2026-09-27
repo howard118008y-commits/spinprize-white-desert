@@ -103,7 +103,7 @@
 #content-panel{position:fixed;inset:0;z-index:25;overflow:auto;overscroll-behavior:contain;background:#050807;padding:calc(120px + var(--safe-top)) calc(var(--pad) + var(--safe-right)) calc(45px + var(--safe-bottom)) calc(var(--pad) + var(--safe-left));opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s}.contentview #content-panel{opacity:1;visibility:visible;pointer-events:auto}.panel-bar{max-width:1320px;margin:0 auto 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:15px}.panel-bar a{white-space:nowrap;flex-shrink:0;min-height:44px;display:inline-flex;align-items:center;gap:16px;font-size:13px;color:var(--dim)}.panel-bar a span{color:var(--accent)}.panel-bar p{min-width:0;text-align:right;overflow-wrap:anywhere;font-size:11px;letter-spacing:.15em;color:var(--dim)}
 #menu{position:fixed;inset:0;z-index:80;background:#050505;display:grid;place-items:center;clip-path:inset(0 0 100% 0);visibility:hidden;pointer-events:none;transition:clip-path .85s var(--ease),visibility 0s .85s;padding:90px var(--pad) 100px;overflow:auto}.menu-open #menu{clip-path:inset(0);visibility:visible;pointer-events:auto;transition:clip-path .85s var(--ease)}.menu-inner{width:min(1050px,100%);display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.menu-intro{align-self:end;padding-bottom:10px}.menu-intro img{width:230px;height:auto;margin-bottom:25px}.menu-intro p{font-size:15px;line-height:1.8;color:var(--dim);max-width:270px}.menu-intro .menu-label-brand{font-size:11px;letter-spacing:.15em;color:var(--accent);margin-bottom:14px}.menu-nav{display:flex;flex-direction:column;gap:9px}.menu-nav a{display:flex;align-items:center;justify-content:space-between;gap:30px;font-family:var(--display);font-weight:400;font-size:clamp(28px,4.2vw,62px);line-height:1.28;letter-spacing:-.04em;min-height:44px}.menu-nav a span{font:400 12px var(--sans);letter-spacing:.08em;color:var(--dim)}.menu-nav a:last-child{font:400 14px var(--sans);color:var(--accent);margin-top:22px}.menu-close{position:absolute;right:calc(var(--pad) + var(--safe-right));top:calc(var(--pad) + var(--safe-top));padding:8px 4px;min-width:70px;display:flex;gap:14px;align-items:center;font-size:13px}.menu-close span{font-size:24px;font-weight:300;color:var(--accent)}.addr{position:absolute;left:calc(var(--pad) + var(--safe-left));right:calc(var(--pad) + var(--safe-right));bottom:calc(var(--pad) + var(--safe-bottom));display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--dim);font-size:12px;line-height:1.7}.addr a{min-height:44px;display:flex;align-items:center}
 #lit{position:fixed;inset:0;z-index:90;display:grid;align-items:center;justify-items:center;padding:clamp(45px,6vh,70px) calc(var(--pad) + var(--safe-right)) calc(30px + var(--safe-bottom)) calc(var(--pad) + var(--safe-left));overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s}.lit #lit,.lit-closing #lit{visibility:visible}.lit #lit{opacity:1;pointer-events:auto}.scrim{position:fixed;inset:0;z-index:0;background:transparent}.plate{position:relative;z-index:1;width:min(76vw,950px);transition:transform .62s var(--ease),opacity .42s var(--ease);will-change:transform;transform-origin:50% 50%}.lit-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 0 10px;background:transparent}.lit-toolbar p{color:#b8c2be;font-size:12px}.lit-toolbar-actions{display:flex;gap:10px}.lit-toolbar button{border:1px solid #586c63;background:#060b08;padding:8px 14px;min-height:44px;border-radius:3px;font-size:12px}.lit-toolbar button:disabled{opacity:.6;cursor:wait}.lit-toolbar [data-close]{border-color:var(--accent);color:var(--accent)}.shot{position:relative;width:100%;height:min(60dvh,620px);overflow:auto;overscroll-behavior:contain;border-radius:2px;background:#101310;box-shadow:0 30px 90px rgba(0,0,0,.75);scrollbar-color:#49655a #111913}.shot img{width:100%;height:auto;max-width:none;object-fit:contain;min-height:0}.shot.zoomed img{width:var(--full-width,1440px);max-width:none}.shot figcaption{position:sticky;left:0;bottom:0;padding:8px 14px;background:#000c;color:#b8c9c1;font-size:12px;pointer-events:none}.meta{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(22px,3.2vw,48px);padding-top:18px}#litTitle{font:400 clamp(23px,2.4vw,34px)/1.2 var(--display);letter-spacing:-.03em;margin-bottom:7px}#litWhere{font-size:12px;color:var(--dim)}#litNote{font-size:14px;line-height:1.7;color:#e5e8e3}.lit-link{display:inline-flex;align-items:center;gap:16px;min-height:44px;color:var(--accent);font-size:14px;margin-top:8px}.image-status{color:var(--dim);font-size:12px;min-height:20px}.lit #stage,.lit #grid{pointer-events:none}.lit #grid{opacity:.08}.lit .meta{background:rgba(0,0,0,.86)}
-#splash,#intro{position:fixed;inset:0;background:#000;display:grid;place-items:center;align-content:center;z-index:250;overflow:hidden}#splash{gap:25px;transition:opacity .6s}.splash-logo{width:clamp(180px,23vw,310px);height:auto}.splash-bar{width:clamp(120px,17vw,210px);height:1px;background:#ffffff29}.splash-bar s{display:block;width:100%;height:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .55s}.splash-tag{font-size:10px;letter-spacing:.26em;color:#adb9b2}.splash-skip{position:absolute;right:calc(var(--pad) + var(--safe-right));bottom:calc(var(--pad) + var(--safe-bottom));font-size:13px;padding:10px 18px;min-height:44px;border:1px solid #516158;border-radius:3px}.out{opacity:0;pointer-events:none!important}#intro{z-index:200;opacity:1;transition:opacity .5s}.intro-scene{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity 1.2s var(--ease)}.intro-playing .intro-scene{opacity:.52}.intro-scene img{position:absolute;width:31%;height:37%;object-fit:cover;opacity:.65;filter:none}.intro-scene img:nth-child(1){left:-2%;top:12%;transform:rotate(-8deg)}.intro-scene img:nth-child(2){right:-1%;top:17%;transform:rotate(7deg)}.intro-scene img:nth-child(3){left:35%;bottom:-11%;transform:rotate(-4deg)}.intro-brand{z-index:1;text-align:center;display:grid;justify-items:center;gap:18px;padding:22px;opacity:0;transform:translateY(15px);transition:opacity .8s,transform 1.2s var(--ease)}.intro-playing .intro-brand{opacity:1;transform:none}.intro-brand img{width:clamp(190px,26vw,380px);height:auto}.intro-brand p{font-size:12px;letter-spacing:.2em;color:#d6e0d9}.veil{position:absolute;inset:0;background:#000;opacity:0;z-index:2;transition:opacity .7s var(--ease)}#intro.closing .veil{opacity:1}#intro.gone{opacity:0;pointer-events:none}.skip{position:absolute;right:calc(var(--pad) + var(--safe-right));bottom:calc(var(--pad) + var(--safe-bottom));z-index:3;min-height:44px;padding:10px 18px;border:1px solid #516158;border-radius:3px;font-size:13px;color:#ccd6d0}.closing .skip{opacity:0;pointer-events:none}#dot{position:fixed;top:0;left:0;width:19px;height:19px;margin:-9.5px;border-radius:50%;background:rgba(214,212,209,.9);mix-blend-mode:difference;border:1px solid transparent;z-index:300;pointer-events:none;opacity:0;transition:width .35s, height .35s,margin .35s,background .35s,border .35s,opacity .2s}.revealed #dot.active{opacity:1}#dot.wide{width:52px;height:52px;margin:-26px;background:rgba(244,242,239,.14);border-color:rgba(244,242,239,.75)}.install-dialog{width:min(440px,calc(100vw - 32px));padding:28px;margin:auto;color:var(--ink);background:#0a120e;border:1px solid #4a6558;border-radius:4px}.install-dialog::backdrop{background:#000b}.install-dialog h2{font-size:24px;font-weight:400;margin:12px 0}.install-dialog p{font-size:15px;line-height:1.8;margin:12px 0}.install-dialog button{display:block;margin-left:auto;color:var(--accent);font-size:14px;min-height:44px;padding:8px}.install-dialog small{display:block;font-size:12px;color:var(--dim)}
+#dot{position:fixed;top:0;left:0;width:19px;height:19px;margin:-9.5px;border-radius:50%;background:rgba(214,212,209,.9);mix-blend-mode:difference;border:1px solid transparent;z-index:300;pointer-events:none;opacity:0;transition:width .35s, height .35s,margin .35s,background .35s,border .35s,opacity .2s}.revealed #dot.active{opacity:1}#dot.wide{width:52px;height:52px;margin:-26px;background:rgba(244,242,239,.14);border-color:rgba(244,242,239,.75)}.install-dialog{width:min(440px,calc(100vw - 32px));padding:28px;margin:auto;color:var(--ink);background:#0a120e;border:1px solid #4a6558;border-radius:4px}.install-dialog::backdrop{background:#000b}.install-dialog h2{font-size:24px;font-weight:400;margin:12px 0}.install-dialog p{font-size:15px;line-height:1.8;margin:12px 0}.install-dialog button{display:block;margin-left:auto;color:var(--accent);font-size:14px;min-height:44px;padding:8px}.install-dialog small{display:block;font-size:12px;color:var(--dim)}
 @media(hover:hover) and (pointer:fine){.card:hover figure{transform:scale(1.045)}.grid-card:hover img{transform:scale(1.045)}.menu-nav a:hover{color:var(--accent)}.header-contact:hover,.colophon a:hover{color:var(--accent)}.menu-btn:hover .bars i+i{transform:translate(-8px,5px)}}
 @media(hover:none),(pointer:coarse){#dot{display:none}}
 @media(max-width:900px){.bio{max-width:min(300px,38vw)}.bio p{font-size:12px}.colophon{font-size:11px}.plate{width:min(92vw,900px)}.meta{grid-template-columns:1fr;gap:12px;padding-top:15px}.rows{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 16px}.grid-heading{margin-bottom:25px}.site-header{padding-top:calc(12px + var(--safe-top))}.header-contact{font-size:12px}.menu-inner{gap:35px}.menu-nav a{font-size:44px}.shot{height:55dvh}}
@@ -256,22 +256,31 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 .case-study-links{display:flex;flex-wrap:wrap;gap:8px 22px;max-width:1680px;margin:0 auto 30px;align-items:center;font-size:13px}.case-study-links>span{color:var(--dim)}.case-study-links>a{display:inline-flex;align-items:center;min-height:44px;color:var(--accent)}
 .policy-links{display:flex;flex-wrap:wrap;gap:0 20px}.policy-links a{display:inline-flex;align-items:center;min-height:44px;font-size:12px;color:var(--dim);letter-spacing:0}.policy-links a:hover{color:var(--accent)}.colophon .policy-links{justify-content:flex-end}.workspace-notice{margin-top:48px;padding-top:28px;border-top:1px solid #2c3a36}.workspace-notice h3{font-size:20px}.workspace-notice p{max-width:720px;margin-top:12px;color:var(--content-muted);font-size:14px;line-height:1.9}.workspace-notice .policy-links{margin-top:10px}.addr .policy-links{gap:0 20px}
 </style>
+<link rel="stylesheet" href="assets/site-refinement.css">
 </head>
 
 <body class="locked">
 <a class="skip-link" href="#main">跳到主要內容</a>
-<div id="scrolltrack" aria-hidden="true"></div>
 <main id="main" tabindex="-1">
   <span id="works" class="sr-only" aria-hidden="true"></span><span id="top" class="sr-only" aria-hidden="true"></span><span id="work-directory" class="sr-only" aria-hidden="true"></span>
-  <div id="stage" role="region" aria-roledescription="立體作品展廳" aria-label="網站作品球體，可左右拖曳旋轉；也可以切換作品一覽" aria-describedby="gallery-help" tabindex="0" inert>
-    <div id="world">
-      <div id="orb"></div>
-      <h1 id="headline"><span class="inner"><span class="word" style="--i:0">不同的生意，</span><br><span class="word" style="--i:1">各自合適的網站<span class="accent">。</span></span></span></h1>
+  <section id="home-hero" aria-labelledby="headline">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">HEY CHENG · 數位設計與開發</p>
+      <h1 id="headline">不同的生意，<br>各自合適的<span class="accent">網站。</span></h1>
+      <p class="hero-description">從品牌網站、內容拍攝，到 AI 與客製系統。<br>把你的特色，變成好看、好用的數位體驗。</p>
+      <div class="hero-actions"><a class="hero-primary" href="#grid">看實際作品 <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#pricing">看建置方案 <span aria-hidden="true">↗</span></a></div>
     </div>
-  </div>
-  <p id="gallery-help" class="sr-only">左右拖曳旋轉作品；上下滑動靠近作品。鍵盤左右方向鍵旋轉，Enter 開啟前方作品。作品一覽提供全部作品的文字選單。</p>
+    <div class="hero-gallery">
+      <div id="stage" role="region" aria-roledescription="立體作品展廳" aria-label="網站作品球體，可拖曳旋轉；也可以切換作品一覽" aria-describedby="gallery-help" tabindex="0" inert>
+        <div id="world"><div id="orb"></div></div>
+      </div>
+      <nav class="gallery-controls" aria-label="作品瀏覽方式" inert><p class="gallery-count"><span></span> 件真實作品 <small>拖曳旋轉 · 點選探索</small></p><button id="gridBtn" class="view-toggle" type="button" aria-controls="grid" aria-expanded="false"><span class="grid-icon" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="grid-label">作品一覽</span></button></nav>
+    </div>
+    <p id="gallery-help" class="sr-only">拖曳可左右或上下旋轉作品；方向鍵旋轉，Enter 開啟前方作品。作品一覽提供全部作品的文字選單。</p>
+    <aside class="play-invitation"><p>設計，也能親手玩一輪。</p><a href="/play/">組裝官網挑戰 <span aria-hidden="true">↗</span></a></aside>
+  </section>
   <section id="grid" aria-labelledby="grid-title" aria-hidden="true" inert>
-    <div class="grid-heading"><h1 id="grid-title" tabindex="-1">實際做過的作品。</h1><p>不同的生意，各自合適的數位體驗。</p></div>
+    <div class="grid-heading"><div><a class="grid-back" href="#works">← 返回立體展廳</a><h1 id="grid-title" tabindex="-1">實際做過的作品。</h1></div><p>不同的生意，各自合適的數位體驗。</p></div>
     <nav class="case-study-links" aria-label="完整案例"><span>完整案例</span><a href="/work/shanyu/">山遇民宿 ↗</a><a href="/work/yongzhen-tofu/">永貞豆腐店 ↗</a><a href="/work/goshoot/">Go Shoot ↗</a></nav>
     <div class="rows" id="grid-rows"></div>
   </section>
@@ -364,9 +373,9 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
       <a class="content-social-row" href="mailto:howard118008y@gmail.com"><span><strong>Gmail</strong><small>howard118008y@gmail.com</small></span><span aria-hidden="true">↗</span></a>
       <p class="content-fine-print">點擊 Email 將開啟你的郵件程式。</p>
     </div>
-    <div class="content-contact-info"><p class="content-eyebrow">HEY CHENG · ZHONGHE</p><h3>旋賞數位有限公司</h3><address>新北市中和區景平路593號之1</address><a class="content-phone" href="tel:+886222262678">02-2226-2678</a><a class="content-mobile" href="tel:+886983158911">手機 0983-158-911</a><p class="content-fine-print">來店前，請先電話聯絡。<br>統一編號 62149294</p><div class="content-utility"><a class="content-link" href="https://howard118008y-commits.github.io/spinprize/internal/" target="_blank" rel="noopener noreferrer">內部網站 <span aria-hidden="true">↗</span></a><button class="content-link" type="button" data-install>加入主畫面 <span aria-hidden="true">＋</span></button></div></div>
+    <div class="content-contact-info"><p class="content-eyebrow">HEY CHENG · ZHONGHE</p><h3>旋賞數位有限公司</h3><address>新北市中和區景平路593號之1</address><a class="content-phone" href="tel:+886222262678">02-2226-2678</a><a class="content-mobile" href="tel:+886983158911">手機 0983-158-911</a><p class="content-fine-print">來店前，請先電話聯絡。<br>統一編號 62149294</p><div class="content-utility"><a class="content-link" href="/portal/" target="_blank" rel="noopener noreferrer">內部網站 <span aria-hidden="true">↗</span></a><button class="content-link" type="button" data-install>加入主畫面 <span aria-hidden="true">＋</span></button></div></div>
   </div>
-  <footer class="workspace-notice" aria-labelledby="workspace-notice-title"><h3 id="workspace-notice-title">文件工作台｜建置中</h3><p>我們正在準備 Google 帳號文件工作台，供已獲授權的同事與客戶查看指定文件；管理者可新增帳號、分配文件與停用權限。目前尚未正式啟用，既有內部入口維持原有方式。</p><nav class="policy-links" aria-label="網站政策"><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></nav></footer>
+  <footer class="workspace-notice" aria-labelledby="workspace-notice-title"><h3 id="workspace-notice-title">文件工作台</h3><p>已獲授權的同事與客戶可使用 Google 帳號登入，依分配權限查看文件；未獲授權帳號不會開放內容。</p><nav class="policy-links" aria-label="網站政策"><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></nav></footer>
 </section>
 
   </div>
@@ -374,15 +383,13 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 <div class="vig" aria-hidden="true"></div>
 <header class="site-header chrome">
   <a class="wordmark" href="#works" aria-label="Hey Cheng 旋賞數位，回到作品"><img src="assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763" fetchpriority="high"></a>
-  <div class="header-actions"><a class="header-contact" href="#contact">聊聊你的網站 <span aria-hidden="true">↗</span></a><button id="menuBtn" class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="開啟網站選單"><span class="menu-label">選單</span><span class="bars" aria-hidden="true"><i></i><i></i></span></button></div>
+  <nav class="primary-nav" aria-label="主要導覽"><a href="#grid" data-nav="works">作品</a><a href="#services" data-nav="services">服務</a><a href="#pricing" data-nav="pricing">方案</a><a href="#contact" data-nav="contact">聯絡</a></nav>
+  <div class="header-actions"><button id="menuBtn" class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="開啟網站選單"><span class="menu-label">選單</span><span class="bars" aria-hidden="true"><i></i><i></i></span></button></div>
 </header>
-<aside class="bio chrome" inert><div class="who"><img id="avatar" src="assets/hey-cheng-icon.jpg" width="44" height="44" alt=""><div><b>從你的生意開始。</b><small>AI ASSISTED. HUMAN DIRECTED.</small></div></div><p>用設計整理特色，用 AI 推進想法。<br>每一個畫面，都是我們實際完成的網站。</p></aside>
-<footer class="colophon chrome" aria-label="品牌與內部入口"><p>HEY CHENG · NEW TAIPEI</p><a href="https://howard118008y-commits.github.io/spinprize/internal/">內部網頁 <span aria-hidden="true">↗</span></a><nav class="policy-links" aria-label="網站政策"><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></nav></footer>
-<nav class="gallery-controls chrome" aria-label="作品瀏覽方式" inert><p class="gallery-count"><span></span> / 網站與互動作品</p><button id="gridBtn" class="view-toggle" type="button" aria-controls="grid" aria-expanded="false"><span class="grid-icon" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="grid-label">作品一覽</span></button></nav>
-<p class="cue chrome" aria-hidden="true"><s></s>拖曳旋轉 · 點選探索</p>
+<footer class="colophon chrome" aria-label="品牌與內部入口"><p>HEY CHENG · NEW TAIPEI</p><a href="/portal/">內部網頁 <span aria-hidden="true">↗</span></a><nav class="policy-links" aria-label="網站政策"><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></nav></footer>
 <div id="menu" role="dialog" aria-modal="true" aria-labelledby="menu-title" aria-hidden="true" inert>
   <h2 class="sr-only" id="menu-title">網站選單</h2><button class="menu-close" type="button" id="menuClose">關閉 <span aria-hidden="true">×</span></button>
-  <div class="menu-inner"><div class="menu-intro"><p class="menu-label-brand">INDEPENDENT DIGITAL STUDIO</p><img src="assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763"><p>讓你的特色，<br>成為被看見的理由。</p></div><nav class="menu-nav" aria-label="主要導覽"><a href="#grid">公開作品 <span>01 / WORK</span></a><a href="#services">服務 <span>02 / SERVICES</span></a><a href="#pricing">建置方案 <span>03 / PLANS</span></a><a href="#about">關於我們 <span>04 / STUDIO</span></a><a href="#contact">聯絡 <span>05 / CONTACT</span></a><a href="https://howard118008y-commits.github.io/spinprize/internal/">內部工作台 <span aria-hidden="true">↗</span></a></nav></div>
+  <div class="menu-inner"><div class="menu-intro"><p class="menu-label-brand">INDEPENDENT DIGITAL STUDIO</p><img src="assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763"><p>讓你的特色，<br>成為被看見的理由。</p></div><nav class="menu-nav" aria-label="主要導覽"><a href="#grid">公開作品 <span>01 / WORK</span></a><a href="#services">服務 <span>02 / SERVICES</span></a><a href="#pricing">建置方案 <span>03 / PLANS</span></a><a href="#about">關於我們 <span>04 / STUDIO</span></a><a href="#contact">聯絡 <span>05 / CONTACT</span></a><a href="/play/">組裝官網挑戰 <span>PLAY</span></a><a href="/portal/">內部工作台 <span aria-hidden="true">↗</span></a></nav></div>
   <div class="addr"><p>旋賞數位有限公司 · 新北市中和區<br>統一編號 62149294</p><a href="mailto:howard118008y@gmail.com">howard118008y@gmail.com</a><nav class="policy-links" aria-label="網站政策"><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></nav></div>
 </div>
 <div id="lit" role="dialog" aria-modal="true" aria-labelledby="litTitle" aria-describedby="litNote" aria-hidden="true" inert>
@@ -394,10 +401,8 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
   </div>
 </div>
 <dialog class="install-dialog" id="install-dialog" aria-labelledby="install-title"><button type="button" id="install-close">關閉 ×</button><h2 id="install-title">將 Hey Cheng 放進主畫面</h2><p id="install-instructions">在瀏覽器選單選擇「安裝應用程式」或「加入主畫面」，下次就能直接開啟。</p><small>實際選項依瀏覽器而異。瀏覽作品仍需要網路連線。</small></dialog>
-<div id="intro" aria-hidden="true" inert><div class="intro-scene"><img src="assets/case-shanyu.webp" alt="" width="1440" height="900"><img src="assets/case-goshoot.webp" alt="" width="1440" height="900"><img src="assets/case-tofu.webp" alt="" width="1440" height="900"></div><div class="intro-brand"><img src="assets/hey-cheng-logo.png" alt="" width="2061" height="763"><p>YOUR BUSINESS. A NEW PERSPECTIVE.</p></div><div class="veil"></div><button id="skip" class="skip" type="button">跳過開場</button></div>
-<div id="splash" role="status" aria-label="正在準備作品"><img class="splash-logo" src="assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763"><div class="splash-bar" aria-hidden="true"><s id="bar"></s></div><p class="splash-tag">DESIGNED AROUND YOUR BUSINESS</p><button class="splash-skip" type="button" id="splash-skip">直接看作品</button></div>
 <div id="dot" aria-hidden="true"></div>
-<noscript><div class="no-js-note"><p>此作品展廳需要 JavaScript 才能旋轉。你仍可閱讀下方服務與方案，或直接查看我們的網站作品。</p><p><a href="assets/work-salf-full.webp">Salf TW（本機作品預覽）</a> · <a href="https://howard118008y-commits.github.io/Hey-World/">Hey World ↗</a> · <a href="https://howard118008y-commits.github.io/toonhub-island-duel/">Card &amp; TW ＆ Game ↗</a> · <a href="https://test-shirt.hoho0219.chatgpt.site">test shirt ↗</a> · <a href="https://zhizhiguai-production.up.railway.app/">junlin 織織怪 ↗</a> · <a href="assets/work-jevtalk-full.webp">Jev Talk 好好說話（本機作品預覽）</a> · <a href="https://btcucc.onrender.com/">BTCUCC 費率雷達 ↗</a> · <a href="assets/work-kline539-full.webp">539 K 線分析（本機作品預覽）</a> · <a href="https://shanyu2015.com">山遇民宿 ↗</a> · <a href="https://goshoot.com.tw">Go Shoot ↗</a> · <a href="https://yongzhen-tofu.com.tw">永貞豆腐店 ↗</a> · <a href="https://taipeijianantemple.com.tw">台北建安宮 ↗</a> · <a href="https://cx468.com.tw">鋮馨租賃 ↗</a> · <a href="https://goshoot-ichiban.vercel.app">線上一番賞平台 ↗</a></p><a href="https://howard118008y-commits.github.io/spinprize/internal/">內部網頁 ↗</a></div></noscript>
+<noscript><div class="no-js-note"><p>此作品展廳需要 JavaScript 才能旋轉。你仍可閱讀下方服務與方案，或直接查看我們的網站作品。</p><p><a href="assets/work-salf-full.webp">Salf TW（本機作品預覽）</a> · <a href="https://howard118008y-commits.github.io/Hey-World/">Hey World ↗</a> · <a href="https://howard118008y-commits.github.io/toonhub-island-duel/">Card &amp; TW ＆ Game ↗</a> · <a href="https://test-shirt.hoho0219.chatgpt.site">test shirt ↗</a> · <a href="https://zhizhiguai-production.up.railway.app/">junlin 織織怪 ↗</a> · <a href="assets/work-jevtalk-full.webp">Jev Talk 好好說話（本機作品預覽）</a> · <a href="https://btcucc.onrender.com/">BTCUCC 費率雷達 ↗</a> · <a href="assets/work-kline539-full.webp">539 K 線分析（本機作品預覽）</a> · <a href="https://shanyu2015.com">山遇民宿 ↗</a> · <a href="https://goshoot.com.tw">Go Shoot ↗</a> · <a href="https://yongzhen-tofu.com.tw">永貞豆腐店 ↗</a> · <a href="https://taipeijianantemple.com.tw">台北建安宮 ↗</a> · <a href="https://cx468.com.tw">鋮馨租賃 ↗</a> · <a href="https://goshoot-ichiban.vercel.app">線上一番賞平台 ↗</a></p><a href="/portal/">內部網頁 ↗</a></div></noscript>
 
 <script>
 
@@ -425,13 +430,13 @@ const projects = [
   {id:'cx468',name:'鋮馨租賃',url:'https://cx468.com.tw',kind:'企業服務 / 諮詢與 AI 助理',note:'把服務、諮詢流程與 AI 助理串成清楚的數位入口，讓訪客了解企業，也能順手開始詢問。',width:1440,height:4400},
   {id:'ichiban',name:'線上一番賞平台',url:'https://goshoot-ichiban.vercel.app',kind:'客製系統 / 商品與會員流程',note:'整合會員、點數、金流、庫存與亂數驗證，依照實際營運流程安排操作介面。功能與體驗一起設計。',width:1440,height:2679}
 ].map((project,index)=>({capturedAt:'2026.09.18',status:project.url?'已上線':'作品預覽',...project,index,thumb:`assets/case-${project.id}.webp`,overview:`assets/work-${project.id}-overview.webp`,full:`assets/work-${project.id}-full.webp`}));
-const stage=$('#stage'), world=$('#world'), orb=$('#orb'), headline=$('#headline');
+const stage=$('#stage'), world=$('#world'), orb=$('#orb'), hero=$('#home-hero');
 const grid=$('#grid'), gridButton=$('#gridBtn'), panel=$('#content-panel'), menu=$('#menu');
 const lit=$('#lit'), plate=$('.plate'), fullImage=$('#work-full-image'), shot=$('#work-scroll'), zoomButton=$('#work-zoom');
-let radius=280, perspective=1150, viewportWidth=0, viewportHeight=0, maxScroll=0;
+let radius=280, perspective=1150, viewportWidth=0, viewportHeight=0;
 let spin=0, tilt=-4, dragX=0, dragY=0, velX=0, velY=0, camZ=0;
 let currentView='works', gridOpen=false, menuOpen=false, litOpen=false, revealed=false;
-let gesture=null, focusedCard=-1, sourceElement=null, imageToken=0, closeTimer=0, introStarted=false, revealStarted=false;
+let gesture=null, focusedCard=-1, sourceElement=null, imageToken=0, closeTimer=0;
 let lastFrame=0, cameraFrame=0, previousTransform='', dirty=true, selectedProject=0;
 const touchPointers=new Set();
 const inertiaFriction=.0037;
@@ -465,10 +470,11 @@ function setInactive(element,inactive){element.inert=inactive;element.setAttribu
 function syncAccess(){
   const blocked=!revealed||menuOpen||litOpen;
   $('#main').inert=blocked;$('.skip-link').inert=blocked;
+  setInactive(hero,blocked||gridOpen||currentView!=='works');
   setInactive(stage,blocked||gridOpen||currentView!=='works');setInactive(grid,blocked||!gridOpen||currentView!=='works');
   setInactive(panel,blocked||currentView==='works');setInactive(menu,!menuOpen);setInactive(lit,!litOpen);
   $('.site-header').inert=!revealed||menuOpen||litOpen;
-  $('.gallery-controls').inert=blocked||currentView!=='works';$('.bio').inert=blocked||gridOpen||currentView!=='works';
+  $('.gallery-controls').inert=blocked||currentView!=='works';
   $('.colophon').inert=blocked||gridOpen||currentView!=='works';
   const locked=!revealed||menuOpen||litOpen||gridOpen||currentView!=='works';
   body.classList.toggle('locked',locked);document.documentElement.style.overflow=locked?'hidden':'';
@@ -481,14 +487,13 @@ function cancelGesture(){
   invalidate();
 }
 function layout(force=false){
-  const width=innerWidth,height=innerHeight;
+  const width=stage.clientWidth,height=stage.clientHeight;if(!width||!height)return;
   if(!force&&Math.abs(width-viewportWidth)<20&&Math.abs(height-viewportHeight)<20)return;
   viewportWidth=width;viewportHeight=height;const tiny=width<=380,small=width<=640;
-  radius=Math.max(tiny?108:small?120:155,Math.min(480,height*(tiny?.38:small?.42:.46),width*(tiny?.48:small?.52:.58)));
+  radius=Math.max(70,Math.min(260,height*.32,width*.31));
   const cardWidth=Math.round(Math.max(72,radius*(tiny?.44:small?.46:.47)));
   perspective=tiny?620:small?760:width<=900?920:1150;
   document.documentElement.style.setProperty('--cw',`${cardWidth}px`);document.documentElement.style.setProperty('--persp',`${perspective}px`);
-  maxScroll=height*.16;$('#scrolltrack').style.height=`${height+maxScroll}px`;
   cards.forEach(card=>{card.node.style.transform=`translate3d(${card.x*radius}px,${-card.y*radius}px,${card.z*radius}px) rotateY(${card.lon}deg) rotateX(${card.lat}deg)`});invalidate();
 }
 let resizeFrame=0;
@@ -497,10 +502,6 @@ window.addEventListener('resize',()=>{cancelGesture();scheduleLayout()});
 window.addEventListener('orientationchange',()=>setTimeout(()=>scheduleLayout(true),220));
 window.visualViewport?.addEventListener('resize',()=>scheduleLayout());
 window.visualViewport?.addEventListener('scroll',()=>scheduleLayout());
-window.addEventListener('scroll',()=>{
-  if(currentView==='works'&&!gridOpen&&!litOpen&&!menuOpen&&scrollY>maxScroll+1)window.scrollTo(0,maxScroll);
-  invalidate();
-},{passive:true});
 function camera(now){
   cameraFrame=0;const elapsed=lastFrame?Math.min(now-lastFrame,64):16.667,delta=elapsed/16.667;lastFrame=now;
   let moving=false;
@@ -511,15 +512,14 @@ function camera(now){
       if(Math.abs(velX)<.0005)velX=0;if(Math.abs(velY)<.0005)velY=0;
       moving=!!(velX||velY);
     }
-    const p=clamp(scrollY/(maxScroll||1),0,1), targetZ=p*Math.min(64,radius*.12);
+    const p=0, targetZ=0;
     camZ=reducedMotion.matches?targetZ:camZ+(targetZ-camZ)*(1-Math.pow(.925,delta));
     if(Math.abs(camZ-targetZ)<.002)camZ=targetZ;
     moving||=camZ!==targetZ;
     const sx=tilt+dragY,sy=spin+dragX;
     const transform=`translateZ(${camZ.toFixed(3)}px) rotateY(${sy.toFixed(3)}deg) rotateX(${sx.toFixed(3)}deg)`;
     if(transform!==previousTransform||dirty){
-      world.style.transform=transform;headline.style.transform=`rotateX(${-sx}deg) rotateY(${-sy}deg) translateZ(${radius*.62}px)`;
-      headline.style.opacity=Math.max(0,1-p*.55);previousTransform=transform;
+      world.style.transform=transform;previousTransform=transform;
       body.classList.toggle('deep',p>.45);
       const pitch=sx*Math.PI/180,yaw=sy*Math.PI/180;
       let nearest=null;
@@ -594,11 +594,9 @@ function setMenu(open){
   if(open)$('#menuClose').focus({preventScroll:true});else if(revealed)$('#menuBtn').focus({preventScroll:true});
 }
 $('#menuBtn').addEventListener('click',()=>setMenu(!menuOpen));$('#menuClose').addEventListener('click',()=>setMenu(false));
-function setGrid(open,moveFocus=true){
-  if(currentView!=='works')showRoute('works',false);
-  gridOpen=open;if(open)loadGridImages();else loadPortfolio();body.classList.toggle('gridview',open);gridButton.setAttribute('aria-expanded',String(open));$('#grid-label').textContent=open?'立體展廳':'作品一覽';
-  cancelGesture();syncAccess();
-  if(moveFocus)(open?$('#grid-title'):gridButton).focus({preventScroll:true});
+function setGrid(open){
+  const hash=open?'grid':'works';
+  if(location.hash===`#${hash}`)showRoute(hash);else location.hash=hash;
 }
 gridButton.addEventListener('click',()=>setGrid(!gridOpen));
 function showRoute(hash=location.hash.slice(1),moveFocus=true){
@@ -610,10 +608,11 @@ function showRoute(hash=location.hash.slice(1),moveFocus=true){
   gridButton.setAttribute('aria-expanded',String(gridOpen));$('#grid-label').textContent=gridOpen?'立體展廳':'作品一覽';
   $$('.content-page',panel).forEach(section=>{section.hidden=section.id!==target});
   const titles={services:'服務',pricing:'建置方案',about:'關於我們',contact:'聯絡'};$('#content-view-title').textContent=titles[target]||'Hey Cheng';
+  $$('.primary-nav a').forEach(link=>{if(link.dataset.nav===target)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')});
   $$('.menu-nav a[href^="#"]').forEach(link=>{if(link.hash===`#${hash}`)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')});
   cancelGesture();panel.scrollTop=0;if(gridOpen)grid.scrollTop=0;window.scrollTo(0,0);
   if(project){const candidate=cards.filter(card=>card.project===project).sort((a,b)=>Math.abs(a.y)-Math.abs(b.y))[0];dragX=-candidate.lon;dragY=clamp(candidate.lat-tilt,-32-tilt,32-tilt);invalidate();}
-  syncAccess();
+  syncAccess();layout(true);
   if(target!=='works'||gridOpen)reveal(true);else if(revealed)loadPortfolio();
   if(moveFocus&&revealed)requestAnimationFrame(()=>{
     if(target!=='works'){const heading=$(`#${target} h2`,panel)||$('#content-view-title');heading.focus({preventScroll:true})}
@@ -698,30 +697,14 @@ document.addEventListener('click',async event=>{
   try{await navigator.clipboard.writeText(copy.dataset.copy||'hao__cheng');$('#contact-copy-status').textContent='LINE ID 已複製：hao__cheng'}
   catch{$('#contact-copy-status').textContent='請長按複製 LINE ID：hao__cheng'}
 });
-function releaseSplash(){
-  const splash=$('#splash');if(!splash)return;$('#bar').style.transform='scaleX(1)';splash.classList.add('out');splash.inert=true;setTimeout(()=>splash.remove(),950);
-}
-function reveal(immediate=false){
+function reveal(){
   if(revealed)return;
-  if(revealStarted&&!immediate)return;
-  revealStarted=true;releaseSplash();const intro=$('#intro');
-  if(intro){intro.classList.add('closing');intro.inert=true;intro.setAttribute('aria-hidden','true')}
-  const finish=()=>{
-    if(revealed)return;
-    revealed=true;body.classList.add('revealed');body.classList.remove('intro-playing');syncAccess();layout(true);
-    if(intro){intro.classList.add('gone');if(immediate)intro.remove();else setTimeout(()=>intro.remove(),700)}
-    if(currentView==='works'&&!gridOpen)loadPortfolio();
-  };
-  if(immediate||reducedMotion.matches)finish();else setTimeout(finish,240);
+  revealed=true;body.classList.add('revealed');syncAccess();layout(true);
+  if(currentView==='works'&&!gridOpen)loadPortfolio();
 }
-function startIntro(){
-  if(introStarted||revealStarted)return;introStarted=true;releaseSplash();$('#intro').inert=false;$('#intro').setAttribute('aria-hidden','false');body.classList.add('intro-playing');
-  setTimeout(reveal,700);
-}
-$('#skip').addEventListener('click',()=>reveal(true));$('#splash-skip').addEventListener('click',()=>reveal(true));
 reducedMotion.addEventListener('change',()=>{cancelGesture();if(reducedMotion.matches){reveal(true);$('#dot').classList.remove('active')}});
 document.addEventListener('visibilitychange',()=>{lastFrame=0;if(document.hidden){touchPointers.clear();cancelGesture();cancelAnimationFrame(cameraFrame);cameraFrame=0}else invalidate()});
-let portfolioStarted=false,loaded=0;
+let portfolioStarted=false;
 const decodeMax=innerWidth<=380?420:innerWidth<=640?520:innerWidth<=900?640:760;
 function loadImage(url){return new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=reject;image.src=url})}
 function cropImage(image,position=0,tall=false){
@@ -746,7 +729,7 @@ async function prepareProject(project){
         crops.set(key,await cropImage(images.get(url),card.variant===1?.36:card.variant===2?.71:0,card.tall));
       }catch{crops.set(key,project.thumb)}
     }
-    card.img.src=crops.get(key)||project.thumb;loaded++;if($('#bar'))$('#bar').style.transform=`scaleX(${loaded/sphereVariants.length})`;
+    card.img.src=crops.get(key)||project.thumb;
   }
   for(const image of images.values())image.src='';
 }
@@ -758,7 +741,7 @@ async function loadPortfolio(){
   await Promise.allSettled([worker(),worker()]);
 }
 layout(true);showRoute(location.hash.slice(1),false);scheduleRender();
-if(currentView==='works'&&!gridOpen){loadPortfolio();if(reducedMotion.matches)reveal(true);else startIntro()}
+reveal();
 window.addEventListener('pagehide',event=>{if(!event.persisted)objectURLs.forEach(url=>URL.revokeObjectURL(url))});
 
 </script>
