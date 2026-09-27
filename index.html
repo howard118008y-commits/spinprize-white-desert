@@ -80,6 +80,8 @@ html:not(.js) #stage,html:not(.js) #splash,html:not(.js) #intro,html:not(.js) #m
 /* The content shares the portfolio's black canvas and full-colour imagery. */
 #content-panel{--content-accent:#00d9ba;--content-ink:#f4f2ef;--content-muted:#aca9a2;--content-line:rgba(244,242,239,.19);color:var(--content-ink)}
 #content-panel .content-page{width:min(1180px,100%);margin:0 auto;padding:8px 0 40px;font-family:Inter,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:16px;font-weight:300;line-height:1.9;overflow-wrap:break-word}
+/* Reserve the panel top padding, 44px back link, 16px rule and 30px gap for native route anchors. */
+html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px + 16px + 30px + var(--safe-top))}
 #content-panel .content-page[hidden]{display:none}
 #content-panel :where(p,h2,h3,figure){margin:0}
 #content-panel :where(a,button,summary){-webkit-tap-highlight-color:transparent;touch-action:manipulation}
