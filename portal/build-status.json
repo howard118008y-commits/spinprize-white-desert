@@ -1,0 +1,5 @@
+{
+  "configured": true,
+  "auth": "supabase-google-pkce",
+  "privateContentIncluded": false
+}

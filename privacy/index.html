@@ -2,7 +2,7 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#080d0c">
-<title>隱私說明｜Hey Cheng 旋賞數位</title><meta name="description" content="了解 Hey Cheng 官網與建置中的文件工作台如何處理基本身分、文件授權與登入資料，及資料更正與刪除的聯絡方式。"><link rel="canonical" href="https://heycheng.com.tw/privacy/">
+<title>隱私說明｜Hey Cheng 旋賞數位</title><meta name="description" content="了解 Hey Cheng 官網與文件工作台如何處理基本身分、文件授權與登入資料，及資料更正與刪除的聯絡方式。"><link rel="canonical" href="https://heycheng.com.tw/privacy/">
 <link rel="icon" href="/assets/hey-cheng-favicon.png" type="image/png"><link rel="stylesheet" href="/assets/search-pages.css"><link rel="stylesheet" href="/assets/policy-pages.css">
 </head>
 <body>
@@ -10,10 +10,10 @@
 <header class="site-header"><a class="brand" href="/" aria-label="Hey Cheng 首頁"><img src="/assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763"></a><nav aria-label="主要導覽"><a href="/">回首頁</a><a href="/#contact">聯絡我們</a></nav></header>
 <main id="main" class="policy-page">
 <nav class="breadcrumb" aria-label="麵包屑"><a href="/">首頁</a><span aria-hidden="true">/</span><span aria-current="page">隱私說明</span></nav>
-<header class="hero"><p class="eyebrow">PRIVACY & DATA</p><h1>隱私說明</h1><p class="intro">說明官網瀏覽，以及建置中文件工作台的身分驗證、文件權限與資料處理方式。</p><p class="policy-date">更新日期：2026 年 9 月 27 日</p></header>
-<p class="policy-status"><strong>文件工作台目前建置中，尚未正式啟用。</strong><br>下列工作台說明對應正在準備的帳號與文件功能；現有內部入口仍維持原有方式。</p>
+<header class="hero"><p class="eyebrow">PRIVACY & DATA</p><h1>隱私說明</h1><p class="intro">說明官網瀏覽，以及文件工作台的身分驗證、文件權限與資料處理方式。</p><p class="policy-date">更新日期：2026 年 9 月 27 日</p></header>
+<p class="policy-status"><strong>文件工作台提供 Google 登入，僅開放管理者核准的帳號。</strong><br>現階段供管理者與同事使用，尚未開放客戶帳號；文件以工作台實際顯示與個別授權為準，現有內部入口仍維持原有方式。</p>
 <section class="policy-section"><h2>官網瀏覽與聯絡</h2><p>本官網由旋賞數位有限公司提供，使用 GitHub Pages 發布。載入頁面時，網站代管服務會接收提供網頁所需的連線資訊，例如 IP 位址、瀏覽器請求與時間。</p><p>截至本頁更新日，官網首頁未嵌入 Google Analytics、Meta Pixel 或其他第三方流量統計程式，作品預覽圖片從本網站載入。你點選 LINE、Instagram、Facebook 或作品連結後，將前往對應服務；透過信箱聯絡時，郵件會由你使用的郵件服務寄送。</p></section>
-<section class="policy-section"><h2>Google 登入會用到哪些資料</h2><p>新工作台使用 Google 帳號確認身分，預定僅要求 openid、email、profile 基本身分範圍，不要求讀取 Gmail 信件或 Google Drive 文件。</p><p>Google 登入透過 Supabase Auth 處理，登入服務可能取得 Google 帳號識別碼、已驗證的電子郵件地址、名稱與頭像等基本個人資料。工作台以電子郵件地址與帳號識別碼比對授權名單；未獲授權的帳號也可能在登入服務建立身分資料，但不因此取得文件權限。</p></section>
+<section class="policy-section"><h2>Google 登入會用到哪些資料</h2><p>新工作台使用 Google 帳號確認身分，僅要求 openid、email、profile 基本身分範圍，不要求讀取 Gmail 信件或 Google Drive 文件。</p><p>Google 登入透過 Supabase Auth 處理，登入服務可能取得 Google 帳號識別碼、已驗證的電子郵件地址、名稱與頭像等基本個人資料。工作台以電子郵件地址與帳號識別碼比對授權名單；未獲授權的帳號也可能在登入服務建立身分資料，但不因此取得文件權限。</p></section>
 <section class="policy-section"><h2>工作台資料與使用目的</h2><ul><li><strong>帳號與角色：</strong>儲存登入信箱、帳號識別碼、管理者／同事／客戶角色及啟用狀態，用於身分與權限管理。</li><li><strong>文件與指派：</strong>儲存由管理者加入的文件、名稱、類型及指派關係，供被授權的帳號查看。</li><li><strong>存取控管紀錄：</strong>儲存工作階段、登入／登出與帳號、文件權限異動紀錄，用於管理及查核；這不代表每一次文件下載都有獨立稽核紀錄。</li></ul></section>
 <section class="policy-section"><h2>資料由哪些服務處理</h2><p>Google 提供身分驗證；Supabase 提供工作台的登入服務、資料庫及私有檔案儲存；GitHub Pages 提供網站前端。管理者可管理帳號與文件指派，同事可查看內部共用文件，客戶只可查看被明確指派的文件。</p><p>你可分別查閱 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google 隱私權政策</a>、<a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase 隱私權政策</a>及 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub 隱私權聲明</a>，了解各服務本身的資料處理方式。</p></section>
 <section class="policy-section"><h2>登入狀態、停用與已下載文件</h2><p>新工作台的目前分頁登入狀態存放於瀏覽器 sessionStorage，工作台每次登入最長使用 1 小時，之後須重新登入。關閉分頁、登出或停用帳號，不等於刪除伺服器上的帳號、文件或紀錄。</p><p>管理者停用帳號或移除文件授權後，後續存取將依更新後的權限判斷；已開始傳輸、已在瀏覽器顯示或已下載的文件副本無法收回。</p></section>
