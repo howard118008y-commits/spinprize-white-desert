@@ -13,7 +13,7 @@ const organization = {
   logo:{'@type':'ImageObject',url:`${origin}/assets/hey-cheng-logo.png`,width:2061,height:763},
   telephone:'+886-2-2226-2678', email:'howard118008y@gmail.com',
   address:{'@type':'PostalAddress',streetAddress:'景平路593號之1',addressLocality:'中和區',addressRegion:'新北市',addressCountry:'TW'},
-  sameAs:['https://www.instagram.com/heychengtw/','https://www.facebook.com/heychengtw/']
+  sameAs:['https://www.instagram.com/heychengtw/']
 };
 const website = {'@type':'WebSite','@id':`${origin}/#website`,url:`${origin}/`,name:'Hey Cheng',alternateName:['HeyCheng','旋賞數位'],inLanguage:'zh-Hant',publisher:{'@id':organization['@id']}};
 const services = [
