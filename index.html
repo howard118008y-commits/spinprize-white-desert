@@ -28,33 +28,70 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://heycheng.com.tw/#website",
-        "url": "https://heycheng.com.tw/",
-        "name": "Hey Cheng",
-        "alternateName": ["HeyCheng", "旋賞數位"],
-        "publisher": {"@id": "https://heycheng.com.tw/#organization"}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://heycheng.com.tw/#organization",
+      "name": "Hey Cheng",
+      "alternateName": "旋賞數位",
+      "legalName": "旋賞數位有限公司",
+      "url": "https://heycheng.com.tw/",
+      "taxID": "62149294",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://heycheng.com.tw/assets/hey-cheng-logo.png",
+        "width": 2061,
+        "height": 763
       },
-      {
-        "@type": "Organization",
-        "@id": "https://heycheng.com.tw/#organization",
-        "url": "https://heycheng.com.tw/",
-        "name": "Hey Cheng",
-        "legalName": "旋賞數位有限公司",
-        "alternateName": "旋賞數位",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://heycheng.com.tw/assets/hey-cheng-logo.png",
-          "width": 2061,
-          "height": 763
-        }
+      "telephone": "+886-2-2226-2678",
+      "email": "howard118008y@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "景平路593號之1",
+        "addressLocality": "中和區",
+        "addressRegion": "新北市",
+        "addressCountry": "TW"
+      },
+      "sameAs": [
+        "https://www.instagram.com/heychengtw/",
+        "https://www.facebook.com/heychengtw/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://heycheng.com.tw/#website",
+      "url": "https://heycheng.com.tw/",
+      "name": "Hey Cheng",
+      "alternateName": [
+        "HeyCheng",
+        "旋賞數位"
+      ],
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://heycheng.com.tw/#organization"
       }
-    ]
-  }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://heycheng.com.tw/#page",
+      "url": "https://heycheng.com.tw/",
+      "name": "Hey Cheng｜旋賞數位有限公司・網站建置與 AI 設計",
+      "description": "旋賞數位位於新北中和，提供形象網站、拍攝文案、品牌網站、立體導覽與客製系統。瀏覽公開作品與含稅建置方案，聊聊你的網站。",
+      "inLanguage": "zh-Hant",
+      "isPartOf": {
+        "@id": "https://heycheng.com.tw/#website"
+      },
+      "about": {
+        "@id": "https://heycheng.com.tw/#organization"
+      },
+      "publisher": {
+        "@id": "https://heycheng.com.tw/#organization"
+      }
+    }
+  ]
+}
   </script>
 
 <style>
@@ -297,7 +334,7 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
     <div><h3>製作與加購</h3><p>製作階段含 2 輪整批修改；超出約定範圍、加購項目與新增功能另行報價。</p></div>
     <div><h3>搬遷與系統費用</h3><p>搬遷服務 NT$8,000（含稅）。系統維運、第三方服務與 API 費用，另依專案約定。</p></div>
   </div>
-  <div class="content-next"><p>帶著想法來，從你的生意需要開始談。</p><a class="content-link" href="#contact">聊聊你的網站 <span aria-hidden="true">↗</span></a></div>
+  <div class="content-next"><p><a class="content-link" href="/faq/">費用、交付與維運常見問題 <span aria-hidden="true">↗</span></a></p><a class="content-link" href="#contact">聊聊你的網站 <span aria-hidden="true">↗</span></a></div>
 </section>
 
 <section class="content-page" id="about" aria-labelledby="about-title" hidden>
