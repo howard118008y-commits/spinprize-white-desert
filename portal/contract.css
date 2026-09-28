@@ -3,14 +3,15 @@
 @media print{body.contract-printing{background:white!important;color:#172421!important;overflow:visible!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important}body.contract-printing>:not(#contract-print-root){display:none!important}body.contract-printing dialog{display:none!important}body.contract-printing #contract-print-root{display:block!important;margin:0;padding:0;width:auto;min-height:0;height:auto;max-height:none;overflow:visible;font-size:10.5pt}#contract-print-root h1{font-size:21pt}#contract-print-root h2{font-size:13pt;break-after:avoid}#contract-print-root p{orphans:3;widows:3}#contract-print-root .contract-paper-signature{display:inline-block;width:48%}#contract-print-root .contract-paper-signatures,#contract-print-root .contract-party{break-inside:avoid}#contract-print-root .contract-document-state{font-size:10pt}#contract-print-root .contract-document-footer{font-size:8pt;margin-bottom:0;padding-bottom:0}#contract-print-root>:last-child{margin-bottom:0}}
 
 @media screen{
-.contract-actions{position:sticky;top:0;z-index:3;display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:8px;margin:0 -2px 20px;padding:10px 2px;background:var(--paper,#090c0d);border-bottom:1px solid #3c4649}.contract-actions button{padding:10px 8px;min-height:48px;white-space:normal}.contract-intro{margin-top:10px}
+.contract-actions{position:sticky;top:0;z-index:3;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 -2px 20px;padding:10px 2px;background:var(--paper,#090c0d);border-bottom:1px solid #3c4649}.contract-actions button{padding:10px 8px;min-height:48px;white-space:normal}.contract-intro{margin-top:10px}
 .contract-signature canvas{box-sizing:content-box;width:calc(100% - 4px);height:auto;aspect-ratio:2/1}
+:root[data-view=mobile] .contract-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
 :root[data-view=mobile] .contract-builder fieldset,:root[data-view=mobile] .contract-signature-grid{grid-template-columns:minmax(0,1fr)}:root[data-view=mobile] .contract-builder fieldset{padding:16px}:root[data-view=mobile] .contract-signature{padding:16px}:root[data-view=mobile] .contract-builder h2{font-size:24px}
 :root[data-view=desktop] .contract-builder fieldset,:root[data-view=desktop] .contract-signature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}:root[data-view=desktop] .contract-builder fieldset:last-child>label{grid-column:1/-1}
 }
 @media screen{:root[data-view=mobile] .contract-builder{max-width:760px;margin-inline:auto}}
 /* Desktop preference never forces unusably narrow signing columns. */
-@media screen and (max-width:650px){:root[data-view=desktop] .contract-builder fieldset,:root[data-view=desktop] .contract-signature-grid{grid-template-columns:minmax(0,1fr)}}
+@media screen and (max-width:650px){.contract-actions{grid-template-columns:repeat(2,minmax(0,1fr))}:root[data-view=desktop] .contract-builder fieldset,:root[data-view=desktop] .contract-signature-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* Only the dedicated signing surface owns drawing gestures and suppresses selection. */
 .signature-preview{max-width:300px;margin:12px 0;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}.signature-preview canvas{pointer-events:none}.contract-signature>button{margin:6px 8px 0 0}
