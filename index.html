@@ -255,6 +255,9 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 
 .case-study-links{display:flex;flex-wrap:wrap;gap:8px 22px;max-width:1680px;margin:0 auto 30px;align-items:center;font-size:13px}.case-study-links>span{color:var(--dim)}.case-study-links>a{display:inline-flex;align-items:center;min-height:44px;color:var(--accent)}
 .policy-links{display:flex;flex-wrap:wrap;gap:0 20px}.policy-links a{display:inline-flex;align-items:center;min-height:44px;font-size:12px;color:var(--dim);letter-spacing:0}.policy-links a:hover{color:var(--accent)}.colophon .policy-links{justify-content:flex-end}.workspace-notice{margin-top:48px;padding-top:28px;border-top:1px solid #2c3a36}.workspace-notice h3{font-size:20px}.workspace-notice p{max-width:720px;margin-top:12px;color:var(--content-muted);font-size:14px;line-height:1.9}.workspace-notice .policy-links{margin-top:10px}.addr .policy-links{gap:0 20px}
+
+/* Brand films load only after an explicit play action. */
+#brand-films .content-heading{margin-bottom:28px}#brand-films h2{font-size:clamp(34px,5.5vw,70px)}.brand-film-formats{display:flex;gap:12px;margin:0 0 24px;flex-wrap:wrap}.brand-film-formats button{min-height:48px;padding:14px 22px;border:1px solid #40514c;border-radius:4px;background:#080e0c;color:var(--ink);font-size:16px;display:flex;gap:14px;align-items:center}.brand-film-formats button small{font-size:12px;color:var(--dim)}.brand-film-formats button[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:#0b211c}.brand-film-stage{margin:0 auto 24px;background:#000;border:1px solid #2d3a36;border-radius:5px;overflow:hidden;max-width:100%}.brand-film-stage[data-format=portrait]{width:min(100%,calc(64dvh * 9/16));aspect-ratio:9/16}.brand-film-stage[data-format=landscape]{width:min(100%,calc(64dvh * 16/9));aspect-ratio:16/9}.brand-film-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#000}.brand-film-info{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px}.brand-film-info h3{font-size:20px;margin:0 0 7px}.brand-film-info p{color:var(--dim);font-size:14px;line-height:1.6;margin:0}.brand-film-play{min-height:48px;padding:13px 24px;border-radius:4px;background:var(--accent);color:#04130f;font-size:16px;font-weight:600;flex-shrink:0}.brand-film-status{min-height:1.7em;margin-top:14px;color:var(--dim);font-size:14px;line-height:1.7}.brand-film-formats button:focus-visible,.brand-film-play:focus-visible,.brand-film-stage video:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:640px){.brand-film-formats{gap:8px}.brand-film-formats button{flex:1;justify-content:center;padding:12px}.brand-film-info{align-items:stretch;flex-direction:column}.brand-film-play{width:100%}}
 </style>
 <link rel="stylesheet" href="assets/site-refinement.css?v=20260928-modes">
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
@@ -360,6 +363,17 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
   <div class="content-next"><p>不同的生意，各自合適的網站。</p><a class="content-link" href="#works">瀏覽網站作品 <span aria-hidden="true">↗</span></a></div>
 </section>
 
+<section class="content-page" id="brand-films" aria-labelledby="brand-films-title" hidden>
+  <header class="content-heading"><p class="content-eyebrow">HEY CHENG / BRAND FILMS</p><h2 id="brand-films-title" tabindex="-1">品牌形象影片</h2><p class="content-intro">選擇直式或橫式，點播放觀看。</p></header>
+  <div class="brand-film-formats" role="group" aria-label="影片版本">
+    <button type="button" data-film="portrait" data-title="品牌形象｜直式" data-width="1080" data-height="1920" data-src="assets/brand-films/heycheng-portrait-27s-v2.mp4" data-poster="assets/brand-films/heycheng-portrait-27s-v2-poster.webp" aria-pressed="true" aria-controls="brand-film-video">直式 <small>9:16 · 27 秒</small></button>
+    <button type="button" data-film="landscape" data-title="品牌形象｜橫式" data-width="1920" data-height="1080" data-src="assets/brand-films/heycheng-landscape-27s.mp4" data-poster="assets/brand-films/heycheng-landscape-27s-poster.webp" aria-pressed="false" aria-controls="brand-film-video">橫式 <small>16:9 · 27 秒</small></button>
+  </div>
+  <div class="brand-film-stage" data-format="portrait"><video id="brand-film-video" controls playsinline preload="none" width="1080" height="1920" tabindex="0" aria-label="品牌形象｜直式">您的瀏覽器不支援影片播放。</video></div>
+  <div class="brand-film-info"><div><h3 id="brand-film-current-title">品牌形象｜直式</h3><p>27 秒 · 可使用播放器控制音量、進度與全螢幕。</p></div><button type="button" class="brand-film-play" aria-controls="brand-film-video">播放影片 <span aria-hidden="true">▷</span></button></div>
+  <p class="brand-film-status" role="status" aria-live="polite">按播放後才會載入影片。</p>
+</section>
+
 <section class="content-page" id="contact" aria-labelledby="contact-title" hidden>
   <header class="content-heading">
     <p class="content-eyebrow"><span>04 / 04</span> LET’S TALK</p>
@@ -390,7 +404,7 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 <footer class="colophon chrome" aria-label="品牌與內部入口"><p>HEY CHENG · NEW TAIPEI</p><a href="/portal/">內部網頁 <span aria-hidden="true">↗</span></a><nav class="policy-links" aria-label="網站政策"><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></nav></footer>
 <div id="menu" role="dialog" aria-modal="true" aria-labelledby="menu-title" aria-hidden="true" inert>
   <h2 class="sr-only" id="menu-title">網站選單</h2><button class="menu-close" type="button" id="menuClose">關閉 <span aria-hidden="true">×</span></button>
-  <div class="menu-inner"><div class="menu-intro"><p class="menu-label-brand">INDEPENDENT DIGITAL STUDIO</p><img src="assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763"><p>讓你的特色，<br>成為被看見的理由。</p></div><nav class="menu-nav" aria-label="主要導覽"><a href="#grid">公開作品 <span>01 / WORK</span></a><a href="#services">服務 <span>02 / SERVICES</span></a><a href="#pricing">建置方案 <span>03 / PLANS</span></a><a href="#about">關於我們 <span>04 / STUDIO</span></a><a href="#contact">聯絡 <span>05 / CONTACT</span></a><a href="/portal/">內部工作台 <span aria-hidden="true">↗</span></a></nav></div>
+  <div class="menu-inner"><div class="menu-intro"><p class="menu-label-brand">INDEPENDENT DIGITAL STUDIO</p><img src="assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763"><p>讓你的特色，<br>成為被看見的理由。</p></div><nav class="menu-nav" aria-label="主要導覽"><a href="#grid">公開作品 <span>01 / WORK</span></a><a href="#services">服務 <span>02 / SERVICES</span></a><a href="#pricing">建置方案 <span>03 / PLANS</span></a><a href="#about">關於我們 <span>04 / STUDIO</span></a><a href="#brand-films">品牌影片 <span>05 / FILMS</span></a><a href="#contact">聯絡 <span>06 / CONTACT</span></a><a href="/portal/">內部工作台 <span aria-hidden="true">↗</span></a></nav></div>
   <div class="addr"><p>旋賞數位有限公司 · 新北市中和區<br>統一編號 62149294</p><a href="mailto:howard118008y@gmail.com">howard118008y@gmail.com</a><nav class="policy-links" aria-label="網站政策"><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></nav></div>
 </div>
 <div id="lit" role="dialog" aria-modal="true" aria-labelledby="litTitle" aria-describedby="litNote" aria-hidden="true" inert>
@@ -440,6 +454,38 @@ const lit=$('#lit'), plate=$('.plate'), fullImage=$('#work-full-image'), shot=$(
 let radius=280, perspective=1150, viewportWidth=0, viewportHeight=0;
 let spin=0, tilt=-4, dragX=0, dragY=0, velX=0, velY=0, dragSensitivity=.2;
 let currentView='works', gridOpen=false, menuOpen=false, litOpen=false, revealed=false;
+// Brand film controller: no media URL is assigned during initialization.
+function createBrandFilmPlayer(root,canPlay,showVideo=()=>{}){
+  const video=root.querySelector('video'),choices=[...root.querySelectorAll('[data-film]')],playButton=root.querySelector('.brand-film-play'),status=root.querySelector('.brand-film-status');
+  let selected=choices[0],loadedSource='',attempt=0;
+  function pause(){attempt++;video.pause();}
+  function showSelection(){
+    for(const choice of choices)choice.setAttribute('aria-pressed',String(choice===selected));
+    root.querySelector('.brand-film-stage').dataset.format=selected.dataset.film;
+    root.querySelector('#brand-film-current-title').textContent=selected.dataset.title;
+    video.setAttribute('aria-label',selected.dataset.title);video.width=Number(selected.dataset.width);video.height=Number(selected.dataset.height);video.poster=selected.dataset.poster;
+    status.textContent=loadedSource?'已暫停；按播放或使用播放器繼續。':'按播放後才會載入影片。';
+  }
+  for(const choice of choices)choice.addEventListener('click',()=>{
+    if(choice===selected)return;pause();selected=choice;loadedSource='';video.removeAttribute('src');video.load();showSelection();
+  });
+  playButton.addEventListener('click',()=>{
+    if(!canPlay())return;
+    if(loadedSource!==selected.dataset.src){loadedSource=selected.dataset.src;video.src=loadedSource;video.load();}
+    const request=++attempt;status.textContent='影片準備中…';showVideo(video);
+    try{Promise.resolve(video.play()).then(()=>{if(!canPlay())pause();else if(request===attempt)status.textContent='播放中，可使用播放器控制。';}).catch(error=>{if(request===attempt && error.name!=='AbortError')status.textContent='影片未能播放，請再按播放重試。';});}catch(error){if(error.name!=='AbortError')status.textContent='影片未能播放，請再按播放重試。';}
+  });
+  video.addEventListener('play',()=>{if(!canPlay())pause();else status.textContent='播放中，可使用播放器控制。';});
+  video.addEventListener('pause',()=>{if(loadedSource)status.textContent='已暫停；按播放或使用播放器繼續。';});
+  video.addEventListener('ended',()=>{status.textContent='播放完畢，可重播或選擇另一個版本。';});
+  video.addEventListener('error',()=>{if(video.error && video.getAttribute('src')===selected.dataset.src){loadedSource='';status.textContent='影片暫時無法載入，請再按播放重試。';}});
+  return {enter:showSelection,pause};
+}
+// End brand film controller.
+const brandFilms=createBrandFilmPlayer($('#brand-films'),()=>currentView==='brand-films'&&!menuOpen&&!document.hidden,video=>{
+  const safeTop=$('.site-header').getBoundingClientRect().bottom+16;
+  panel.scrollTo({top:Math.max(0,panel.scrollTop+video.getBoundingClientRect().top-safeTop),behavior:'instant'});
+});
 let gesture=null, focusedCard=-1, sourceElement=null, imageToken=0, closeTimer=0;
 let lastFrame=0, cameraFrame=0, previousTransform='', dirty=true, selectedProject=0;
 const touchPointers=new Set();
@@ -616,6 +662,7 @@ stage.addEventListener('keydown',event=>{
   }else if(event.key==='Enter'||event.key===' '){event.preventDefault();const front=cards.reduce((best,card)=>card.depth>best.depth?card:best,cards[0]);openProject(front.project,front.node,front.index)}
 });
 function setMenu(open){
+  if(open)brandFilms.pause();
   menuOpen=open;body.classList.toggle('menu-open',open);$('#menuBtn').setAttribute('aria-expanded',String(open));
   cancelGesture();syncAccess();
   if(open)$('#menuClose').focus({preventScroll:true});else if(revealed)$('#menuBtn').focus({preventScroll:true});
@@ -627,19 +674,20 @@ function setGrid(open){
 }
 gridButton.addEventListener('click',()=>setGrid(!gridOpen));
 function showRoute(hash=location.hash.slice(1),moveFocus=true){
+  brandFilms.pause();
   const project=projects.find(item=>`work-${item.id}`===hash);
   if(litOpen||body.classList.contains('lit-closing'))closeProject(true);
   if(menuOpen)setMenu(false);
-  const target=['services','pricing','about','contact'].includes(hash)?hash:'works';
+  const target=['services','pricing','about','brand-films','contact'].includes(hash)?hash:'works';
   currentView=target;gridOpen=hash==='grid';if(gridOpen)loadGridImages();body.classList.toggle('contentview',target!=='works');body.classList.toggle('gridview',gridOpen);
   gridButton.setAttribute('aria-expanded',String(gridOpen));$('#grid-label').textContent=gridOpen?'立體展廳':'作品一覽';
   $$('.content-page',panel).forEach(section=>{section.hidden=section.id!==target});
-  const titles={services:'服務',pricing:'建置方案',about:'關於我們',contact:'聯絡'};$('#content-view-title').textContent=titles[target]||'Hey Cheng';
+  const titles={services:'服務',pricing:'建置方案',about:'關於我們','brand-films':'品牌影片',contact:'聯絡'};$('#content-view-title').textContent=titles[target]||'Hey Cheng';
   $$('.primary-nav a').forEach(link=>{if(link.dataset.nav===target)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')});
   $$('.menu-nav a[href^="#"]').forEach(link=>{if(link.hash===`#${hash}`)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')});
   cancelGesture();panel.scrollTop=0;if(gridOpen)grid.scrollTop=0;window.scrollTo(0,0);
   if(project){const candidate=cards.filter(card=>card.project===project).sort((a,b)=>Math.abs(a.y)-Math.abs(b.y))[0];dragX=-candidate.lon;dragY=clamp(candidate.lat-tilt,-32-tilt,32-tilt);invalidate();}
-  syncAccess();layout(true);
+  syncAccess();layout(true);if(target==='brand-films')brandFilms.enter();
   if(target!=='works'||gridOpen)reveal(true);else if(revealed)loadPortfolio();
   if(moveFocus&&revealed)requestAnimationFrame(()=>{
     if(target!=='works'){const heading=$(`#${target} h2`,panel)||$('#content-view-title');heading.focus({preventScroll:true})}
@@ -736,7 +784,8 @@ function reveal(){
   if(currentView==='works'&&!gridOpen)loadPortfolio();
 }
 reducedMotion.addEventListener('change',()=>{cancelGesture();if(reducedMotion.matches){reveal(true);dot.classList.remove('active')}});
-document.addEventListener('visibilitychange',()=>{lastFrame=0;if(document.hidden){touchPointers.clear();cancelGesture();cancelAnimationFrame(cameraFrame);cameraFrame=0}else invalidate()});
+window.addEventListener('pagehide',()=>brandFilms.pause());
+document.addEventListener('visibilitychange',()=>{lastFrame=0;if(document.hidden){brandFilms.pause();touchPointers.clear();cancelGesture();cancelAnimationFrame(cameraFrame);cameraFrame=0}else invalidate()});
 let portfolioStarted=false;
 const decodeMax=innerWidth<=380?420:innerWidth<=640?520:innerWidth<=900?640:760;
 function loadImage(url){return new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=reject;image.src=url})}
