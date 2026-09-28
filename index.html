@@ -257,7 +257,7 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 .policy-links{display:flex;flex-wrap:wrap;gap:0 20px}.policy-links a{display:inline-flex;align-items:center;min-height:44px;font-size:12px;color:var(--dim);letter-spacing:0}.policy-links a:hover{color:var(--accent)}.colophon .policy-links{justify-content:flex-end}.workspace-notice{margin-top:48px;padding-top:28px;border-top:1px solid #2c3a36}.workspace-notice h3{font-size:20px}.workspace-notice p{max-width:720px;margin-top:12px;color:var(--content-muted);font-size:14px;line-height:1.9}.workspace-notice .policy-links{margin-top:10px}.addr .policy-links{gap:0 20px}
 
 /* Brand films load only after an explicit play action. */
-#brand-films .content-heading{margin-bottom:28px}#brand-films h2{font-size:clamp(34px,5.5vw,70px)}.brand-film-formats{display:flex;gap:12px;margin:0 0 24px;flex-wrap:wrap}.brand-film-formats button{min-height:48px;padding:14px 22px;border:1px solid #40514c;border-radius:4px;background:#080e0c;color:var(--ink);font-size:16px;display:flex;gap:14px;align-items:center}.brand-film-formats button small{font-size:12px;color:var(--dim)}.brand-film-formats button[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:#0b211c}.brand-film-stage{margin:0 auto 24px;background:#000;border:1px solid #2d3a36;border-radius:5px;overflow:hidden;max-width:100%}.brand-film-stage[data-format=portrait]{width:min(100%,calc(64dvh * 9/16));aspect-ratio:9/16}.brand-film-stage[data-format=landscape]{width:min(100%,calc(64dvh * 16/9));aspect-ratio:16/9}.brand-film-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#000}.brand-film-info{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px}.brand-film-info h3{font-size:20px;margin:0 0 7px}.brand-film-info p{color:var(--dim);font-size:14px;line-height:1.6;margin:0}.brand-film-play{min-height:48px;padding:13px 24px;border-radius:4px;background:var(--accent);color:#04130f;font-size:16px;font-weight:600;flex-shrink:0}.brand-film-status{min-height:1.7em;margin-top:14px;color:var(--dim);font-size:14px;line-height:1.7}.brand-film-formats button:focus-visible,.brand-film-play:focus-visible,.brand-film-stage video:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:640px){.brand-film-formats{gap:8px}.brand-film-formats button{flex:1;justify-content:center;padding:12px}.brand-film-info{align-items:stretch;flex-direction:column}.brand-film-play{width:100%}}
+#brand-films .content-heading{margin-bottom:28px}#brand-films h2{font-size:clamp(34px,5.5vw,70px)}.brand-film-picker{display:grid;gap:10px;margin:0 0 24px;color:var(--dim);font-size:14px}.brand-film-select{box-sizing:border-box;width:100%;min-width:0;min-height:48px;padding:12px 40px 12px 16px;border:1px solid #40514c;border-radius:4px;background:#080e0c;color:var(--ink);font:inherit;font-size:16px;color-scheme:dark}.brand-film-stage{margin:0 auto 24px;background:#000;border:1px solid #2d3a36;border-radius:5px;overflow:hidden;max-width:100%}.brand-film-stage{--film-ratio:.5625;width:min(100%,calc(64dvh * var(--film-ratio)));aspect-ratio:var(--film-ratio)}.brand-film-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#000}.brand-film-info{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px}.brand-film-info h3{font-size:20px;margin:0 0 7px}.brand-film-info p{color:var(--dim);font-size:14px;line-height:1.6;margin:0}.brand-film-play{min-height:48px;padding:13px 24px;border-radius:4px;background:var(--accent);color:#04130f;font-size:16px;font-weight:600;flex-shrink:0}.brand-film-status{min-height:1.7em;margin-top:14px;color:var(--dim);font-size:14px;line-height:1.7}.brand-film-select:focus-visible,.brand-film-play:focus-visible,.brand-film-stage video:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:640px){.brand-film-info{align-items:stretch;flex-direction:column}.brand-film-play{width:100%}}
 </style>
 <link rel="stylesheet" href="assets/site-refinement.css?v=20260928-modes">
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
@@ -364,13 +364,19 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 </section>
 
 <section class="content-page" id="brand-films" aria-labelledby="brand-films-title" hidden>
-  <header class="content-heading"><p class="content-eyebrow">HEY CHENG / BRAND FILMS</p><h2 id="brand-films-title" tabindex="-1">品牌形象影片</h2><p class="content-intro">選擇直式或橫式，點播放觀看。</p></header>
-  <div class="brand-film-formats" role="group" aria-label="影片版本">
-    <button type="button" data-film="portrait" data-title="品牌形象｜直式" data-width="1080" data-height="1920" data-src="assets/brand-films/heycheng-portrait-27s-v2.mp4" data-poster="assets/brand-films/heycheng-portrait-27s-v2-poster.webp" aria-pressed="true" aria-controls="brand-film-video">直式 <small>9:16 · 27 秒</small></button>
-    <button type="button" data-film="landscape" data-title="品牌形象｜橫式" data-width="1920" data-height="1080" data-src="assets/brand-films/heycheng-landscape-27s.mp4" data-poster="assets/brand-films/heycheng-landscape-27s-poster.webp" aria-pressed="false" aria-controls="brand-film-video">橫式 <small>16:9 · 27 秒</small></button>
-  </div>
-  <div class="brand-film-stage" data-format="portrait"><video id="brand-film-video" controls playsinline preload="none" width="1080" height="1920" tabindex="0" aria-label="品牌形象｜直式">您的瀏覽器不支援影片播放。</video></div>
-  <div class="brand-film-info"><div><h3 id="brand-film-current-title">品牌形象｜直式</h3><p>27 秒 · 可使用播放器控制音量、進度與全螢幕。</p></div><button type="button" class="brand-film-play" aria-controls="brand-film-video">播放影片 <span aria-hidden="true">▷</span></button></div>
+  <header class="content-heading"><p class="content-eyebrow">HEY CHENG / BRAND FILMS</p><h2 id="brand-films-title" tabindex="-1">品牌與服務影片</h2><p class="content-intro">品牌形象、餐飲廣告與網站常見問題，選擇影片即可觀看。</p></header>
+  <label class="brand-film-picker" for="brand-film-select">選擇影片
+    <select class="brand-film-select" id="brand-film-select" aria-controls="brand-film-video">
+      <option value="brand-portrait" data-title="品牌形象｜直式" data-width="1080" data-height="1920" data-duration="26.718005" data-src="assets/brand-films/heycheng-portrait-27s-v2.mp4" data-poster="assets/brand-films/heycheng-portrait-27s-v2-poster.webp">品牌形象｜直式 · 27 秒</option>
+      <option value="brand-landscape" data-title="品牌形象｜橫式" data-width="1920" data-height="1080" data-duration="26.718005" data-src="assets/brand-films/heycheng-landscape-27s.mp4" data-poster="assets/brand-films/heycheng-landscape-27s-poster.webp">品牌形象｜橫式 · 27 秒</option>
+      <option value="restaurant-portrait" data-title="餐飲廣告｜直式" data-width="1080" data-height="1920" data-duration="13.125011" data-src="assets/brand-films/heycheng-restaurant-portrait-13s-20260928.mp4" data-poster="assets/brand-films/heycheng-restaurant-portrait-13s-20260928-poster.webp">餐飲廣告｜直式 · 13 秒</option>
+      <option value="restaurant-landscape" data-title="餐飲廣告｜橫式" data-width="1920" data-height="1080" data-duration="13.125011" data-src="assets/brand-films/heycheng-restaurant-landscape-13s-20260928.mp4" data-poster="assets/brand-films/heycheng-restaurant-landscape-13s-20260928-poster.webp">餐飲廣告｜橫式 · 13 秒</option>
+      <option value="faq-portrait" data-title="網站FAQ｜直式" data-width="1080" data-height="1920" data-duration="43.808005" data-src="assets/brand-films/heycheng-faq-portrait-44s-20260928.mp4" data-poster="assets/brand-films/heycheng-faq-portrait-44s-20260928-poster.webp">網站FAQ｜直式 · 44 秒</option>
+      <option value="faq-landscape" data-title="網站FAQ｜橫式" data-width="1920" data-height="1080" data-duration="43.808005" data-src="assets/brand-films/heycheng-faq-landscape-44s-20260928.mp4" data-poster="assets/brand-films/heycheng-faq-landscape-44s-20260928-poster.webp">網站FAQ｜橫式 · 44 秒</option>
+    </select>
+  </label>
+  <div class="brand-film-stage"><video id="brand-film-video" controls playsinline preload="none" width="1080" height="1920" tabindex="0" aria-label="品牌形象｜直式">您的瀏覽器不支援影片播放。</video></div>
+  <div class="brand-film-info"><div><h3 id="brand-film-current-title">品牌形象｜直式</h3><p><span id="brand-film-duration">27 秒</span> · 可使用播放器控制音量、進度與全螢幕。</p></div><button type="button" class="brand-film-play" aria-controls="brand-film-video">播放影片 <span aria-hidden="true">▷</span></button></div>
   <p class="brand-film-status" role="status" aria-live="polite">按播放後才會載入影片。</p>
 </section>
 
@@ -456,18 +462,19 @@ let spin=0, tilt=-4, dragX=0, dragY=0, velX=0, velY=0, dragSensitivity=.2;
 let currentView='works', gridOpen=false, menuOpen=false, litOpen=false, revealed=false;
 // Brand film controller: no media URL is assigned during initialization.
 function createBrandFilmPlayer(root,canPlay,showVideo=()=>{}){
-  const video=root.querySelector('video'),choices=[...root.querySelectorAll('[data-film]')],playButton=root.querySelector('.brand-film-play'),status=root.querySelector('.brand-film-status');
-  let selected=choices[0],loadedSource='',attempt=0;
+  const video=root.querySelector('video'),select=root.querySelector('.brand-film-select'),choices=[...select.options],playButton=root.querySelector('.brand-film-play'),status=root.querySelector('.brand-film-status');
+  let selected=choices[select.selectedIndex]||choices[0],loadedSource='',attempt=0;
   function pause(){attempt++;video.pause();}
   function showSelection(){
-    for(const choice of choices)choice.setAttribute('aria-pressed',String(choice===selected));
-    root.querySelector('.brand-film-stage').dataset.format=selected.dataset.film;
+    const width=Number(selected.dataset.width),height=Number(selected.dataset.height),duration=Math.round(Number(selected.dataset.duration));
+    root.querySelector('.brand-film-stage').style.setProperty('--film-ratio',String(width/height));
+    root.querySelector('#brand-film-duration').textContent=duration<60?`${duration} 秒`:`${Math.floor(duration/60)} 分 ${String(duration%60).padStart(2,'0')} 秒`;
     root.querySelector('#brand-film-current-title').textContent=selected.dataset.title;
-    video.setAttribute('aria-label',selected.dataset.title);video.width=Number(selected.dataset.width);video.height=Number(selected.dataset.height);video.poster=selected.dataset.poster;
+    video.setAttribute('aria-label',selected.dataset.title);video.width=width;video.height=height;video.poster=selected.dataset.poster;
     status.textContent=loadedSource?'已暫停；按播放或使用播放器繼續。':'按播放後才會載入影片。';
   }
-  for(const choice of choices)choice.addEventListener('click',()=>{
-    if(choice===selected)return;pause();selected=choice;loadedSource='';video.removeAttribute('src');video.load();showSelection();
+  select.addEventListener('change',()=>{
+    const choice=choices[select.selectedIndex];if(!choice || choice===selected)return;pause();selected=choice;loadedSource='';video.removeAttribute('src');video.load();showSelection();
   });
   playButton.addEventListener('click',()=>{
     if(!canPlay())return;
