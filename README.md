@@ -42,7 +42,9 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 - 2026-09-25 上線連結更新：Hey World https://howard118008y-commits.github.io/Hey-World/ 、Card & TW ＆ Game https://howard118008y-commits.github.io/toonhub-island-duel/ 、test shirt https://test-shirt.hoho0219.chatgpt.site 。展廳共 14 案，11 案標示「已上線」，Salf TW、Jev Talk 好好說話與 539 K 線分析保留「作品預覽」。
 - 2026-09-27 作品擴充：目前展廳共 17 案。新增維拓 Vertex 官網首屏紀錄，以及 PostPilot、鋮馨工作台的公開登入入口；兩登入工具僅展示官方品牌圖，不展示內部介面或客戶資料。Salf TW 改連公開概念頁，保留服務未啟用說明；Card & TW ＆ Game 更新為自走棋說明，既有圖片標示早期卡牌介面。
 - 2026-09-25 作品內容更新：新增 Salf TW 雙語產品概念頁面預覽；更新 Hey World 行星探索、Card & TW ＆ Game 地域角色卡牌、junlin 織織怪陪伴情境與客製介面的截圖及介紹。Salf TW 只展示網站介面，尚未啟用資安、帳號或付款服務。
-- 尚無公開網址的作品只展示實際介面截圖，不公開原始碼、帳號或內部資料。Jev Talk 使用預先編寫範例；539 使用專案內建樣本。
+- 2026-09-28 重新核對 29 個 GitHub 儲存庫：展廳 17 件獨立作品均已有各自專案；排除舊版重複、工具與知識庫。更新台灣卡牌（台卡）、Go Shoot 與鋮馨新版公開首頁圖；Jev Talk 改連正式公開介紹頁，私人工作區仍需要密碼。
+- 尚無公開網址的 539 K 線分析仍使用專案內建樣本預覽，不提供虛構外連或私人儲存庫連結。
+- 2026-09-28 六支品牌影片改用 1080p H.264/AAC 網頁版本；播放索引移到檔案前端，保留按需載入與手動播放。原始影片保留在使用者原資料夾。
 - 圖片沿用既有公開官網素材，轉換為 WebP 降低傳輸量。出處見 `assets/CREDITS.md`。
 - 電話與 Email 直接使用 `tel:`、`mailto:`；Email 連結開啟使用者郵件程式，網站不收集或儲存表單資料。
 - 頁面所列 GA4 是建置方案包含項目，本展示頁並未加入 GA4 或其他追蹤程式。

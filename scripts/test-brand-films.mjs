@@ -81,7 +81,7 @@ test('production catalog contains exactly the six approved root videos and compl
   const expectedFiles=[];
   for(const entry of entries){
     const [kind,orientation]=entry.value.split('-'),title={brand:'品牌形象',restaurant:'餐飲廣告',faq:'網站FAQ'}[kind]+(orientation==='portrait'?'｜直式':'｜橫式');
-    assert.equal(entry['data-title'],title);assert.equal(Number(entry['data-duration']),{brand:26.718005,restaurant:13.125011,faq:43.808005}[kind]);
+    assert.equal(entry['data-title'],title);assert.equal(Number(entry['data-duration']),{brand:26.726009,restaurant:13.141995,faq:43.816009}[kind]);
     assert.deepEqual([Number(entry['data-width']),Number(entry['data-height'])],orientation==='portrait'?[1080,1920]:[1920,1080]);
     assert.equal(entry.label,`${title} · ${Math.round(Number(entry['data-duration']))} 秒`);
     for(const [attribute,extension] of [['data-src','mp4'],['data-poster','webp']]){
@@ -92,4 +92,22 @@ test('production catalog contains exactly the six approved root videos and compl
     }
   }
   assert.equal(new Set(expectedFiles).size,12);assert.deepEqual(readdirSync(new URL('../assets/brand-films/',import.meta.url)).sort(),expectedFiles.sort());
+});
+
+
+test('web videos put the complete playback index before media data',()=>{
+  for(const path of [...html.matchAll(/data-src="(assets\/brand-films\/[^" ]+\.mp4)"/g)].map(match=>match[1])){
+    const file=new URL('../'+path,import.meta.url),size=statSync(file).size,fd=openSync(file,'r'),atoms=[];
+    try{
+      let offset=0;
+      while(offset<size){
+        const header=Buffer.alloc(16);assert.ok(readSync(fd,header,0,Math.min(16,size-offset),offset)>=8);
+        let length=header.readUInt32BE(0);if(length===1)length=Number(header.readBigUInt64BE(8));if(length===0)length=size-offset;
+        assert.ok(length>=8&&offset+length<=size);atoms.push({type:header.toString('ascii',4,8),offset});offset+=length;
+      }
+    }finally{closeSync(fd);}
+    const index=atoms.find(atom=>atom.type==='moov'),media=atoms.find(atom=>atom.type==='mdat');
+    assert.ok(index&&media&&index.offset<media.offset,path+' must support progressive playback');
+    assert.ok(media.offset<128*1024,path+' must expose the playback index within 128 KiB');
+  }
 });
