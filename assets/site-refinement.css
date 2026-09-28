@@ -42,8 +42,6 @@
 .gallery-count span{color:var(--accent);font-variant-numeric:tabular-nums}
 .gallery-count small{display:block;font-size:11px;color:#9caaa3}
 .view-toggle{background:#07100c;border-color:#455b50;min-width:112px}
-.play-invitation{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:20px;border-top:1px solid #25342c;font-size:13px;color:#aebcb4}
-.play-invitation a{display:inline-flex;align-items:center;gap:26px;min-height:44px;color:var(--accent)}
 .colophon{position:relative;inset:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 24px;padding:12px var(--home-pad);max-width:1600px;margin:auto;text-align:left;letter-spacing:.04em;border-top:1px solid #1c2622}
 .colophon p{font-size:10px}
 .colophon a{font-size:12px;justify-content:flex-start}
@@ -65,7 +63,7 @@
 #content-panel .content-line-actions{margin-top:16px}
 .gridview .gallery-controls{display:none}
 .menu-nav a{font-size:clamp(27px,3.3vw,48px)}
-.menu-nav a[href="/play/"]{font-size:19px;color:var(--accent);margin-top:12px}
+
 .menu-nav a:last-child{margin-top:4px}
 @media(max-width:768px){
   :root{--home-pad:22px}
@@ -82,9 +80,7 @@
   .hero-actions a{gap:16px;padding:8px 12px;font-size:12px;min-height:44px}
   .hero-gallery{width:calc(100% + var(--home-pad)*2);height:min(calc(100vw + 56px),calc(100svh - 226px - env(safe-area-inset-bottom,0px)));min-height:270px;padding-bottom:52px;margin-inline:calc(var(--home-pad)*-1)}
   .gallery-controls{padding-inline:var(--home-pad)}
-  .play-invitation{display:block;padding-top:22px}
-  .play-invitation a{gap:28px;margin-top:3px}
-  .colophon{display:flex;padding-block:18px;gap:4px 20px}
+      .colophon{display:flex;padding-block:18px;gap:4px 20px}
   .colophon p{width:100%}
   #grid,#content-panel{padding-top:96px;padding-bottom:calc(98px + env(safe-area-inset-bottom,0px))}
   #grid .grid-heading{padding-bottom:10px}
@@ -99,7 +95,7 @@
   #content-panel .content-tags{margin-top:12px}
   .grid-back{margin-bottom:10px}
   .menu-nav{gap:10px}.menu-nav a{font-size:32px}
-  .menu-nav a[href="/play/"]{font-size:18px;margin-top:8px}
+
   #content-panel .pricing-layout{display:flex;flex-direction:column}
   #content-panel .content-plans{order:0;width:100%}
   #content-panel .pricing-feature{order:1;width:100%;max-width:none;margin-top:12px}
@@ -109,10 +105,9 @@
 @media(max-width:360px){:root{--home-pad:18px}.hero-actions a{gap:10px;padding-inline:12px}#headline{font-size:19px}}
 @media(max-height:520px) and (orientation:landscape){
   #home-hero{padding-top:74px}.hero-gallery{height:calc(100svh - 140px);min-height:230px}
-  .menu-nav a{font-size:24px}.menu-nav a[href="/play/"]{font-size:16px;margin-top:0}
+  .menu-nav a{font-size:24px}
 }
 @media(prefers-reduced-motion:reduce){.chrome,#stage{transition:none}}
 html:not(.js) #home-hero{display:block;min-height:0;padding-top:40px}
 html:not(.js) .hero-gallery{display:none}
-html:not(.js) .play-invitation{margin-top:30px}
 html:not(.js) .primary-nav{display:flex}

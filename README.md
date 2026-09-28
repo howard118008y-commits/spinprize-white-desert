@@ -82,4 +82,4 @@ node scripts/build-search-pages.mjs
 
 SEO 依據（2026-09-27 查核）：[Google SEO 入門指南](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)、[實用內容](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)、[canonical](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) 與 [Sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)。每頁使用獨立標題、描述、self-canonical 與可爬取連結；結構化資料只標記公開組織、頁面、服務及麵包屑，不增加評分或排名保證。
 
-2026-09-27 導覽更新：首頁文字與立體展廳分區，主要作品／服務／方案／聯絡入口常駐；版面修正放在 `assets/site-refinement.css`。手機方案先呈現金額，再顯示作品圖。`#grid` 支援直接進入、重新整理與前後頁；`/play/` 為可選的組裝官網挑戰，獨立載入。文件工作台入口使用 `/portal/`；此版面更新不變更帳號、文件或舊內部資料。
+2026-09-27 導覽更新：首頁文字與立體展廳分區，主要作品／服務／方案／聯絡入口常駐；版面修正放在 `assets/site-refinement.css`。手機方案先呈現金額，再顯示作品圖。`#grid` 支援直接進入、重新整理與前後頁；遊戲由已登入的 owner/staff 在 `/portal/` 內開啟，舊 `/play/` 導回工作台；不再建立離線遊戲快取。文件工作台入口使用 `/portal/`；此版面更新不變更帳號、文件或舊內部資料。

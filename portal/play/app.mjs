@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 const slots=[...document.querySelectorAll('[data-slot]')],cards=[...document.querySelectorAll('[data-card]')];
 let storage=null;try{storage=window.localStorage;}catch{}
 const prefs=loadPreferences(storage);
-let state=null,selected=null,lastTick=performance.now(),lastClock='',endedShown=false,warned=false,audioContext=null,offlineReady=false;
+let state=null,selected=null,lastTick=performance.now(),lastClock='',endedShown=false,warned=false,audioContext=null;
 const artwork={
  coffee:'<svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="62" cy="62" r="52" fill="currentColor" opacity=".16"/><path d="M23 44h62v32a23 23 0 0 1-23 23H46a23 23 0 0 1-23-23Z" fill="currentColor"/><path d="M85 51h5a14 14 0 0 1 0 28h-5" fill="none" stroke="currentColor" stroke-width="8"/><path d="M42 16c-12 12 9 11 0 23m20-23c-12 12 9 11 0 23" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M21 104h79" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>',
  photo:'<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="13" y="9" width="94" height="106" rx="5" fill="currentColor" opacity=".18"/><path d="M24 90V30a36 36 0 0 1 72 0v60Z" fill="currentColor"/><circle cx="78" cy="33" r="12" fill="#f1ca89"/><path d="m24 80 25-30 20 22 10-9 17 20v7H24Z" fill="#ded8ef"/><path d="M35 102h50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
@@ -98,8 +98,6 @@ $('sound').addEventListener('click',()=>{prefs.sound=!prefs.sound;savePreference
 $('retry').addEventListener('click',()=>start(state.mode));$('change-mode').addEventListener('click',showWelcome);
 $('game-interaction').addEventListener('keydown',event=>{if(event.altKey||event.ctrlKey||event.metaKey||state?.status!=='playing')return;if(/^[1-3]$/.test(event.key)){event.preventDefault();selectCard(Number(event.key)-1);}else if(event.key==='Escape'){selected=null;render();announce('已取消選取。');}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&state?.status==='playing')pauseGame();});
-function offlineStatus(){$('offline-status').textContent=!navigator.onLine?(offlineReady?'已離線：遊戲可玩，回官網需連線。':'目前離線；本頁可玩，離線重開尚未就緒。'):(offlineReady?'離線已就緒 · 回官網與報價需連線':'首次需要連線載入，之後可離線重玩。');}
-if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js',{scope:'./'}).then(()=>navigator.serviceWorker.ready).then(registration=>{if(new URL(registration.scope).pathname==='/play/'){offlineReady=true;offlineStatus();}}).catch(()=>{$('offline-status').textContent='遊戲可正常遊玩；這個瀏覽器尚未啟用離線重開。';});}
-window.addEventListener('online',offlineStatus);window.addEventListener('offline',offlineStatus);
+function offlineStatus(){$('offline-status').textContent='從文件工作台開啟 · 不建立離線快取';}
 $('welcome-best').textContent=`最佳紀錄：75 秒 ${prefs.best.timed} 分 ／ 不限時 ${prefs.best.practice} 分`;
 updateSound();offlineStatus();requestAnimationFrame(tick);

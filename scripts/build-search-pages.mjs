@@ -146,7 +146,7 @@ function document(page, type, body) {
   ${body}
   <section class="contact section"><p class="eyebrow">LET'S TALK</p><h2>你的下一個網站，<br>從一段對話開始。</h2><a class="button" href="/#contact">和 Hey Cheng 聊聊 <span aria-hidden="true">↗</span></a></section>
   </main>
-  <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763" loading="lazy"></a><p>旋賞數位有限公司 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/#pricing">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="/play/">組裝官網挑戰 ↗</a><a href="/portal/">文件工作台</a><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></div></footer>
+  <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763" loading="lazy"></a><p>旋賞數位有限公司 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/#pricing">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="/portal/">文件工作台</a><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></div></footer>
 </body>
 </html>
 `;

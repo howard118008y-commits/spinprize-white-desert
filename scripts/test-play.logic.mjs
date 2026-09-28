@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
-import {TYPES,TARGET,DURATION,createGame,canDeliver,advance,pause,resume,place,redraw,deliver,loadPreferences,savePreferences} from '../play/game.mjs';
+import {TYPES,TARGET,DURATION,createGame,canDeliver,advance,pause,resume,place,redraw,deliver,loadPreferences,savePreferences} from '../portal/play/game.mjs';
 function put(state,type){state.cards[0]=type;return place(state,0,type,()=>0);}
 function full(state){for(const type of TYPES)put(state,type);}
 test('Two required blocks allow an 80 point delivery; optional preference changes reward',()=>{
@@ -24,7 +24,28 @@ test('Bad elapsed values cannot add time or corrupt the clock',()=>{const s=crea
 test('Storage blocked, corrupt or wrong-version data never blocks play',()=>{const fallback={sound:false,best:{timed:0,practice:0}};assert.deepEqual(loadPreferences(null),fallback);assert.deepEqual(loadPreferences({getItem(){throw Error('blocked');}}),fallback);assert.deepEqual(loadPreferences({getItem:()=>'{oops'}),fallback);assert.deepEqual(loadPreferences({getItem:()=>JSON.stringify({version:2,sound:true,best:{timed:999}})}),fallback);assert.equal(savePreferences({setItem(){throw Error('full');}},fallback),false);assert.equal(savePreferences(null,fallback),false);const s=createGame('practice');full(s);assert.equal(deliver(s).kind,'delivered');});
 test('Best scores are validated and kept separate by mode; initial sound is muted',()=>{const stored={version:1,sound:true,best:{timed:420,practice:900}};let value=JSON.stringify(stored);const memory={getItem:()=>value,setItem:(key,next)=>{assert.equal(key,'heycheng-play-v1');value=next;}};const prefs=loadPreferences(memory);assert.deepEqual(prefs, {sound:true,best:{timed:420,practice:900}});assert.equal(savePreferences(memory,prefs),true);assert.deepEqual(JSON.parse(value),stored);assert.deepEqual(loadPreferences({getItem:()=>JSON.stringify({version:1,sound:'true',best:{timed:-1,practice:'900'}})}),{sound:false,best:{timed:0,practice:0}});});
 const sw=await readFile(new URL('../play/sw.js',import.meta.url),'utf8');
-function worker(){const handlers={},cached=[],deleted=[],network=[];const cache={addAll:async requests=>cached.push(...requests.map(r=>r.url)),match:async()=>({fromCache:true}),put:async()=>{}};const self={location:{origin:'https://example.test'},addEventListener:(name,fn)=>handlers[name]=fn,skipWaiting:async()=>{},clients:{claim:async()=>{}}};class LocalRequest extends Request{constructor(url,options){super(new URL(url,self.location.origin),options);}}vm.runInNewContext(sw,{self,URL,Request:LocalRequest,caches:{open:async()=>cache,keys:async()=>['unrelated-root-cache','heycheng-play-old'],delete:async name=>deleted.push(name)},fetch:async request=>{network.push(request.url);return {ok:true,type:'basic',clone(){return this;}};}});return {handlers,cached,deleted,network};}
-test('Offline install caches only the six public /play assets; activation leaves all other caches intact',async()=>{const w=worker();let pending;w.handlers.install({waitUntil:p=>pending=p});await pending;assert.equal(w.cached.length,6);assert.ok(w.cached.every(url=>new URL(url).pathname.startsWith('/play/')));assert.ok(!w.cached.some(url=>/portal|supabase/.test(url)));w.handlers.activate({waitUntil:p=>pending=p});await pending;assert.deepEqual(w.deleted,['heycheng-play-old']);});
-test('Service worker does not intercept root, portal, Auth, APIs, arbitrary play paths, query URLs or non-GET',()=>{const w=worker();for(const [url,method] of [['https://example.test/','GET'],['https://example.test/portal/','GET'],['https://example.test/auth/v1/callback','GET'],['https://project.supabase.co/storage/v1/object','GET'],['https://example.test/play/unknown','GET'],['https://example.test/play/?token=anything','GET'],['https://example.test/play/app.mjs','POST']]){let intercepted=false;w.handlers.fetch({request:new Request(url,{method}),respondWith(){intercepted=true;}});assert.equal(intercepted,false,url);}});
-test('Exact offline game route is served from its own cache',async()=>{const w=worker();let pending;w.handlers.fetch({request:new Request('https://example.test/play/'),respondWith:p=>pending=p});assert.deepEqual(await pending,{fromCache:true});assert.equal(w.network.length,0);});
+function worker(){
+ const handlers={},deleted=[],navigated=[];let unregistered=false;
+ const self={location:{origin:'https://example.test'},addEventListener:(name,fn)=>handlers[name]=fn,skipWaiting:async()=>{},registration:{unregister:async()=>{unregistered=true;}},clients:{matchAll:async()=>['https://example.test/play/','https://example.test/portal/','https://example.test/'].map(url=>({url,navigate:async next=>navigated.push([url,next])}))}};
+ vm.runInNewContext(sw,{self,URL,caches:{keys:async()=>['unrelated-root-cache','heycheng-play-old','heycheng-play-20260927-v4'],delete:async name=>deleted.push(name)}});
+ return {handlers,deleted,navigated,get unregistered(){return unregistered;}};
+}
+test('Retired game worker clears only its own caches, unregisters and redirects only old game clients',async()=>{
+ const w=worker();let pending;w.handlers.install({waitUntil:p=>pending=p});await pending;w.handlers.activate({waitUntil:p=>pending=p});await pending;
+ assert.deepEqual(w.deleted,['heycheng-play-old','heycheng-play-20260927-v4']);assert.equal(w.unregistered,true);
+ assert.deepEqual(w.navigated,[['https://example.test/play/','/portal/#play']]);assert.equal(w.handlers.fetch,undefined);
+});
+test('Internal game creates no service worker or offline document cache',async()=>{
+ const app=await readFile(new URL('../portal/play/app.mjs',import.meta.url),'utf8');assert.doesNotMatch(app,/serviceWorker\.register|caches\./);
+ const redirect=await readFile(new URL('../play/index.html',import.meta.url),'utf8');assert.match(redirect,/url=\/portal\/#play/);
+});
+test('Game starts only after a same-origin parent message; direct visits return to the portal',async()=>{
+ const gate=(await readFile(new URL('../portal/play/gate.mjs',import.meta.url),'utf8')).replace("import('./app.mjs')","loadGame()");
+ const handlers={},parent={},body={hidden:true};let loaded=0,redirect='';
+ const window={parent,addEventListener:(type,fn)=>handlers[type]=fn,removeEventListener:type=>delete handlers[type]};
+ const context={window,location:{origin:'https://example.test',href:'https://example.test/portal/play/index.html',replace:url=>redirect=url},document:{body,querySelectorAll:()=>[]},URL,loadGame:()=>loaded++};
+ vm.runInNewContext(gate,context);const start=handlers.message;
+ for(const event of [{source:{},origin:'https://example.test',data:{type:'heycheng-play-start'}},{source:parent,origin:'https://other.test',data:{type:'heycheng-play-start'}},{source:parent,origin:'https://example.test',data:{type:'other'}}])start(event);
+ assert.equal(loaded,0);assert.equal(body.hidden,true);start({source:parent,origin:'https://example.test',data:{type:'heycheng-play-start'}});assert.equal(loaded,1);assert.equal(body.hidden,false);assert.equal(handlers.message,undefined);
+ window.parent=window;vm.runInNewContext(gate,context);assert.equal(redirect,'https://example.test/portal/#play');
+});
