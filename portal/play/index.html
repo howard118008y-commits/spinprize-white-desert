@@ -6,12 +6,14 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>組裝官網挑戰｜Hey Cheng Play</title>
 <meta name="description" content="75 秒，把靈感拼成一個小網站。Hey Cheng 免費單人小遊戲，支援點按、鍵盤與不限時模式，由內部工作台開啟。">
-<meta name="robots" content="noindex,nofollow,noarchive"><link rel="icon" href="./brand.png"><link rel="stylesheet" href="./play.css">
+<meta name="robots" content="noindex,nofollow,noarchive"><link rel="icon" href="./brand.png"><link rel="stylesheet" href="./play.css?v=20260928-modes">
 <script type="module" src="./gate.mjs"></script>
+<script src="/assets/view-mode.js?v=20260928-modes"></script>
+<link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
 <body hidden>
 <a class="skip" href="#main">跳到遊戲</a>
-<header class="site-header"><a class="brand" href="/portal/" target="_top" aria-label="Hey Cheng，回文件工作台"><img src="./brand.png" alt="Hey Cheng" width="2061" height="763"></a><nav aria-label="網站導覽"><a href="/portal/" target="_top">回文件工作台 ↗</a></nav></header>
+<header class="site-header"><a class="brand" href="/portal/" target="_top" aria-label="Hey Cheng，回文件工作台"><img src="./brand.png" alt="Hey Cheng" width="2061" height="763"></a><nav aria-label="網站導覽"><a href="/portal/" target="_top">回文件工作台 ↗</a></nav><div class="page-view-mode" data-view-mode-host></div></header>
 <main id="main">
 <section id="welcome" class="welcome" aria-labelledby="welcome-title">
 <div class="welcome-copy"><p class="eyebrow"><span class="live-dot"></span> HEY CHENG / PLAY LAB</p><h1 id="welcome-title">把靈感，<br>拼成一個<span>網站。</span></h1><p class="lede">看需求 → 選區塊 → 交付得分。<br>親手拼出一個小網站。</p><fieldset class="mode-choice"><legend>選個節奏</legend><label><input type="radio" name="mode" value="timed" checked><span>75 秒挑戰<small>和時間玩一場</small></span></label><label><input type="radio" name="mode" value="practice"><span>不限時慢慢玩<small>完成 6 次交付</small></span></label></fieldset><button id="start-game" class="primary">開始組裝 <span aria-hidden="true">↗</span></button><p class="mode-note">挑戰 600 分 · 單人挑戰 · 工作台內的小休息</p><p id="welcome-best" class="best-line"></p></div>
