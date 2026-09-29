@@ -8,6 +8,8 @@ const report={checks:[],errors:[],metrics:{}};
 await mkdir(output,{recursive:true});
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+// The home film reel keeps a media request open while buffering, which would stall networkidle waits.
+await context.route('**/*.mp4',request=>request.abort());
 const page=await context.newPage();
 page.on('pageerror',error=>report.errors.push(error.message));
 const client=await context.newCDPSession(page);
@@ -30,7 +32,9 @@ async function drag(from,to,{release=true,steps=6}={}){
 }
 async function check(name,action){await action();report.checks.push(name);console.log(`PASS ${name}`)}
 let navigation=0;
-async function route(hash,waitReveal=true){const url=new URL(baseURL);url.searchParams.set('motion-check',String(++navigation));url.hash=hash;await page.goto(url.href,{waitUntil:'domcontentloaded'});if(waitReveal)await page.locator('body.revealed').waitFor()}
+async function route(hash,waitReveal=true){const url=new URL(baseURL);url.searchParams.set('motion-check',String(++navigation));url.hash=hash;await page.goto(url.href,{waitUntil:'domcontentloaded'});if(waitReveal)await page.locator('body.revealed').waitFor();if(hash==='works'&&waitReveal)await centerStage()}
+// The sphere sits below the home film reel; bring it to the middle of the viewport before touch checks.
+async function centerStage(){await page.evaluate(()=>{const r=document.querySelector('#stage').getBoundingClientRect();scrollTo(0,scrollY+r.top+r.height/2-450)});await frame()}
 async function visibleCardPoint(){
   return page.evaluate(()=>{
     for(const card of document.querySelectorAll('.card')){
@@ -80,9 +84,9 @@ try{
     assert.ok((await position()).x-before.x>.1);await touch('touchEnd');
   });
   await check('Vertical touch rotates the sphere without scrolling the document',async()=>{
-    const before=await position();await drag([195,480],[195,340],{release:false});
+    const before=await position();const startY=await page.evaluate(()=>scrollY);await drag([195,480],[195,340],{release:false});
     assert.ok((await position()).y-before.y>10);
-    assert.equal(await page.evaluate(()=>scrollY),0);await touch('touchEnd');
+    assert.equal(await page.evaluate(()=>scrollY),startY);await touch('touchEnd');
   });
   await check('Release coasts and pressing again stops immediately without opening a card',async()=>{
     await stop();await drag([120,420],[260,420]);

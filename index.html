@@ -275,6 +275,7 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 #brand-films .content-heading{margin-bottom:28px}#brand-films h2{font-size:clamp(34px,5.5vw,70px)}.brand-film-picker{display:grid;gap:10px;margin:0 0 24px;color:var(--dim);font-size:14px}.brand-film-select{box-sizing:border-box;width:100%;min-width:0;min-height:48px;padding:12px 40px 12px 16px;border:1px solid #40514c;border-radius:4px;background:#080e0c;color:var(--ink);font:inherit;font-size:16px;color-scheme:dark}.brand-film-stage{margin:0 auto 24px;background:#000;border:1px solid #2d3a36;border-radius:5px;overflow:hidden;max-width:100%}.brand-film-stage{--film-ratio:.5625;width:min(100%,calc(64dvh * var(--film-ratio)));aspect-ratio:var(--film-ratio)}.brand-film-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#000}.brand-film-info{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px}.brand-film-info h3{font-size:20px;margin:0 0 7px}.brand-film-info p{color:var(--dim);font-size:14px;line-height:1.6;margin:0}.brand-film-play{min-height:48px;padding:13px 24px;border-radius:4px;background:var(--accent);color:#04130f;font-size:16px;font-weight:600;flex-shrink:0}.brand-film-status{min-height:1.7em;margin-top:14px;color:var(--dim);font-size:14px;line-height:1.7}.brand-film-select:focus-visible,.brand-film-play:focus-visible,.brand-film-stage video:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:640px){.brand-film-info{align-items:stretch;flex-direction:column}.brand-film-play{width:100%}}
 </style>
 <link rel="stylesheet" href="assets/site-refinement.css?v=20260929-safearea">
+<link rel="stylesheet" href="assets/home-landing.css?v=20260929-reel2">
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
@@ -283,10 +284,51 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 <a class="skip-link" href="#main">跳到主要內容</a>
 <main id="main" tabindex="-1">
   <span id="works" class="sr-only" aria-hidden="true"></span><span id="top" class="sr-only" aria-hidden="true"></span><span id="work-directory" class="sr-only" aria-hidden="true"></span>
+  <section class="home-block hb-reel" id="home-reel" aria-label="Hey Cheng 影片輪播">
+    <div class="hb-reel-frame">
+      <div class="hb-reel-stage"><video id="hb-reel-video" muted playsinline controls preload="none" width="1920" height="1080" poster="assets/brand-films/heycheng-landscape-27s-poster.webp" src="assets/brand-films/heycheng-landscape-27s-web.mp4" aria-label="品牌形象"></video>
+        <div class="hb-reel-controls"><button type="button" class="hb-reel-toggle" data-state="on" aria-label="暫停影片"><svg viewBox="0 0 24 24" aria-hidden="true" class="hb-on"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" class="hb-off"><path d="M8 5v14l11-7z"/></svg></button><button type="button" class="hb-reel-sound" data-state="off" aria-label="開啟聲音"><svg viewBox="0 0 24 24" aria-hidden="true" class="hb-on"><path d="M4 9v6h4l5 4V5L8 9zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" class="hb-off"><path d="M4 9v6h4l5 4V5L8 9zm12.6 3 2.7-2.7-1.1-1.1-2.7 2.7-2.7-2.7-1.1 1.1 2.7 2.7-2.7 2.7 1.1 1.1 2.7-2.7 2.7 2.7 1.1-1.1z"/></svg></button></div>
+      </div>
+      <ol class="hb-reel-tabs" aria-label="選擇影片"><li><button type="button" data-reel data-src="assets/brand-films/heycheng-landscape-27s-web.mp4" data-poster="assets/brand-films/heycheng-landscape-27s-poster.webp" data-title="品牌形象" aria-current="true"><strong>品牌形象</strong><small>27 秒</small></button></li><li><button type="button" data-reel data-src="assets/home-reel/heycheng-three-stores-landscape-45s-20260929-web.mp4" data-poster="assets/home-reel/heycheng-three-stores-landscape-45s-20260929-poster.webp" data-title="三店上線前後" aria-current="false"><strong>三店上線前後</strong><small>45 秒</small></button></li><li><button type="button" data-reel data-src="assets/brand-films/heycheng-restaurant-landscape-13s-20260928-web.mp4" data-poster="assets/brand-films/heycheng-restaurant-landscape-13s-20260928-poster.webp" data-title="餐飲廣告" aria-current="false"><strong>餐飲廣告</strong><small>13 秒</small></button></li><li><button type="button" data-reel data-src="assets/brand-films/heycheng-faq-landscape-44s-20260928-web.mp4" data-poster="assets/brand-films/heycheng-faq-landscape-44s-20260928-poster.webp" data-title="網站要多少錢" aria-current="false"><strong>網站要多少錢</strong><small>44 秒</small></button></li></ol>
+    </div>
+    <p class="sr-only hb-reel-status" role="status" aria-live="polite"></p>
+  </section>
+  <section class="home-block hb-strip" aria-label="已上線的網站作品"><p>已上線的網站</p><div class="hb-strip-track"><ul><li>山遇民宿</li><li>鋮馨租賃</li><li>Go Shoot</li><li>永貞豆腐店</li><li>台北建安宮</li><li>線上一番賞平台</li></ul><ul aria-hidden="true"><li>山遇民宿</li><li>鋮馨租賃</li><li>Go Shoot</li><li>永貞豆腐店</li><li>台北建安宮</li><li>線上一番賞平台</li></ul></div></section>
+  <section class="home-block hb-section hb-light" aria-labelledby="hb-intro-title">
+    <div class="hb-wrap hb-split">
+      <div>
+        <p class="hb-eyebrow">新北中和・品牌網站與數位系統</p>
+        <h1 class="hb-title hb-bar" id="hb-intro-title">客人找不到你，<br>多半不是生意不好。</h1>
+        <div class="hb-body" style="margin-top:26px"><p>問題通常出在：網路上沒有一個說得清楚的入口。Hey Cheng 從你的生意出發，把服務、照片、價格與聯絡方式整理成好找、好懂、好聯絡的網站；需要時，再接上 AI 與客製系統。</p></div>
+        <div class="hb-actions"><a class="hb-btn" href="#contact">聊聊你的網站</a><a class="hb-btn hb-btn-line" href="#pricing">看建置方案</a></div>
+      </div>
+      <div class="hb-intro-card"><img src="assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763" loading="lazy" decoding="async"><p>讓你的特色，<br>成為被看見的理由。<small>旋賞數位有限公司・統一編號 62149294</small></p></div>
+    </div>
+  </section>
+  <section class="home-block hb-section hb-dark hb-stats" aria-label="Hey Cheng 的數字">
+    <div class="hb-wrap"><ul>
+      <li><strong data-project-count>17</strong><span>件公開作品，都能點開看完整頁面</span></li>
+      <li><strong>42,000<small>起</small></strong><span>入門網站含稅建置價</span></li>
+      <li><strong>5<small>級</small></strong><span>公開方案，價格寫在官網</span></li>
+      <li><strong>2<small>輪</small></strong><span>製作期間整批修改</span></li>
+      <li><strong>30<small>日</small></strong><span>正式報價有效期</span></li>
+    </ul></div>
+  </section>
+  <section class="home-block hb-section hb-light" aria-labelledby="hb-promise-title">
+    <div class="hb-wrap hb-split">
+      <div><p class="hb-eyebrow">價格公開</p><h2 class="hb-title hb-bar" id="hb-promise-title">先看清楚價格，<br>再決定要不要開始。</h2></div>
+      <div class="hb-body">
+        <p class="hb-lead">多數人怕的不是價格，是不知道最後要付多少。</p>
+        <p>五級方案與含稅價格都公開在官網。確認需求後，我們提供逐項列明的正式報價單；超出約定範圍的項目另行報價，並在報價中列明。</p>
+        <p>網域登記在客戶名下；付款分為訂金 30%、驗收後尾款 70%。</p>
+        <div class="hb-actions"><a class="hb-btn" href="#pricing">看建置方案</a></div>
+      </div>
+    </div>
+  </section>
   <section id="home-hero" aria-labelledby="headline">
     <div class="hero-copy">
       <p class="hero-eyebrow">HEY CHENG · 數位設計與開發</p>
-      <h1 id="headline">不同的生意，<br>各自合適的<span class="accent">網站。</span></h1>
+      <h2 id="headline">不同的生意，<br>各自合適的<span class="accent">網站。</span></h2>
       <p class="hero-description">從品牌網站、內容拍攝，到 AI 與客製系統。<br>把你的特色，變成好看、好用的數位體驗。</p>
       <div class="hero-actions"><a class="hero-primary" href="#grid">看實際作品 <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#pricing">看建置方案 <span aria-hidden="true">↗</span></a></div>
     </div>
@@ -297,6 +339,45 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
       <nav class="gallery-controls" aria-label="作品瀏覽方式" inert><p class="gallery-count"><span></span> 件真實作品 <small>拖曳旋轉 · 點選探索</small></p><button id="gridBtn" class="view-toggle" type="button" aria-controls="grid" aria-expanded="false"><span class="grid-icon" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="grid-label">作品一覽</span></button></nav>
     </div>
     <p id="gallery-help" class="sr-only">拖曳可左右或上下旋轉作品；方向鍵旋轉，Enter 開啟前方作品。作品一覽提供全部作品的文字選單。</p>
+  </section>
+  <section class="home-block hb-section hb-light hb-diff" aria-labelledby="hb-diff-title">
+    <div class="hb-wrap"><p class="hb-eyebrow hb-center">WHY HEY CHENG</p><h2 class="hb-title hb-bar hb-center" id="hb-diff-title">為什麼找 Hey Cheng</h2>
+      <ul><li><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="28" cy="28" r="16"/><path d="M40 40l14 14M20 28h16M28 20v16"/></svg><h3>先理解你的生意</h3><p>從實際營運出發，規劃資訊、內容與瀏覽流程。</p></li><li><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="16" width="48" height="34" rx="2"/><circle cx="32" cy="33" r="10"/><path d="M22 16l4-6h12l4 6"/></svg><h3>照片文案一起準備</h3><p>現場拍攝、修圖與文案代筆，可以包在方案裡。</p></li><li><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="10" width="48" height="40" rx="2"/><path d="M8 20h48M24 58h16M32 50v8"/></svg><h3>作品都能點開看</h3><p>每件公開作品，都能從頁首看到頁尾。</p></li><li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 8h28l12 12v36H12z"/><path d="M40 8v12h12M20 32h24M20 40h24M20 48h14"/></svg><h3>價格條件寫清楚</h3><p>五級含稅方案，付款與維運條件都公開。</p></li><li><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="16" width="32" height="32" rx="4"/><path d="M24 8v8M40 8v8M24 48v8M40 48v8M8 24h8M8 40h8M48 24h8M48 40h8"/><path d="M26 38l6-14 6 14M28 33h8"/></svg><h3>AI 協作，重視細節</h3><p>用 AI 協助設計、內容整理與開發，把時間留給細節。</p></li></ul>
+      <div class="hb-actions"><a class="hb-btn" href="#contact">聊聊你的網站</a></div>
+    </div>
+  </section>
+  <section class="home-block hb-section hb-dark" aria-labelledby="hb-steps-title">
+    <div class="hb-wrap"><h2 class="hb-title hb-bar hb-center" id="hb-steps-title">合作流程，一步一步說清楚</h2><ol class="hb-steps"><li><div class="hb-step-circle"><b>01</b><strong>需求洽談</strong></div><div class="hb-step-copy"><em>簽約前</em><p>說明你的生意、現況，以及想解決的問題。</p></div></li><li><div class="hb-step-circle"><b>02</b><strong>正式報價</strong></div><div class="hb-step-copy"><em>確認範圍後</em><p>逐項列明內容與金額，有效期 30 日。</p></div></li><li><div class="hb-step-circle"><b>03</b><strong>簽約開工</strong></div><div class="hb-step-copy"><em>第 1 天</em><p>支付訂金 30%，排定製作時程。</p></div></li><li><div class="hb-step-circle"><b>04</b><strong>製作確認</strong></div><div class="hb-step-copy"><em>製作期間</em><p>逐階段與你確認，包含 2 輪整批修改。</p></div></li><li><div class="hb-step-circle"><b>05</b><strong>驗收上線</strong></div><div class="hb-step-copy"><em>驗收後</em><p>驗收完成後支付尾款 70%。</p></div></li><li><div class="hb-step-circle"><b>06</b><strong>年度維運</strong></div><div class="hb-step-copy"><em>第 2 年起</em><p>NT$20,000／年（含稅），含每年 2 次內容更新。</p></div></li></ol></div>
+  </section>
+  <section class="home-block hb-section hb-light" aria-labelledby="hb-problem-title">
+    <div class="hb-wrap hb-split">
+      <h2 class="hb-title hb-bar" id="hb-problem-title">是什麼讓客人<br>找不到你？</h2>
+      <div class="hb-body">
+        <p>只有粉專，客人搜尋時找不到正式資訊。</p>
+        <p>舊網站資訊過時，照片、價格與營業時間都對不上。</p>
+        <p>服務很好，卻沒有時間整理照片與文案。</p>
+        <p class="hb-lead">先從一次對話開始：告訴我們你的生意，我們建議適合的方案。</p>
+        <div class="hb-actions"><a class="hb-btn" href="#contact">聊聊你的網站</a></div>
+      </div>
+    </div>
+  </section>
+  <section class="home-block hb-section hb-soft hb-audience" aria-labelledby="hb-audience-title">
+    <div class="hb-wrap hb-split">
+      <div><h2 class="hb-title hb-bar" id="hb-audience-title">給老闆，<br>也給負責行銷的你</h2><div class="hb-body" style="margin-top:22px"><p>不論你是要把網站整個交出去的店家老闆，還是想找團隊補上技術與內容的行銷窗口，都可以從這裡開始。</p></div></div>
+      <div class="hb-audience-cols">
+        <div><h3>給店家與企業主</h3><ul><li><strong>讓客人找得到你</strong><span>網站、Google 商家與搜尋資訊整理一致。</span></li><li><strong>照片文案不用自己來</strong><span>拍攝、修圖與文案代筆可以一起準備。</span></li><li><strong>價格一開始就清楚</strong><span>公開含稅方案，正式報價逐項列明。</span></li></ul></div>
+        <div><h3>給行銷與專案窗口</h3><ul><li><strong>內容可以自己更新</strong><span>標準以上方案含可自行編輯的後台。</span></li><li><strong>數據看得見</strong><span>方案包含 GA4 流量分析設定。</span></li><li><strong>流程接得上</strong><span>需要時接上 AI 助理、自動發文與資料串接。</span></li></ul></div>
+      </div>
+    </div>
+  </section>
+  <section class="home-block hb-section hb-light hb-services" aria-labelledby="hb-services-title">
+    <div class="hb-wrap"><h2 class="hb-title hb-center" id="hb-services-title">從網站到系統，依你的生意安排</h2><p class="hb-center">不只做一個網站：內容、拍攝、導覽與系統，都能在同一個團隊完成。</p>
+      <div class="hb-svc"><div class="hb-svc-tabs" role="tablist" aria-label="服務項目"><button type="button" role="tab" id="hb-tab-web" aria-controls="hb-panel-web" aria-selected="true" tabindex="0">品牌形象網站</button><button type="button" role="tab" id="hb-tab-content" aria-controls="hb-panel-content" aria-selected="false" tabindex="-1">攝影與文案</button><button type="button" role="tab" id="hb-tab-tour" aria-controls="hb-panel-tour" aria-selected="false" tabindex="-1">立體導覽</button><button type="button" role="tab" id="hb-tab-ai" aria-controls="hb-panel-ai" aria-selected="false" tabindex="-1">AI 與客製系統</button><button type="button" role="tab" id="hb-tab-social" aria-controls="hb-panel-social" aria-selected="false" tabindex="-1">社群自動發文</button><button type="button" role="tab" id="hb-tab-care" aria-controls="hb-panel-care" aria-selected="false" tabindex="-1">年度維運</button></div><div><div class="hb-svc-panel" role="tabpanel" id="hb-panel-web" aria-labelledby="hb-tab-web"><img src="assets/case-shanyu.webp" alt="山遇民宿網站的空間與房型介紹畫面" width="1440" height="900" loading="lazy" decoding="async"><div><h3>品牌形象網站</h3><p>把服務、作品與聯絡方式整理成清楚的瀏覽動線，手機版一起完成。</p><a class="hb-btn" href="/services/brand-websites/">了解品牌網站</a></div></div><div class="hb-svc-panel" role="tabpanel" id="hb-panel-content" aria-labelledby="hb-tab-content" hidden><img src="assets/case-tofu.webp" alt="永貞豆腐店網站的餐點照片" width="1440" height="900" loading="lazy" decoding="async"><div><h3>攝影與文案</h3><p>半日現場拍攝、30 張修圖與五頁文案代筆，讓網站有真實的照片與說法。</p><a class="hb-btn" href="/services/brand-content/">了解攝影與文案</a></div></div><div class="hb-svc-panel" role="tabpanel" id="hb-panel-tour" aria-labelledby="hb-tab-tour" hidden><img src="assets/case-goshoot.webp" alt="Go Shoot 網站的立體門市開場" width="1440" height="900" loading="lazy" decoding="async"><div><h3>立體導覽</h3><p>讓客人在預約前先看懂空間：點選房間或區域，就能看到照片與說明。</p><a class="hb-btn" href="#pricing">看進階方案</a></div></div><div class="hb-svc-panel" role="tabpanel" id="hb-panel-ai" aria-labelledby="hb-tab-ai" hidden><img src="assets/case-ichiban.webp" alt="線上一番賞平台的商品與會員介面" width="1440" height="900" loading="lazy" decoding="async"><div><h3>AI 與客製系統</h3><p>諮詢流程、AI 助理、文件解析、報表與資料串接，依你的營運流程訂製。</p><a class="hb-btn" href="/services/ai-custom-systems/">了解 AI 與客製系統</a></div></div><div class="hb-svc-panel" role="tabpanel" id="hb-panel-social" aria-labelledby="hb-tab-social" hidden><img src="assets/case-cx468.webp" alt="鋮馨租賃網站的首頁畫面" width="1440" height="900" loading="lazy" decoding="async"><div><h3>社群自動發文</h3><p>官網發一篇，FB、IG、Threads 同步發出；帳號都在你名下。</p><a class="hb-btn" href="#pricing">看加購項目</a></div></div><div class="hb-svc-panel" role="tabpanel" id="hb-panel-care" aria-labelledby="hb-tab-care" hidden><img src="assets/case-jianan.webp" alt="台北建安宮網站的活動與登記入口" width="1440" height="900" loading="lazy" decoding="async"><div><h3>年度維運</h3><p>第 2 年起每年 NT$20,000（含稅），含每年 2 次內容更新。</p><a class="hb-btn" href="/faq/">看維運常見問題</a></div></div></div></div>
+    </div>
+  </section>
+  <section class="home-block hb-cta" aria-labelledby="hb-cta-title">
+    <div class="hb-cta-top"><div class="hb-wrap"><h2 id="hb-cta-title">開始吧。</h2><p class="hb-cta-sub">聊聊你的生意，看看我們適不適合一起做。</p><div class="hb-actions"><a class="hb-btn hb-btn-dark" href="#contact">聊聊你的網站</a></div></div></div>
+    <div class="hb-wrap hb-cta-contact"><span>電話</span><a href="tel:+886222262678">02-2226-2678</a><span>LINE ID：hao__cheng</span><span>新北市中和區</span></div>
   </section>
   <section id="grid" aria-labelledby="grid-title" aria-hidden="true" inert>
     <div class="grid-heading"><div><a class="grid-back" href="#works">← 返回立體展廳</a><h1 id="grid-title" tabindex="-1">實際做過的作品。</h1></div><p>不同的生意，各自合適的數位體驗。</p></div>
@@ -514,6 +595,33 @@ const brandFilms=createBrandFilmPlayer($('#brand-films'),()=>currentView==='bran
   const safeTop=$('.site-header').getBoundingClientRect().bottom+16;
   panel.scrollTo({top:Math.max(0,panel.scrollTop+video.getBoundingClientRect().top-safeTop),behavior:'instant'});
 });
+// Home film reel: muted autoplay playlist that only runs while the home view is on screen.
+function createHeroReel(root){
+  if(!root)return;
+  const video=$('video',root), tabs=$$('[data-reel]',root), toggle=$('.hb-reel-toggle',root), sound=$('.hb-reel-sound',root), status=$('.hb-reel-status',root);
+  let index=0, active=false, visible=false, userPaused=reducedMotion.matches;
+  video.removeAttribute('controls');video.muted=true;
+  const paint=()=>{toggle.dataset.state=userPaused?'off':'on';toggle.setAttribute('aria-label',userPaused?'播放影片':'暫停影片');sound.dataset.state=video.muted?'off':'on';sound.setAttribute('aria-label',video.muted?'開啟聲音':'關閉聲音');};
+  const update=()=>{if(active&&visible&&!userPaused&&!document.hidden){const play=video.play();if(play)play.catch(()=>{userPaused=true;paint();});}else if(!video.paused)video.pause();paint();};
+  const load=next=>{index=(next+tabs.length)%tabs.length;tabs.forEach((tab,i)=>{tab.setAttribute('aria-current',String(i===index));tab.style.setProperty('--p',i<index?1:0);});const tab=tabs[index];if(video.getAttribute('src')!==tab.dataset.src){video.poster=tab.dataset.poster;video.src=tab.dataset.src;}video.setAttribute('aria-label',tab.dataset.title);};
+  video.addEventListener('timeupdate',()=>{if(video.duration)tabs[index].style.setProperty('--p',video.currentTime/video.duration);});
+  video.addEventListener('ended',()=>{load(index+1);update();});
+  tabs.forEach((tab,i)=>tab.addEventListener('click',()=>{load(i);video.currentTime=0;userPaused=false;status.textContent=`正在播放：${tab.dataset.title}`;update();}));
+  toggle.addEventListener('click',()=>{userPaused=!userPaused;status.textContent=userPaused?'影片已暫停':'影片播放中';update();});
+  sound.addEventListener('click',()=>{video.muted=!video.muted;if(!video.muted)userPaused=false;status.textContent=video.muted?'已靜音':'已開啟聲音';update();});
+  document.addEventListener('visibilitychange',update);
+  if('IntersectionObserver' in window)new IntersectionObserver(([entry])=>{visible=entry.isIntersecting&&entry.intersectionRatio>.2;update();},{threshold:[0,.2,.6]}).observe(video);else visible=true;
+  // body.locked is set whenever the home view is covered (intro, menu, grid, preview or a content page).
+  const syncFromBody=()=>{active=!body.classList.contains('locked');update();};
+  new MutationObserver(syncFromBody).observe(body,{attributes:true,attributeFilter:['class']});
+  load(0);syncFromBody();
+}
+createHeroReel($('#home-reel'));
+const siteHeader=$('.site-header');
+if(siteHeader&&'ResizeObserver' in window)new ResizeObserver(()=>document.documentElement.style.setProperty('--site-header-h',`${Math.ceil(siteHeader.getBoundingClientRect().height)}px`)).observe(siteHeader);
+const serviceTabs=$$('.hb-svc-tabs [role="tab"]');
+function selectServiceTab(index,focus){serviceTabs.forEach((tab,i)=>{const on=i===index;tab.setAttribute('aria-selected',String(on));tab.tabIndex=on?0:-1;$(`#${tab.getAttribute('aria-controls')}`).hidden=!on;});if(focus)serviceTabs[index].focus();}
+serviceTabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectServiceTab(i,false));tab.addEventListener('keydown',event=>{const keys={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1};if(event.key in keys){event.preventDefault();selectServiceTab((i+keys[event.key]+serviceTabs.length)%serviceTabs.length,true);}else if(event.key==='Home'||event.key==='End'){event.preventDefault();selectServiceTab(event.key==='Home'?0:serviceTabs.length-1,true);}});});
 let gesture=null, focusedCard=-1, sourceElement=null, imageToken=0, closeTimer=0;
 let lastFrame=0, cameraFrame=0, previousTransform='', dirty=true, selectedProject=0;
 const touchPointers=new Set();
@@ -521,6 +629,7 @@ const inertiaFriction=.0037;
 const cards=[], gridButtons=[], objectURLs=[];
 const projectCount=String(projects.length).padStart(2,'0');
 $('.gallery-count span').textContent=projectCount;
+$$('[data-project-count]').forEach(node=>{node.textContent=String(projects.length)});
 const sphereVariants=Array.from({length:Math.max(21,projects.length)},(_,index)=>({project:projects[index%projects.length],variant:Math.floor(index/projects.length)%3,tall:index===19}));
 const goldenAngle=Math.PI*(3-Math.sqrt(5));
 sphereVariants.forEach((record,index)=>{
