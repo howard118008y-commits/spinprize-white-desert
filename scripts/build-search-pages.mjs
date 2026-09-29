@@ -129,7 +129,7 @@ function document(page, type, body) {
   return `<!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>${escape(page.title)}</title>
   <meta name="description" content="${escape(page.description)}">
   <link rel="canonical" href="${url}">
@@ -137,7 +137,7 @@ function document(page, type, body) {
   <meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta property="og:url" content="${url}">
   <meta property="og:image" content="${origin}/assets/${page.image}"><meta property="og:image:alt" content="${escape(page.imageAlt)}">
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(page.title)}"><meta name="twitter:description" content="${escape(page.description)}"><meta name="twitter:image" content="${origin}/assets/${page.image}">
-  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20260928-modes">
+  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20260929-safearea">
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">

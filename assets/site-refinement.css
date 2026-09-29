@@ -70,7 +70,7 @@
 
 html[data-view="mobile"]{--home-pad:22px}
 html[data-view="mobile"] body{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
-html[data-view="mobile"] .site-header{min-height:68px;padding:8px var(--home-pad);gap:20px;justify-content:space-between}
+html[data-view="mobile"] .site-header{min-height:68px;padding:8px var(--home-pad);padding-top:calc(8px + env(safe-area-inset-top,0px));gap:20px;justify-content:space-between}
 html[data-view="mobile"] .site-header .wordmark{width:148px;height:48px}
 html[data-view="mobile"] .primary-nav{position:fixed;left:0;right:0;bottom:0;z-index:65;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:5px 12px calc(5px + env(safe-area-inset-bottom,0px));background:#07100d;border-top:1px solid #34483e}
 html[data-view="mobile"] .primary-nav a{min-height:52px;font-size:14px;border-bottom:0;border-top:2px solid transparent}
@@ -113,12 +113,12 @@ html:not(.js) .primary-nav{display:flex}
 
 @media screen {
 /* Viewing mode: one predictable control row, with no change to gallery gestures. */
-.site-header{flex-wrap:wrap;row-gap:6px;padding-block:8px}
+.site-header{flex-wrap:wrap;row-gap:6px;padding-block:8px;padding-top:calc(8px + env(safe-area-inset-top,0px))}
 .page-view-mode{flex:0 0 100%}
 .page-view-mode .view-mode-control{justify-content:flex-end;gap:6px 10px}
-#home-hero{padding-top:132px}
+#home-hero{padding-top:calc(132px + env(safe-area-inset-top,0px))}
 .hero-gallery{height:calc(100svh - 208px)}
-#grid,#content-panel{padding-top:146px}
+#grid,#content-panel{padding-top:calc(146px + env(safe-area-inset-top,0px))}
 html[data-view="desktop"] body{padding-bottom:0}
 html[data-view="desktop"] .primary-nav{position:static;display:flex;flex-wrap:wrap;gap:8px 24px;padding:0;border:0;background:transparent}
 html[data-view="desktop"] .primary-nav a{min-height:44px;border:0}
@@ -127,10 +127,10 @@ html[data-view="mobile"]{--home-pad:22px}
 html[data-view="mobile"] .site-header{padding-inline:max(22px,calc((100% - 636px)/2));row-gap:6px}
 html[data-view="mobile"] .page-view-mode .view-mode-control{justify-content:flex-start}
 html[data-view="mobile"] .primary-nav{left:50%;right:auto;transform:translateX(-50%);width:min(100%,680px)}
-html[data-view="mobile"] #home-hero{width:min(100%,680px);height:calc(100svh - 90px - env(safe-area-inset-bottom,0px));min-height:510px;padding-top:132px;padding-bottom:0}
+html[data-view="mobile"] #home-hero{width:min(100%,680px);height:calc(100svh - 90px - env(safe-area-inset-bottom,0px));min-height:510px;padding-top:calc(132px + env(safe-area-inset-top,0px));padding-bottom:0}
 html[data-view="mobile"] #headline{font-size:clamp(19px,4vw,28px)}
 html[data-view="mobile"] .hero-gallery{flex:1;min-height:270px;height:auto}
-html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:146px;padding-inline:max(22px,calc((100% - 636px)/2))}
+html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:calc(146px + env(safe-area-inset-top,0px));padding-inline:max(22px,calc((100% - 636px)/2))}
 html[data-view="mobile"] .rows{grid-template-columns:minmax(0,1fr)}
 html[data-view="mobile"] .grid-heading{display:block}
 html[data-view="mobile"] .grid-heading p{margin-top:12px}
@@ -149,11 +149,11 @@ html[data-view="mobile"] .case-study-links{flex-wrap:wrap}
   html[data-view="desktop"] .site-header .wordmark{width:128px}
   html[data-view="desktop"] .primary-nav{order:3;flex-basis:100%;justify-content:space-between;gap:8px}
   html[data-view="desktop"] .page-view-mode{order:4}
-  html[data-view="desktop"] #home-hero{padding-top:180px}
+  html[data-view="desktop"] #home-hero{padding-top:calc(180px + env(safe-area-inset-top,0px))}
   html[data-view="desktop"] .hero-copy{display:block}
   html[data-view="desktop"] .hero-actions{margin-top:10px;flex-wrap:wrap}
   html[data-view="desktop"] .hero-gallery{height:calc(100svh - 294px);min-height:270px}
-  html[data-view="desktop"] #grid,html[data-view="desktop"] #content-panel{padding-top:196px}
+  html[data-view="desktop"] #grid,html[data-view="desktop"] #content-panel{padding-top:calc(196px + env(safe-area-inset-top,0px))}
   html[data-view="desktop"] #content-panel .service-story{grid-template-columns:minmax(0,1fr)}
 }
 @media(pointer:coarse){.menu-btn{min-height:44px}.policy-links a{min-height:44px;display:inline-flex;align-items:center}}
