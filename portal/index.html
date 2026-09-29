@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'self'; connect-src 'self' https://mcgmpxrpdhjpmvtbxfmj.supabase.co; img-src 'self' blob: data:; frame-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>文件工作台｜旋賞數位</title>
-<link rel="stylesheet" href="./app.css?v=20260928-contract-undo"><link rel="stylesheet" href="./contract.css?v=20260928-contract-undo"><script type="module" src="./app.js?v=20260928-contract-undo"></script>
+<link rel="stylesheet" href="./app.css?v=20260929-checkout-admin"><link rel="stylesheet" href="./contract.css?v=20260929-checkout-admin"><script type="module" src="./app.js?v=20260929-checkout-admin"></script>
 <script src="/assets/view-mode.js?v=20260928-modes"></script><link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
 <body>
@@ -15,7 +15,7 @@
 <section id="login-panel" class="login-panel"><p class="eyebrow">PRIVATE WORKSPACE</p><h1>你的文件，<br>在同一個地方。</h1><p>使用已獲授權的 Google 帳號登入，查看你的文件。</p><button id="login" disabled>使用 Google 登入</button><p id="setup-message" class="muted">正在確認工作台設定…</p></section>
 <section id="workspace" hidden>
 <div class="heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>文件工作台</h1></div><button id="refresh" class="quiet">重新整理</button></div>
-<nav aria-label="工作台"><button id="documents-tab" aria-current="page">文件</button><button id="admin-tab" hidden>帳號與權限</button><button id="play-open" class="play-entry" hidden>休息一下 · 小遊戲</button></nav>
+<nav aria-label="工作台"><button id="documents-tab" aria-current="page">文件</button><button id="admin-tab" hidden>帳號與權限</button><button id="play-open" class="play-entry" hidden>休息一下 · 小遊戲</button><a id="checkout-admin" class="checkout-admin" href="https://checkout-api-production-9f95.up.railway.app/admin" target="_blank" rel="noopener noreferrer" hidden>收單後台 <span aria-hidden="true">↗</span></a></nav>
 <section id="documents-panel"><article id="contract-entry" class="document contract-entry" hidden><div><p class="eyebrow">SIGNING WORKFLOW</p><h2>01 合約文件</h2><p>選擇方案與金額、確認條款，雙方可直接手寫簽名並匯出 PDF。</p><p>內容只保留在這次開啟的頁面；匯出後，可依既有流程上傳及指定文件權限。</p></div><button id="contract-open">建立合約</button></article><div id="document-list"></div><p id="empty-documents" hidden>目前沒有可查看的文件。</p>
 <section id="upload-panel" class="panel" hidden><h2>新增文件</h2><p class="muted">PDF、PNG、JPEG 或 WebP，每份最多 10 MiB。</p><form id="upload-form"><label>文件名稱<input name="title" maxlength="160" required></label><label>檔案<input name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" required></label><label>開放方式<select name="scope"><option value="assigned">只限逐件指定的帳號</option value="internal">內部共用（管理者與同事）</option></select></label><button type="submit">上傳文件</button></form></section>
 </section>
