@@ -6,13 +6,13 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'self'; connect-src 'self' https://mcgmpxrpdhjpmvtbxfmj.supabase.co; img-src 'self' blob: data:; frame-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>文件工作台｜旋賞數位</title>
-<link rel="stylesheet" href="./app.css?v=20260929-social-autopost"><link rel="stylesheet" href="./contract.css?v=20260929-social-autopost"><script type="module" src="./app.js?v=20260929-social-autopost"></script>
+<link rel="stylesheet" href="./app.css?v=20260929-passcode"><link rel="stylesheet" href="./contract.css?v=20260929-passcode"><script type="module" src="./app.js?v=20260929-passcode"></script>
 <script src="/assets/view-mode.js?v=20260928-modes"></script><link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
 <body>
 <header><a class="brand" href="./"><img src="./brand.png" alt="Hey Cheng 旋賞數位"></a><div data-view-mode-host class="portal-view-mode"></div><div id="identity" hidden><span id="identity-text"></span><button id="logout" class="quiet">登出</button></div></header>
 <main>
-<section id="login-panel" class="login-panel"><p class="eyebrow">PRIVATE WORKSPACE</p><h1>你的文件，<br>在同一個地方。</h1><p>使用已獲授權的 Google 帳號登入，查看你的文件。</p><button id="login" disabled>使用 Google 登入</button><p id="setup-message" class="muted">正在確認工作台設定…</p></section>
+<section id="login-panel" class="login-panel"><p class="eyebrow">PRIVATE WORKSPACE</p><h1>你的文件，<br>在同一個地方。</h1><p>輸入工作台通行碼，查看你的文件。</p><form id="login-form"><label>通行碼<input id="passcode" type="password" inputmode="numeric" autocomplete="current-password" required></label><button id="login" disabled>進入工作台</button></form><p id="setup-message" class="muted">正在確認工作台設定…</p></section>
 <section id="workspace" hidden>
 <div class="heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>文件工作台</h1></div><button id="refresh" class="quiet">重新整理</button></div>
 <nav aria-label="工作台"><button id="documents-tab" aria-current="page">文件</button><button id="admin-tab" hidden>帳號與權限</button><button id="play-open" class="play-entry" hidden>休息一下 · 小遊戲</button><a id="checkout-admin" class="checkout-admin" href="https://checkout-api-production-9f95.up.railway.app/admin" target="_blank" rel="noopener noreferrer" hidden>收單後台 <span aria-hidden="true">↗</span></a></nav>
