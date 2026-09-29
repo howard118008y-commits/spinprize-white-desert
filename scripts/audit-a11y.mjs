@@ -27,9 +27,32 @@ const states = [
   { name: 'work-dialog', view: 'grid', trigger: '#grid .grid-card[data-project="shanyu"]', dialog: '#lit' },
   { name: 'work-full-zoom', view: 'grid', trigger: '#grid .grid-card[data-project="shanyu"]', dialog: '#lit', zoom: true },
   { name: 'install-dialog', view: 'contact', trigger: '#contact [data-install]', dialog: '#install-dialog', nativeDialog: true },
+  { name: 'checkout', path: 'checkout/?plan=entry' },
+  { name: 'checkout-errors', path: 'checkout/?plan=entry', submit: true },
 ];
+// 線上訂購頁以固定資料模擬收單 API，不連線正式服務、不建立訂單。
+const checkoutQuote = {
+  env: 'stage', depositRate: 0.3,
+  plans: [{ id: 'entry', name: '入門', price: 42000, purpose: '把商家資訊完整上線' }, { id: 'plus', name: '入門＋', price: 62000, purpose: '照片與文案一起準備' }],
+  methods: [{ id: 'ecpay', label: '綠界 ECPay（信用卡、ATM 轉帳等）' }, { id: 'cash', label: '現金付款（專人聯繫收款）' }],
+  quote: { planId: 'entry', listPrice: 42000, discount: 0, total: 42000, deposit: 12600, coupon: null },
+};
+
+async function auditCheckout(page, state) {
+  await page.route('**/api/quote?**', (route) => route.fulfill({ json: checkoutQuote, headers: { 'Access-Control-Allow-Origin': '*' } }));
+  const response = await page.goto(new URL(state.path, baseURL).href, { waitUntil: 'load' });
+  if (!response?.ok()) throw new Error(`Page returned HTTP ${response?.status() ?? 'no response'}`);
+  await page.locator('#order:not([hidden])').waitFor();
+  if (state.submit) {
+    await page.locator('#order-submit').click();
+    await page.locator('#e-name:not([hidden])').waitFor();
+  }
+  await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
+  return page.evaluate(() => window.axe.run(document));
+}
 
 async function audit(page, state) {
+  if (state.path) return auditCheckout(page, state);
   const url = new URL(baseURL);
   url.hash = state.view;
   const response = await page.goto(url.href, { waitUntil: 'load' });

@@ -20,7 +20,7 @@ python3 -m http.server 5180 --bind 127.0.0.1
 npm run audit:a11y
 ```
 
-axe-core 以 Chromium 檢查桌機 1440×1000、手機 390×844，各含作品球體、服務、方案、關於、聯絡、全螢幕選單、作品一覽、作品全頁預覽、放大細節、加入主畫面說明共 10 種狀態，合計 20 次。作品預覽須等真正的全頁圖載入後才檢查；聯絡方式改為頁內入口，不再使用舊聯絡對話框。本站沒有資料輸入表單；未來加入表單時，須增加開啟及錯誤提示狀態。本工具不點擊外部聯絡連結、不送出資料；不載入內部網站或作品原站。
+axe-core 以 Chromium 檢查桌機 1440×1000、手機 390×844，各含作品球體、服務、方案、關於、聯絡、全螢幕選單、作品一覽、作品全頁預覽、放大細節、加入主畫面說明，以及線上訂購表單開啟與錯誤提示，共 12 種狀態，合計 24 次。作品預覽須等真正的全頁圖載入後才檢查；聯絡方式改為頁內入口，不再使用舊聯絡對話框。線上訂購頁 `/checkout/` 以固定資料模擬收單 API，檢查表單開啟及空白送出的錯誤提示；本工具不點擊外部聯絡連結、不送出資料；不載入內部網站或作品原站。
 
 完整結果寫入已忽略的 `.qa/a11y/report.json`、`.qa/a11y/report.md`，包括時間、URL、引擎版本、違規與待人工確認項目；每次覆寫，交付前請另存當次報告。可用 `A11Y_URL=http://127.0.0.1:5181/` 指定網站位置，`A11Y_OUTPUT=/path/to/report` 指定輸出目錄。
 
@@ -46,7 +46,7 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 - 尚無公開網址的 539 K 線分析仍使用專案內建樣本預覽，不提供虛構外連或私人儲存庫連結。
 - 2026-09-28 六支品牌影片改用 1080p H.264/AAC 網頁版本；播放索引移到檔案前端，保留按需載入與手動播放。原始影片保留在使用者原資料夾。
 - 圖片沿用既有公開官網素材，轉換為 WebP 降低傳輸量。出處見 `assets/CREDITS.md`。
-- 電話與 Email 直接使用 `tel:`、`mailto:`；Email 連結開啟使用者郵件程式，網站不收集或儲存表單資料。
+- 電話與 Email 直接使用 `tel:`、`mailto:`；Email 連結開啟使用者郵件程式。唯一收集資料的表單是線上訂購頁（見下方「線上訂購」）。
 - 頁面所列 GA4 是建置方案包含項目，本展示頁並未加入 GA4 或其他追蹤程式。
 
 ## 版型來源與調整
@@ -85,3 +85,11 @@ node scripts/build-search-pages.mjs
 SEO 依據（2026-09-27 查核）：[Google SEO 入門指南](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)、[實用內容](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)、[canonical](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) 與 [Sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)。每頁使用獨立標題、描述、self-canonical 與可爬取連結；結構化資料只標記公開組織、頁面、服務及麵包屑，不增加評分或排名保證。
 
 2026-09-27 導覽更新：首頁文字與立體展廳分區，主要作品／服務／方案／聯絡入口常駐；版面修正放在 `assets/site-refinement.css`。手機方案先呈現金額，再顯示作品圖。`#grid` 支援直接進入、重新整理與前後頁；遊戲由已登入的 owner/staff 在 `/portal/` 內開啟，舊 `/play/` 導回工作台；不再建立離線遊戲快取。文件工作台入口使用 `/portal/`；此版面更新不變更帳號、文件或舊內部資料。
+
+## 線上訂購
+
+`checkout/index.html` 是線上訂購頁：選方案、填聯絡資料、輸入優惠碼、選付款方式（綠界、藍新、現金），送出到收單服務建立訂單。收單服務原始碼在私有儲存庫 `spinprize-digital` 的 `checkout-api/`，網址寫在頁面 `<meta name="checkout-api">`。
+
+- 方案與價格由收單服務讀取本站 `pricing-data.public.json`，頁面不寫死價格；系統方案（`from: true`）不開放線上訂購。
+- 線上付款金額為訂金 30%；優惠碼折抵依 `coupon` 設定，僅限入門方案。優惠碼只在收單服務端核對，不寫入公開 JavaScript。
+- 首頁方案卡的「線上訂購○○方案」連到 `/checkout/?plan=<id>`。

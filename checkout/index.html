@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="robots" content="noindex">
+  <meta name="checkout-api" content="https://checkout-api-production-9f95.up.railway.app">
+  <title>線上訂購｜旋賞數位有限公司</title>
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/hey-cheng-favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <style>
+    :root{color-scheme:dark;--bg:#000;--ink:#f4f2ef;--dim:#a1aaa7;--accent:#00d9ba;--line:rgba(244,242,239,.22);--error:#ff8a80;--sans:"Helvetica Neue",Arial,"PingFang TC","Microsoft JhengHei",sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 var(--sans)}
+    a{color:var(--accent)}
+    .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;max-width:760px;margin:0 auto;padding:20px 16px;border-bottom:1px solid var(--line)}
+    .bar a{color:var(--ink);text-decoration:none}.bar a:hover{color:var(--accent)}
+    main{max-width:760px;margin:0 auto;padding:32px 16px 72px}
+    h1{margin:0 0 8px;font-size:clamp(28px,6vw,40px);font-weight:300;letter-spacing:-.02em}
+    .lead,.dim{color:var(--dim)}.lead{margin:0 0 32px;font-size:15px}
+    fieldset{margin:0 0 28px;padding:0;border:0}
+    legend{margin:0 0 12px;padding:0;font-size:18px}
+    legend span{color:var(--accent);margin-right:8px;font-variant-numeric:tabular-nums}
+    .choices{display:grid;gap:10px}
+    .choice{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px 16px;border:1px solid var(--line);cursor:pointer}
+    .choice:has(input:checked){border-color:var(--accent)}
+    .choice input{accent-color:var(--accent);width:18px;height:18px;margin:0}
+    .choice small{display:block;color:var(--dim);font-size:13px}
+    .choice .price{font-variant-numeric:tabular-nums;white-space:nowrap}
+    .fields{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+    .field{display:grid;gap:6px;align-content:start}.field.full{grid-column:1/-1}
+    label{font-size:14px}
+    input[type=text],input[type=tel],input[type=email],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);background:#0d0d0d;color:var(--ink);font:16px/1.5 var(--sans);border-radius:0}
+    input:focus-visible,textarea:focus-visible,button:focus-visible,.choice:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+    [aria-invalid=true]{border-color:var(--error)!important}
+    .field-error,#form-error{color:var(--error);font-size:14px;margin:0}
+    .coupon{display:flex;gap:10px}.coupon input{flex:1}
+    button{min-height:48px;padding:10px 18px;border:1px solid var(--accent);background:var(--accent);color:#001b16;font:500 15px/1.5 var(--sans);cursor:pointer}
+    button:hover{background:#61e8d4;border-color:#61e8d4}
+    button.outline{background:none;color:var(--ink);border-color:var(--line)}button.outline:hover{border-color:var(--accent);background:#13201c}
+    button:disabled{opacity:.6;cursor:progress}
+    #coupon-status{min-height:1.8em;margin:8px 0 0;font-size:14px}
+    .summary{margin:0 0 24px;padding:20px;border:1px solid var(--line);border-left:2px solid var(--accent)}
+    .summary dl{display:grid;grid-template-columns:1fr auto;gap:6px 16px;margin:0}
+    .summary dt{color:var(--dim)}.summary dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+    .summary .due{color:var(--ink);font-size:18px}.summary .due+dd{color:var(--accent);font-size:24px}
+    .agree{display:flex;gap:10px;align-items:flex-start;margin:0 0 8px;font-size:14px;color:var(--dim)}
+    .agree input{accent-color:var(--accent);width:18px;height:18px;margin:4px 0 0;flex:none}
+    .submit{display:grid;gap:12px;margin-top:20px}
+    #result{padding:24px;border:1px solid var(--line);border-left:2px solid var(--accent)}
+    #result h2{margin:0 0 8px;font-weight:400}
+    @media (max-width:560px){.fields{grid-template-columns:1fr}.choice{grid-template-columns:auto 1fr}.choice .price{grid-column:2}}
+  </style>
+</head>
+<body>
+  <header class="bar"><a href="../">旋賞數位 Hey Cheng</a><a href="../#pricing">回方案</a></header>
+  <main>
+    <h1 id="page-title" tabindex="-1">線上訂購</h1>
+    <p class="lead">選擇方案並填寫聯絡資料。訂購時先付訂金 30%，驗收後再支付尾款 70%；價格皆為新臺幣含稅。</p>
+
+    <section id="result" hidden aria-labelledby="result-title">
+      <h2 id="result-title" tabindex="-1"></h2>
+      <p id="result-order"></p>
+      <p id="result-text" class="dim"></p>
+      <p><a href="../">回首頁</a>　<a href="./">重新訂購</a></p>
+    </section>
+
+    <p id="unavailable" hidden>線上訂購暫時無法使用，請改用<a href="../#contact">聯絡方式</a>與我們洽談。</p>
+    <p id="loading" class="dim" role="status">正在載入方案…</p>
+
+    <form id="order" method="post" novalidate hidden>
+      <fieldset>
+        <legend><span>01</span>方案</legend>
+        <div class="choices" id="plans"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>02</span>聯絡資料</legend>
+        <div class="fields">
+          <div class="field"><label for="f-name">聯絡人姓名（必填）</label><input type="text" id="f-name" name="name" autocomplete="name" maxlength="50" required aria-describedby="e-name"><p class="field-error" id="e-name" hidden>請填寫聯絡人姓名。</p></div>
+          <div class="field"><label for="f-company">公司／店名（發票抬頭）</label><input type="text" id="f-company" name="company" autocomplete="organization" maxlength="100"></div>
+          <div class="field"><label for="f-phone">聯絡電話（必填）</label><input type="tel" id="f-phone" name="phone" autocomplete="tel" maxlength="20" required pattern="[0-9+\-() ]{8,20}" aria-describedby="e-phone"><p class="field-error" id="e-phone" hidden>請填寫正確的聯絡電話，例如 0912-345-678。</p></div>
+          <div class="field"><label for="f-email">Email（必填）</label><input type="email" id="f-email" name="email" autocomplete="email" maxlength="100" required aria-describedby="e-email"><p class="field-error" id="e-email" hidden>請填寫正確的 Email。</p></div>
+          <div class="field"><label for="f-tax">統一編號（需要三聯式發票再填）</label><input type="text" id="f-tax" name="tax_id" inputmode="numeric" maxlength="8" pattern="\d{8}" aria-describedby="e-tax"><p class="field-error" id="e-tax" hidden>統一編號應為 8 位數字。</p></div>
+          <div class="field full"><label for="f-note">備註（選填）</label><textarea id="f-note" name="note" rows="3" maxlength="500"></textarea></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>03</span>優惠碼</legend>
+        <label for="f-coupon">優惠碼（選填，由旋賞數位業務提供）</label>
+        <div class="coupon"><input type="text" id="f-coupon" name="coupon" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="60" aria-describedby="coupon-status"><button class="outline" type="button" id="coupon-apply">套用</button></div>
+        <p id="coupon-status" role="status" aria-live="polite"></p>
+      </fieldset>
+
+      <fieldset aria-describedby="e-method">
+        <legend><span>04</span>付款方式</legend>
+        <div class="choices" id="methods"></div>
+        <p class="field-error" id="e-method" hidden>請選擇付款方式。</p>
+      </fieldset>
+
+      <section class="summary" aria-labelledby="summary-title">
+        <h2 id="summary-title" class="dim" style="margin:0 0 12px;font-size:14px;font-weight:400">訂單金額</h2>
+        <dl aria-live="polite">
+          <dt id="s-plan">方案價</dt><dd id="s-list">—</dd>
+          <dt>優惠折抵</dt><dd id="s-discount">—</dd>
+          <dt>合計（含稅）</dt><dd id="s-total">—</dd>
+          <dt class="due">本次支付訂金 30%</dt><dd id="s-deposit">—</dd>
+          <dt>驗收後尾款 70%</dt><dd id="s-balance">—</dd>
+        </dl>
+      </section>
+
+      <label class="agree"><input type="checkbox" name="agree" value="1" id="f-agree" required aria-describedby="e-agree"><span>我已閱讀並同意<a href="../terms/">服務條款</a>與<a href="../privacy/">隱私說明</a>，同意旋賞數位有限公司為處理訂單、聯繫與開立發票使用上述資料。</span></label>
+      <p class="field-error" id="e-agree" hidden>請先勾選同意。</p>
+
+      <div class="submit">
+        <p id="form-error" role="alert"></p>
+        <button type="submit" id="order-submit">確認訂購</button>
+        <p class="dim" id="gateway-note" hidden style="margin:0;font-size:13px">線上付款由綠界科技或藍新金流處理，旋賞數位不接觸也不儲存你的卡號。</p>
+      </div>
+    </form>
+  </main>
+  <script>
+  (() => {
+    const API = document.querySelector('meta[name="checkout-api"]').content.replace(/\/$/, '');
+    const $ = (s) => document.querySelector(s);
+    const form = $('#order');
+    const params = new URLSearchParams(location.search);
+    const money = (n) => `NT$${Number(n).toLocaleString('en-US')}`;
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+    let checkedCoupon = null; // 最近一次驗證過的優惠碼 { code, valid }
+    let tried = false; // 送出過一次後，改動欄位即時更新錯誤提示
+
+    if (params.has('done')) return showResult(params.get('done'), params.get('s'));
+
+    function showResult(id, s) {
+      const text = {
+        paid: ['付款完成', '已收到訂金。我們會在 1 個工作天內與你聯繫，安排開工。'],
+        cash: ['訂單已送出', '我們會在 1 個工作天內與你聯繫，約定現金收取訂金的時間與方式。'],
+        failed: ['付款未完成', '這次付款沒有成功，可以重新訂購，或透過聯絡方式與我們確認。'],
+      }[s] || ['訂單已建立', '若選擇 ATM 轉帳，請依付款頁面顯示的帳號於期限內完成轉帳；款項入帳後我們會與你聯繫。'];
+      $('#loading').hidden = true;
+      $('#result-title').textContent = text[0];
+      $('#result-order').textContent = id ? `訂單編號：${id}` : '';
+      $('#result-text').textContent = text[1];
+      $('#result').hidden = false;
+      $('#result-title').focus();
+    }
+
+    async function fetchQuote(plan, coupon) {
+      const q = new URLSearchParams({ plan: plan || '', coupon: coupon || '' });
+      const res = await fetch(`${API}/api/quote?${q}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    }
+    const currentCoupon = () => (checkedCoupon?.valid ? checkedCoupon.code : '');
+
+    function renderSummary(data) {
+      const q = data.quote;
+      if (!q) return;
+      const plan = data.plans.find((p) => p.id === q.planId);
+      $('#s-plan').textContent = `${plan.name}方案價`;
+      $('#s-list').textContent = money(q.listPrice);
+      $('#s-discount').textContent = q.discount ? `−${money(q.discount)}` : '—';
+      $('#s-total').textContent = money(q.total);
+      $('#s-deposit').textContent = money(q.deposit);
+      $('#s-balance').textContent = money(q.total - q.deposit);
+    }
+
+    function couponMessage(data) {
+      const c = data.quote?.coupon;
+      if (!c) return '';
+      if (!c.valid) return '查無此優惠碼，請確認是否輸入正確。';
+      return c.applied ? `已套用，折抵 ${money(data.quote.discount)}。` : `優惠碼有效；折抵僅適用${c.planName}方案，其他方案不另折扣。`;
+    }
+
+    async function refresh() {
+      try { renderSummary(await fetchQuote(form.plan.value, currentCoupon())); }
+      catch { $('#form-error').textContent = '無法取得最新金額，請稍後再試。'; }
+    }
+
+    async function checkCoupon() {
+      const code = $('#f-coupon').value.trim();
+      if (!code) { checkedCoupon = null; $('#coupon-status').textContent = ''; return refresh(); }
+      $('#coupon-apply').disabled = true;
+      try {
+        const data = await fetchQuote(form.plan.value, code);
+        checkedCoupon = { code, valid: data.quote.coupon.valid };
+        $('#coupon-status').textContent = couponMessage(data);
+        $('#f-coupon').setAttribute('aria-invalid', String(!checkedCoupon.valid));
+        renderSummary(data);
+      } catch {
+        $('#coupon-status').textContent = '目前無法確認優惠碼，請稍後再試。';
+      } finally {
+        $('#coupon-apply').disabled = false;
+      }
+    }
+
+    function validate() {
+      const checks = [
+        ['#f-name', '#e-name', (el) => el.value.trim() !== ''],
+        ['#f-phone', '#e-phone', (el) => /^[0-9+\-() ]{8,20}$/.test(el.value.trim())],
+        ['#f-email', '#e-email', (el) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim())],
+        ['#f-tax', '#e-tax', (el) => el.value.trim() === '' || /^\d{8}$/.test(el.value.trim())],
+        ['#f-agree', '#e-agree', (el) => el.checked],
+      ];
+      let first = null;
+      for (const [field, error, ok] of checks) {
+        const el = $(field), valid = ok(el);
+        el.setAttribute('aria-invalid', String(!valid));
+        $(error).hidden = valid;
+        if (!valid && !first) first = el;
+      }
+      const method = form.querySelector('input[name="method"]:checked');
+      $('#e-method').hidden = Boolean(method);
+      if (!method && !first) first = form.querySelector('input[name="method"]');
+      return first;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      tried = true;
+      $('#form-error').textContent = '';
+      const code = $('#f-coupon').value.trim();
+      if (code && checkedCoupon?.code !== code) await checkCoupon();
+      const invalid = validate();
+      if (invalid) { $('#form-error').textContent = '請修正標示的欄位後再送出。'; return invalid.focus(); }
+      if (code && !checkedCoupon?.valid) { $('#form-error').textContent = '優惠碼無效，請修正或清空後再送出。'; return $('#f-coupon').focus(); }
+      $('#order-submit').disabled = true;
+      $('#order-submit').textContent = '正在建立訂單…';
+      form.submit();
+    });
+    form.addEventListener('change', () => { if (tried && !validate()) $('#form-error').textContent = ''; });
+    form.addEventListener('input', () => { if (tried && !validate()) $('#form-error').textContent = ''; });
+    $('#coupon-apply').addEventListener('click', checkCoupon);
+    $('#f-coupon').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); checkCoupon(); } });
+    window.addEventListener('pageshow', (e) => { if (e.persisted) { $('#order-submit').disabled = false; $('#order-submit').textContent = '確認訂購'; } });
+
+    (async () => {
+      try {
+        const wanted = params.get('plan') || 'entry';
+        const data = await fetchQuote(wanted, '');
+        if (!data.plans.length || !data.methods.length) throw new Error('no plans');
+        const selected = data.plans.some((p) => p.id === wanted) ? wanted : data.plans[0].id;
+        $('#plans').innerHTML = data.plans.map((p) => `<label class="choice"><input type="radio" name="plan" value="${esc(p.id)}"${p.id === selected ? ' checked' : ''}><span>${esc(p.name)}<small>${esc(p.purpose)}</small></span><span class="price">${money(p.price)}</span></label>`).join('');
+        $('#methods').innerHTML = data.methods.map((m) => `<label class="choice"><input type="radio" name="method" value="${esc(m.id)}"><span>${esc(m.label)}</span></label>`).join('');
+        $('#gateway-note').hidden = !data.methods.some((m) => m.id !== 'cash');
+        form.action = `${API}/checkout`;
+        form.hidden = false;
+        $('#loading').hidden = true;
+        form.querySelectorAll('input[name="plan"]').forEach((el) => el.addEventListener('change', async () => {
+          if (checkedCoupon?.valid) await checkCoupon(); else refresh();
+        }));
+        renderSummary(selected === wanted ? data : await fetchQuote(selected, ''));
+      } catch {
+        $('#loading').hidden = true;
+        $('#unavailable').hidden = false;
+      }
+    })();
+  })();
+  </script>
+</body>
+</html>
