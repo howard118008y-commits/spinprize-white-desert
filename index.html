@@ -148,31 +148,49 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 #content-panel .content-next>p{color:var(--content-muted);font-size:15px}
 #content-panel .content-link{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;min-height:48px;border:0;border-bottom:1px solid var(--content-accent);background:none;color:var(--content-ink);font-size:15px}
 #content-panel .content-link>span{color:var(--content-accent);font-size:21px}
-#content-panel .pricing-layout{display:grid;gap:30px}
-#content-panel .pricing-feature .content-image{aspect-ratio:16/9}
-#content-panel .content-plans{border-top:1px solid var(--content-line)}
-#content-panel .content-plan{border-bottom:1px solid var(--content-line)}
-#content-panel .content-plan summary{display:grid;grid-template-columns:minmax(0,1fr) auto 18px;gap:8px;align-items:center;padding:21px 0;cursor:pointer;list-style:none;min-height:84px}
-#content-panel .content-plan summary::-webkit-details-marker{display:none}
-#content-panel .content-plan summary::marker{content:""}
-#content-panel .content-plan-title{font-size:20px;font-weight:400;line-height:1.55}
-#content-panel .content-plan-title>small{display:block;margin-top:4px;max-width:14em;font-size:12px;font-weight:300;color:var(--content-muted);line-height:1.8}
-#content-panel .content-plan-price{display:flex;gap:4px;align-items:baseline;white-space:nowrap;font-size:clamp(22px,4.9vw,29px);font-weight:300;font-variant-numeric:tabular-nums;letter-spacing:-.04em;line-height:1.4}
-#content-panel .content-plan-price>small{font-size:10px;letter-spacing:0}
-#content-panel .content-plan-toggle{position:relative;width:14px;height:14px;color:var(--content-accent)}
-#content-panel .content-plan-toggle::before,#content-panel .content-plan-toggle::after{content:"";position:absolute;top:6px;left:0;width:14px;height:1px;background:currentColor}
-#content-panel .content-plan-toggle::after{transform:rotate(90deg);transition:transform .2s ease}
-#content-panel .content-plan[open] .content-plan-toggle::after{transform:rotate(0deg)}
-#content-panel .content-plan[open] .content-plan-title{color:var(--content-accent)}
-#content-panel .content-plan-detail{padding:0 25px 24px 0;color:#d2cfca;font-size:15px;line-height:1.95}
 #content-panel .content-offer{display:grid;gap:15px;margin-top:26px;padding:24px;border:1px solid var(--content-line);border-left:2px solid var(--content-accent)}
 #content-panel .content-offer h3{font-size:18px;font-weight:400}
 #content-panel .content-offer p{font-size:14px;line-height:1.95;color:var(--content-muted)}
 #content-panel .content-offer .content-offer-price{font-size:24px;color:var(--content-accent);font-variant-numeric:tabular-nums}
 #content-panel .content-offer .content-link{justify-self:start}
-#content-panel .content-pricing-notes{display:grid;gap:24px;margin-top:34px;padding:27px 0;border-top:1px solid var(--content-line)}
-#content-panel .content-pricing-notes h3{font-size:14px;font-weight:500;letter-spacing:.03em;margin-bottom:10px}
-#content-panel .content-pricing-notes p{font-size:14px;color:var(--content-muted);line-height:1.95}
+#content-panel .price-code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;font-weight:500;letter-spacing:.2em;line-height:1.6;color:var(--content-muted)}
+#content-panel .price-eyebrow{color:var(--content-accent);margin-bottom:10px}
+#content-panel .price-grid{display:grid;gap:18px;margin-top:12px}
+#content-panel :is(.price-card,.price-module,.price-duo-item){position:relative;border:1px solid var(--content-line);background:rgba(244,242,239,.035)}
+#content-panel :is(.price-card,.price-module,.price-duo-item)::before,#content-panel :is(.price-card,.price-module,.price-duo-item)::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none}
+#content-panel :is(.price-card,.price-module,.price-duo-item)::before{top:-1px;left:-1px;border-top:1px solid var(--content-accent);border-left:1px solid var(--content-accent)}
+#content-panel :is(.price-card,.price-module,.price-duo-item)::after{right:-1px;bottom:-1px;border-right:1px solid var(--content-ink);border-bottom:1px solid var(--content-ink)}
+#content-panel .price-card{display:flex;flex-direction:column;padding:30px 22px 22px}
+#content-panel .price-card.is-featured{border-color:rgba(0,217,186,.55);background:linear-gradient(180deg,rgba(0,217,186,.13),rgba(0,217,186,.02) 60%)}
+#content-panel .price-badge{position:absolute;top:-12px;left:22px;padding:1px 10px;background:var(--content-accent);color:#001b16;font-size:12px;font-weight:600;letter-spacing:.12em;line-height:1.8}
+#content-panel .price-card h3{margin-top:12px;font-size:26px;font-weight:600;letter-spacing:0;line-height:1.35}
+#content-panel .price-en{margin-top:2px;color:var(--content-accent);font-size:10px;letter-spacing:.28em}
+#content-panel .price-fit{margin-top:12px;padding-bottom:18px;border-bottom:1px solid var(--content-line);font-size:14px;color:var(--content-muted);line-height:1.8}
+#content-panel .price-amount{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 6px;padding:16px 0;border-bottom:1px solid var(--content-line);font-size:36px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.2}
+#content-panel .price-amount>small{font-size:12px;font-weight:500;letter-spacing:.02em;color:var(--content-muted)}
+#content-panel .price-list{margin:6px 0 22px;padding:0;list-style:none;font-size:14px}
+#content-panel .price-list li{position:relative;padding:9px 0 9px 16px;border-bottom:1px solid rgba(244,242,239,.08);line-height:1.65}
+#content-panel .price-list li:last-child{border-bottom:0}
+#content-panel .price-list li::before{content:"";position:absolute;left:0;top:50%;margin-top:-4px;border-left:6px solid var(--content-accent);border-block:4px solid transparent}
+#content-panel .price-note{margin:-12px 0 20px;font-size:13px;color:var(--content-muted);line-height:1.8}
+#content-panel .price-cta{display:flex;align-items:center;justify-content:center;min-height:48px;margin-top:auto;border:1px solid var(--content-accent);color:var(--content-ink);font-size:14px;letter-spacing:.14em;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+#content-panel .is-featured .price-cta{background:var(--content-accent);color:#001b16;font-weight:600}
+#content-panel .price-card.is-wide{margin-top:18px}
+#content-panel .price-section{margin-top:64px}
+#content-panel .price-section>p{max-width:650px;margin-top:12px;font-size:14px;color:var(--content-muted);line-height:1.95}
+#content-panel .price-modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0 0;padding:0;list-style:none}
+#content-panel .price-module{padding:20px 16px}
+#content-panel :is(.price-module,.price-duo-item) h4{margin:10px 0 6px;font-size:17px;font-weight:600;line-height:1.5}
+#content-panel .price-module p{font-size:13px;color:var(--content-muted);line-height:1.8}
+#content-panel .price-module.is-wide{grid-column:1/-1}
+#content-panel .price-module .price-module-price{margin-top:8px;color:var(--content-accent);font-variant-numeric:tabular-nums}
+#content-panel .price-duo{display:grid;gap:14px;margin-top:24px}
+#content-panel .price-duo-item{padding:26px 24px}
+#content-panel .price-duo-item>.price-code{display:flex;justify-content:space-between;color:var(--content-accent)}
+#content-panel .price-duo-item h4{font-size:20px}
+#content-panel .price-duo-item ul{margin:0;padding:0;list-style:none;font-size:14px;color:var(--content-muted);line-height:1.9}
+#content-panel .price-duo-item li+li{margin-top:6px}
+#content-panel .price-duo+.content-fine-print{margin-top:16px}
 #content-panel .about-intro{max-width:720px;font-size:18px;line-height:1.85}
 #content-panel .about-editorial{display:grid;gap:45px}
 #content-panel .about-feature-copy{margin-top:22px}
@@ -213,7 +231,11 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
   #content-panel .service-editorial{grid-template-columns:repeat(2,minmax(0,1fr));gap:66px 40px}
   #content-panel .service-story:nth-child(even){padding-top:75px}
   #content-panel .content-next{flex-direction:row;align-items:center;justify-content:space-between;margin-top:75px;padding-top:30px}
-  #content-panel .content-pricing-notes{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px}
+  html:not([data-view="mobile"]) #content-panel :is(.price-grid,.price-duo){grid-template-columns:repeat(2,minmax(0,1fr))}
+  html:not([data-view="mobile"]) #content-panel .price-card.is-wide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);column-gap:40px}
+  html:not([data-view="mobile"]) #content-panel .is-wide .price-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;margin-top:0}
+  html:not([data-view="mobile"]) #content-panel .is-wide .price-list li:nth-last-child(2){border-bottom:0}
+  html:not([data-view="mobile"]) #content-panel .is-wide>div:last-child{display:flex;flex-direction:column}
   #content-panel .about-feature{display:grid;grid-template-columns:1.12fr 1fr;align-items:center;gap:40px}
   #content-panel .about-feature:nth-child(even){grid-template-columns:1fr 1.12fr}
   #content-panel .about-feature:nth-child(even)>.content-figure{order:2}
@@ -226,11 +248,8 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
   #content-panel .content-heading{padding-bottom:75px}
   #content-panel .service-editorial{gap:75px 70px}
   #content-panel .service-copy{max-width:470px;margin-top:26px}
-  #content-panel .pricing-layout{grid-template-columns:.85fr 1.15fr;gap:65px;align-items:start}
-  #content-panel .pricing-feature .content-image{aspect-ratio:4/5}
-  #content-panel .content-plan summary{gap:20px;padding:24px 0}
-  #content-panel .content-plan-title{font-size:23px}
-  #content-panel .content-plan-price{font-size:33px}
+  html:not([data-view="mobile"]) #content-panel .price-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  html:not([data-view="mobile"]) #content-panel .price-modules{grid-template-columns:repeat(3,minmax(0,1fr))}
   #content-panel .about-feature{gap:70px}
   #content-panel .about-ownership h3{font-size:39px}
   #content-panel .contact-editorial{gap:90px;grid-template-columns:1.2fr 1fr}
@@ -238,19 +257,15 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 }
 @media(max-width:359px){
   #content-panel .content-page{font-size:15px}
-  #content-panel .content-plan summary{gap:7px;grid-template-columns:minmax(0,1fr) auto 14px}
-  #content-panel .content-plan-title{font-size:19px}
-  #content-panel .content-plan-title>small{max-width:9em;font-size:11px}
-  #content-panel .content-plan-price{font-size:21px;gap:3px}
-  #content-panel .content-plan-price>small{font-size:9px}
   #content-panel .content-contact-info{padding:23px 18px}
 }
 @media(hover:hover){
   #content-panel .content-social-row:hover strong,#content-panel .content-link:hover,#content-panel .content-phone:hover,#content-panel .content-mobile:hover{color:var(--content-accent)}
   #content-panel .content-button:hover{background:#61e8d4;border-color:#61e8d4;color:#001b16}
+  #content-panel .price-cta:hover{background:rgba(0,217,186,.14)}
+  #content-panel .is-featured .price-cta:hover{background:#61e8d4}
   #content-panel .content-button-outline:hover{background:#13201c;color:var(--content-ink);border-color:var(--content-accent)}
 }
-@media(prefers-reduced-motion:reduce){#content-panel .content-plan-toggle::after{transition:none}}
 
 
 .case-study-links{display:flex;flex-wrap:wrap;gap:8px 22px;max-width:1680px;margin:0 auto 30px;align-items:center;font-size:13px}.case-study-links>span{color:var(--dim)}.case-study-links>a{display:inline-flex;align-items:center;min-height:44px;color:var(--accent)}
@@ -259,7 +274,7 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 /* Brand films load only after an explicit play action. */
 #brand-films .content-heading{margin-bottom:28px}#brand-films h2{font-size:clamp(34px,5.5vw,70px)}.brand-film-picker{display:grid;gap:10px;margin:0 0 24px;color:var(--dim);font-size:14px}.brand-film-select{box-sizing:border-box;width:100%;min-width:0;min-height:48px;padding:12px 40px 12px 16px;border:1px solid #40514c;border-radius:4px;background:#080e0c;color:var(--ink);font:inherit;font-size:16px;color-scheme:dark}.brand-film-stage{margin:0 auto 24px;background:#000;border:1px solid #2d3a36;border-radius:5px;overflow:hidden;max-width:100%}.brand-film-stage{--film-ratio:.5625;width:min(100%,calc(64dvh * var(--film-ratio)));aspect-ratio:var(--film-ratio)}.brand-film-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#000}.brand-film-info{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px}.brand-film-info h3{font-size:20px;margin:0 0 7px}.brand-film-info p{color:var(--dim);font-size:14px;line-height:1.6;margin:0}.brand-film-play{min-height:48px;padding:13px 24px;border-radius:4px;background:var(--accent);color:#04130f;font-size:16px;font-weight:600;flex-shrink:0}.brand-film-status{min-height:1.7em;margin-top:14px;color:var(--dim);font-size:14px;line-height:1.7}.brand-film-select:focus-visible,.brand-film-play:focus-visible,.brand-film-stage video:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:640px){.brand-film-info{align-items:stretch;flex-direction:column}.brand-film-play{width:100%}}
 </style>
-<link rel="stylesheet" href="assets/site-refinement.css?v=20260928-modes">
+<link rel="stylesheet" href="assets/site-refinement.css?v=20260929-pricing">
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
@@ -321,18 +336,15 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
   <header class="content-heading">
     <p class="content-eyebrow"><span>02 / 04</span> PLANS</p>
     <h2 id="pricing-title" tabindex="-1">從需要的規模，<br><span>開始。</span></h2>
-    <p class="content-intro">以下為新臺幣含稅建置價。展開方案，查看包含項目。</p>
+    <p class="content-intro">新臺幣含稅建置價，開立統一發票。不確定選哪一級？告訴我們你的生意，我們直接建議。</p>
   </header>
-  <div class="pricing-layout">
-    <figure class="content-figure pricing-feature"><div class="content-image"><img src="assets/case-goshoot.webp" alt="Go Shoot 品牌網站的全彩畫面" width="1440" height="900" loading="lazy" decoding="async"></div><figcaption>圖片為作品畫面示意，實際交付以方案內容為準。</figcaption></figure>
-    <div class="content-plans">
-      <details class="content-plan" open><summary><span class="content-plan-title">入門<small>把商家資訊完整上線</small></span><span class="content-plan-price"><small>NT$</small>42,000</span><span class="content-plan-toggle" aria-hidden="true"></span></summary><div class="content-plan-detail"><p>五頁形象站、手機版、首年網域、主機與 SSL，包含 Google 商家綁定及 GA4。</p><a class="content-link" href="/checkout/?plan=entry">線上訂購入門方案 <span aria-hidden="true">↗</span></a></div></details>
-      <details class="content-plan"><summary><span class="content-plan-title">入門＋<small>照片與文案一起準備</small></span><span class="content-plan-price"><small>NT$</small>62,000</span><span class="content-plan-toggle" aria-hidden="true"></span></summary><div class="content-plan-detail"><p>入門方案內容，加上半日現場拍攝、30 張修圖與五頁文案代筆。</p><a class="content-link" href="/checkout/?plan=plus">線上訂購入門＋方案 <span aria-hidden="true">↗</span></a></div></details>
-      <details class="content-plan"><summary><span class="content-plan-title">標準<small>做出自己的品牌樣貌</small></span><span class="content-plan-price"><small>NT$</small>88,000</span><span class="content-plan-toggle" aria-hidden="true"></span></summary><div class="content-plan-detail"><p>品牌視覺客製、文案、SEO 架構，以及可自行編輯的後台。</p><a class="content-link" href="/checkout/?plan=standard">線上訂購標準方案 <span aria-hidden="true">↗</span></a></div></details>
-      <details class="content-plan"><summary><span class="content-plan-title">進階<small>讓客戶走進你的空間</small></span><span class="content-plan-price"><small>NT$</small>178,000</span><span class="content-plan-toggle" aria-hidden="true"></span></summary><div class="content-plan-detail"><p>標準方案內容，加上可點選房間的立體導覽。</p><a class="content-link" href="/checkout/?plan=advanced">線上訂購進階方案 <span aria-hidden="true">↗</span></a></div></details>
-      <details class="content-plan"><summary><span class="content-plan-title">系統<small>依營運流程訂製功能</small></span><span class="content-plan-price"><small>NT$</small>300,000<small>起</small></span><span class="content-plan-toggle" aria-hidden="true"></span></summary><div class="content-plan-detail"><p>諮詢流程、AI 助理、文件解析、自動發文、報表與資料串接，依規格報價；系統工具依約定授權。</p></div></details>
-    </div>
+  <div class="price-grid">
+    <article class="price-card"><p class="price-code">PLAN_01</p><h3>入門</h3><p class="price-code price-en">STARTER</p><p class="price-fit">適合：先把商家資訊完整上線</p><p class="price-amount"><small>NT$</small>42,000<small>含稅</small></p><ul class="price-list"><li>五頁形象網站</li><li>手機版版面</li><li>首年網域・主機・SSL</li><li>Google 商家＋GA4</li></ul><a class="price-cta" href="/checkout/?plan=entry">線上訂購</a></article>
+    <article class="price-card"><p class="price-code">PLAN_02</p><h3>入門＋</h3><p class="price-code price-en">STARTER PLUS</p><p class="price-fit">適合：缺照片與文案的店家</p><p class="price-amount"><small>NT$</small>62,000<small>含稅</small></p><ul class="price-list"><li>入門全部內容</li><li>半日現場拍攝</li><li>30 張修圖</li><li>五頁文案代筆</li></ul><a class="price-cta" href="/checkout/?plan=plus">線上訂購</a></article>
+    <article class="price-card is-featured"><span class="price-badge">推薦</span><p class="price-code">PLAN_03</p><h3>標準</h3><p class="price-code price-en">STANDARD</p><p class="price-fit">適合：想靠搜尋長期接單</p><p class="price-amount"><small>NT$</small>88,000<small>含稅</small></p><ul class="price-list"><li>入門全部內容</li><li>品牌視覺客製</li><li>文案代筆</li><li>完整 SEO 架構</li><li>可自行編輯後台</li></ul><a class="price-cta" href="/checkout/?plan=standard">線上訂購</a></article>
+    <article class="price-card"><p class="price-code">PLAN_04</p><h3>進階</h3><p class="price-code price-en">ADVANCED</p><p class="price-fit">適合：民宿、場館等空間型生意</p><p class="price-amount"><small>NT$</small>178,000<small>含稅</small></p><ul class="price-list"><li>標準全部內容</li><li>可點選房間的立體導覽</li></ul><a class="price-cta" href="/checkout/?plan=advanced">線上訂購</a></article>
   </div>
+  <article class="price-card is-wide"><div><p class="price-code">PLAN_05</p><h3>系統</h3><p class="price-code price-en">CUSTOM SYSTEM</p><p class="price-fit">適合：網站之外，還需要營運工具</p><p class="price-amount"><small>NT$</small>300,000<small>起</small><small>含稅</small></p></div><div><ul class="price-list"><li>線上諮詢流程</li><li>AI 助理</li><li>文件解析・自動發文</li><li>報表與資料串接</li></ul><p class="price-note">依規格報價；系統工具依約定授權。</p><a class="price-cta" href="#contact">洽談系統需求</a></div></article>
   <aside class="content-offer" aria-labelledby="offer-title">
     <h3 id="offer-title">入門方案・專屬優惠碼</h3>
     <p>持旋賞數位提供的優惠碼，經確認可折抵 NT$10,000。入門方案原價 NT$42,000，適用後為：</p>
@@ -340,13 +352,21 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
     <p>優惠碼由旋賞數位個別提供，線上訂購時輸入即可折抵，也可於洽談報價時由專人確認與核銷。僅限入門方案，每案限用一次，不得與其他優惠併用；目前不設使用期限。</p>
     <a class="content-link" href="/checkout/?plan=entry">線上訂購入門方案 <span aria-hidden="true">↗</span></a>
   </aside>
-  <div class="content-pricing-notes">
-    <div><h3>年度維運</h3><p>一般網站新案第 2 年起 NT$20,000／年（含稅），含每年 2 次內容更新；新增功能另行報價。首年網域、主機與 SSL 已含在建置費內。</p></div>
-    <div><h3>付款與交期</h3><p>所有方案訂金 30%、驗收後支付尾款 70%。正式報價有效期為 30 日；交期依個案約定。</p></div>
-    <div><h3>製作與加購</h3><p>製作階段含 2 輪整批修改；超出約定範圍、加購項目與新增功能另行報價。</p></div>
-    <div><h3>搬遷與系統費用</h3><p>搬遷服務 NT$8,000（含稅）。系統維運、第三方服務與 API 費用，另依專案約定。</p></div>
-    <div><h3>社群自動發文（官網＋FB＋IG＋Threads）</h3><p>串接你的 FB 粉專、IG（需商業或創作者帳號）、Threads 與官網最新消息；官網發一篇，三個社群同步發出。建置 NT$20,000（含稅，一次）。月費二選一：自助版 NT$1,500／月，你自己寫，系統發四處；代寫代發 NT$9,800／月，每月 8 篇，AI 起稿、人工審過才發；月費均含稅。粉專與帳號都在你名下，旋賞數位只取得發文授權。</p></div>
-  </div>
+  <section class="price-section" aria-labelledby="addons-title">
+    <p class="price-code price-eyebrow">// ADD-ONS</p>
+    <h3 id="addons-title">加購項目，需要才加</h3>
+    <p>網站搬遷與社群自動發文以外，依需求報價。</p>
+    <ul class="price-modules"><li class="price-module is-wide"><p class="price-code">ADD_01</p><h4>社群自動發文（官網＋FB＋IG＋Threads）</h4><p>官網發一篇，三個社群同步發出；帳號都在你名下。</p><p class="price-module-price">建置 NT$20,000・月費 自助版 NT$1,500／代寫代發 NT$9,800（每月 8 篇），均含稅</p></li><li class="price-module"><p class="price-code">ADD_02</p><h4>現場拍攝</h4><p>半日拍攝，交付 30 張修圖。</p></li><li class="price-module"><p class="price-code">ADD_03</p><h4>文案代筆</h4><p>五頁文案，含搜尋結果描述。</p></li><li class="price-module"><p class="price-code">ADD_04</p><h4>LINE 官方帳號</h4><p>開通、圖文選單、自動回覆。</p></li><li class="price-module"><p class="price-code">ADD_05</p><h4>立體導覽</h4><p>加在既有網站的空間導覽。</p></li><li class="price-module"><p class="price-code">ADD_06</p><h4>網站搬遷</h4><p>NT$8,000 含稅，部署與 DNS。</p></li><li class="price-module"><p class="price-code">ADD_07</p><h4>訂房・金流</h4><p>依規格另行報價。</p></li></ul>
+  </section>
+  <section class="price-section" aria-labelledby="payment-title">
+    <p class="price-code price-eyebrow">// PAYMENT &amp; AFTER</p>
+    <h3 id="payment-title">怎麼付款？之後還要付什麼？</h3>
+    <div class="price-duo">
+      <div class="price-duo-item"><p class="price-code"><span>PAYMENT</span><span>01</span></p><h4>付款流程</h4><ul><li>簽約付訂金 30%，專案開工</li><li>製作含 2 輪整批修改</li><li>驗收後付尾款 70%</li></ul></div>
+      <div class="price-duo-item"><p class="price-code"><span>AFTER LAUNCH</span><span>02</span></p><h4>上線後費用</h4><ul><li>首年網域、主機、SSL 已含</li><li>第 2 年起 NT$20,000／年（含稅），含 2 次內容更新</li><li>系統維運與第三方費用另依專案約定</li></ul></div>
+    </div>
+    <p class="content-fine-print">正式報價有效 30 日，交期依個案約定。</p>
+  </section>
   <div class="content-next"><p><a class="content-link" href="/faq/">費用、交付與維運常見問題 <span aria-hidden="true">↗</span></a></p><a class="content-link" href="#contact">聊聊你的網站 <span aria-hidden="true">↗</span></a></div>
 </section>
 
