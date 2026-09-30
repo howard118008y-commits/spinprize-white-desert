@@ -20,13 +20,12 @@
 #content-panel .svc-hero-sub{max-width:34em;font-size:16px;font-style:italic;font-weight:500;line-height:1.85;color:#00352d}
 #content-panel .svc-hero-copy .hb-btn{justify-self:start;background:#0b100f;color:#fff}
 #content-panel .svc-hero-video{position:relative;display:grid;place-content:center;justify-items:center;gap:12px;aspect-ratio:16/9;margin:0;border:1px solid rgba(244,242,239,.28);background:#000;text-align:center}
-#content-panel .svc-hero-video::before,#content-panel .svc-hero-video::after{content:"";position:absolute;width:22px;height:22px}
+#content-panel .svc-hero-video::before,#content-panel .svc-hero-video::after{content:"";position:absolute;z-index:1;width:22px;height:22px;pointer-events:none}
 #content-panel .svc-hero-video::before{top:10px;left:10px;border-top:2px solid var(--content-accent);border-left:2px solid var(--content-accent)}
 #content-panel .svc-hero-video::after{right:10px;bottom:10px;border-right:2px solid var(--content-accent);border-bottom:2px solid var(--content-accent)}
-#content-panel .svc-hero-video img{width:min(200px,50%);height:auto}
-#content-panel .svc-hero-video p{font-size:16px;font-weight:600;letter-spacing:.08em}
-#content-panel .svc-hero-video small{font-size:12px;letter-spacing:.14em;color:#aab5b2}
 #content-panel .svc-hero-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+#content-panel .svc-hero-video .hb-reel-controls{z-index:2}
+#content-panel .svc-hero-video.is-portrait{justify-self:center;width:min(100%,calc((100svh - var(--site-header-h,120px) - var(--hb-nav-h,0px) - 24px)*9/16));aspect-ratio:9/16}
 
 /* Client strip reuses the home strip styling. */
 #content-panel .svc-page .hb-strip{margin-top:0}

@@ -266,7 +266,7 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 </style>
 <link rel="stylesheet" href="assets/site-refinement.css?v=20260930-services">
 <link rel="stylesheet" href="assets/home-landing.css?v=20260930-portrait2">
-<link rel="stylesheet" href="assets/services-page.css?v=20260930-services">
+<link rel="stylesheet" href="assets/services-page.css?v=20260930-film">
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
@@ -386,7 +386,7 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
       <p class="svc-hero-sub">不只做一個網站：從內容、拍攝、導覽到 AI 與客製系統，依你的生意安排，把特色說清楚，把客人接進來。</p>
       <button type="button" class="hb-btn" data-scroll-target="svc-all">查看所有服務</button>
     </div>
-    <figure class="svc-hero-video" data-video-slot aria-label="服務介紹影片（製作中）"><img src="assets/hey-cheng-logo.png" alt="" width="2061" height="763" loading="lazy" decoding="async"><p>服務介紹影片</p><small>製作中</small></figure>
+    <figure class="svc-hero-video" data-video-slot><video muted playsinline loop preload="none" width="1920" height="1080" data-src="assets/brand-films/heycheng-ad-landscape-45s-20260930-web.mp4" data-poster="assets/brand-films/heycheng-ad-landscape-45s-20260930-poster.webp" data-src-portrait="assets/brand-films/heycheng-ad-portrait-45s-20260930-web.mp4" data-poster-portrait="assets/brand-films/heycheng-ad-portrait-45s-20260930-poster.webp" aria-label="Hey Cheng 官方廣告"></video><div class="hb-reel-controls"><button type="button" class="hb-reel-toggle" data-state="on" aria-label="暫停影片"><svg viewBox="0 0 24 24" aria-hidden="true" class="hb-on"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" class="hb-off"><path d="M8 5v14l11-7z"/></svg></button><button type="button" class="hb-reel-sound" data-state="off" aria-label="開啟聲音"><svg viewBox="0 0 24 24" aria-hidden="true" class="hb-on"><path d="M4 9v6h4l5 4V5L8 9zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" class="hb-off"><path d="M4 9v6h4l5 4V5L8 9zm12.6 3 2.7-2.7-1.1-1.1-2.7 2.7-2.7-2.7-1.1 1.1 2.7 2.7-2.7 2.7 1.1 1.1 2.7-2.7 2.7 2.7 1.1-1.1z"/></svg></button></div></figure>
   </header>
   <div class="hb-strip" aria-label="已上線的網站作品"><p>已上線的網站</p><div class="hb-strip-track"><ul><li>山遇民宿</li><li>鋮馨租賃</li><li>Go Shoot</li><li>永貞豆腐店</li><li>台北建安宮</li><li>線上一番賞平台</li></ul><ul aria-hidden="true"><li>山遇民宿</li><li>鋮馨租賃</li><li>Go Shoot</li><li>永貞豆腐店</li><li>台北建安宮</li><li>線上一番賞平台</li></ul></div></div>
   <div class="svc-rows svc-block">
@@ -628,6 +628,25 @@ const serviceTabs=$$('.hb-svc-tabs [role="tab"]');
 function selectServiceTab(index,focus){serviceTabs.forEach((tab,i)=>{const on=i===index;tab.setAttribute('aria-selected',String(on));tab.tabIndex=on?0:-1;$(`#${tab.getAttribute('aria-controls')}`).hidden=!on;});if(focus)serviceTabs[index].focus();}
 serviceTabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectServiceTab(i,false));tab.addEventListener('keydown',event=>{const keys={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1};if(event.key in keys){event.preventDefault();selectServiceTab((i+keys[event.key]+serviceTabs.length)%serviceTabs.length,true);}else if(event.key==='Home'||event.key==='End'){event.preventDefault();selectServiceTab(event.key==='Home'?0:serviceTabs.length-1,true);}});});
 $$('[data-scroll-target]').forEach(button=>button.addEventListener('click',()=>{const target=$(`#${button.dataset.scrollTarget}`);if(!target)return;const offset=$('.site-header').getBoundingClientRect().bottom+16;panel.scrollTo({top:panel.scrollTop+target.getBoundingClientRect().top-offset,behavior:reducedMotion.matches?'instant':'smooth'});}));
+// Services hero film: muted loop that only runs while the services route is on screen.
+function createSlotFilm(root,page){
+  if(!root||!page)return;
+  const video=$('video',root), toggle=$('.hb-reel-toggle',root), sound=$('.hb-reel-sound',root);
+  const portrait=matchMedia('(orientation: portrait) and (max-width: 1024px)');
+  let visible=false, userPaused=reducedMotion.matches;
+  const choose=()=>{const data=video.dataset,tall=portrait.matches,src=tall?data.srcPortrait:data.src;root.classList.toggle('is-portrait',tall);if(video.getAttribute('src')!==src){video.poster=tall?data.posterPortrait:data.poster;video.src=src;}};
+  const paint=()=>{toggle.dataset.state=userPaused?'off':'on';toggle.setAttribute('aria-label',userPaused?'播放影片':'暫停影片');sound.dataset.state=video.muted?'off':'on';sound.setAttribute('aria-label',video.muted?'開啟聲音':'關閉聲音');};
+  const update=()=>{const active=!page.hidden&&!body.classList.contains('menu-open')&&!body.classList.contains('lit')&&!document.hidden;if(active&&visible&&!userPaused){const play=video.play();if(play)play.catch(()=>{userPaused=true;paint();});}else if(!video.paused)video.pause();paint();};
+  toggle.addEventListener('click',()=>{userPaused=!userPaused;update();});
+  sound.addEventListener('click',()=>{video.muted=!video.muted;if(!video.muted)userPaused=false;update();});
+  new MutationObserver(update).observe(page,{attributes:true,attributeFilter:['hidden']});
+  new MutationObserver(update).observe(body,{attributes:true,attributeFilter:['class']});
+  document.addEventListener('visibilitychange',update);
+  if('IntersectionObserver' in window)new IntersectionObserver(([entry])=>{visible=entry.isIntersecting&&entry.intersectionRatio>.2;update();},{threshold:[0,.2,.6]}).observe(root);else visible=true;
+  portrait.addEventListener('change',()=>{const time=video.currentTime;choose();video.addEventListener('loadedmetadata',()=>{if(time<video.duration)video.currentTime=time;},{once:true});update();});
+  choose();paint();
+}
+createSlotFilm($('[data-video-slot]'),$('#services'));
 let gesture=null, focusedCard=-1, sourceElement=null, imageToken=0, closeTimer=0;
 let lastFrame=0, cameraFrame=0, previousTransform='', dirty=true, selectedProject=0;
 const touchPointers=new Set();
