@@ -46,7 +46,8 @@
 
 - `work-jevtalk-20260928.png`：https://jev-talk.vercel.app/ 公開介紹頁全頁截圖（1280×1112），未進入私人工作區。
 - `work-toonhub-20260928.jpg`：https://howard118008y-commits.github.io/toonhub-island-duel/ 新版台灣卡牌首屏（1280×720）。
-- `work-goshoot-20260928.jpg`：https://goshoot.com.tw/ 沉浸式開場首屏（1280×720）。
-- `work-cx468-20260928.jpg`：https://cx468.com.tw/ 新版公開首頁首屏（1280×720）。
+- `work-goshoot-20260930.jpg`：https://goshoot.com.tw/ 沉浸式開場首屏（1280×720，2026-09-30 重新擷取）。
+- `work-cx468-20260930.jpg`：https://cx468.com.tw/ 新版公開首頁首屏（1280×720，2026-09-30 重新擷取）。
 - 本輪圖片均於 2026-09-28 從瀏覽器實際擷取。首屏素材明示為首屏，原站完整互動以外連提供；未登入工具、未產生對話或客戶資料。
 - `brand-films/*-web.mp4`：使用者核准的六支影片之網頁版本；1080p、原方向與 30fps、H.264/AAC，moov 索引移到 mdat 前，保留音訊。總大小 48,317,038 → 24,115,132 bytes（減少 50.09%），SSIM 0.9967–0.9989。轉碼只有 8–17 毫秒封裝時長差異，未裁切內容；原始檔保留在使用者原資料夾。
+- 2026-09-30 依 GitHub 更新紀錄重新擷取：山遇民宿、台北建安宮、Salf TW、junlin 織織怪、Hey World、test shirt 的首屏與全頁畫面；Go Shoot、鋮馨租賃首屏與 `case-goshoot.webp`、`case-cx468.webp`；維拓 Vertex 首屏改為 `work-vertex-20260930.jpg`。test shirt 內容隨捲動載入，全頁仍使用首屏。
