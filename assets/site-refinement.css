@@ -81,7 +81,6 @@ html[data-view="mobile"] .gallery-controls{padding-inline:var(--home-pad)}
 html[data-view="mobile"] .colophon{display:flex;padding-block:18px;gap:4px 20px}
 html[data-view="mobile"] .colophon p{width:100%}
 html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:96px;padding-bottom:calc(98px + env(safe-area-inset-bottom,0px))}
-html[data-view="mobile"] #grid .grid-heading{padding-bottom:10px}
 html[data-view="mobile"] #content-panel .panel-bar{margin-bottom:20px}
 html[data-view="mobile"] #content-panel .content-heading{padding-bottom:24px}
 html[data-view="mobile"] #content-panel h2{font-size:32px}
@@ -123,8 +122,6 @@ html[data-view="mobile"] #headline{font-size:clamp(19px,4vw,28px)}
 html[data-view="mobile"] .hero-gallery{flex:1;min-height:270px;height:auto}
 html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:calc(146px + env(safe-area-inset-top,0px));padding-inline:max(22px,calc((100% - 636px)/2))}
 html[data-view="mobile"] .rows{grid-template-columns:minmax(0,1fr)}
-html[data-view="mobile"] .grid-heading{display:block}
-html[data-view="mobile"] .grid-heading p{margin-top:12px}
 html[data-view="mobile"] .colophon{max-width:680px}
 html[data-view="mobile"] .plate{width:min(100%,636px)}
 html[data-view="mobile"] .meta{grid-template-columns:minmax(0,1fr)}
@@ -134,7 +131,6 @@ html[data-view="mobile"] #content-panel :is(.about-feature,.about-ownership,.con
 html[data-view="mobile"] #content-panel .about-feature:nth-child(even)>.content-figure{order:0}
 html[data-view="mobile"] #content-panel .content-next{flex-direction:column;align-items:flex-start}
 html[data-view="mobile"] #content-panel .content-contact-info{padding:22px}
-html[data-view="mobile"] .case-study-links{flex-wrap:wrap}
 @media(max-width:600px){
   html[data-view="desktop"] .site-header{gap:4px 12px;padding-inline:18px}
   html[data-view="desktop"] .site-header .wordmark{width:128px}

@@ -57,7 +57,7 @@ try{
     window.requestAnimationFrame=function(callback){return request.call(window,now=>{window.frameCount++;callback(now)})};
   });
   await check('Direct services/pricing/contact routes are interactive before images finish',async()=>{
-    await page.route('**/assets/**',async request=>{await new Promise(resolve=>setTimeout(resolve,700));await request.continue()});
+    await page.route('**/assets/**',async request=>{if(request.request().url().endsWith('.mp4'))return request.abort();await new Promise(resolve=>setTimeout(resolve,700));await request.continue()});
     for(const hash of ['services','pricing','contact']){
       await route(hash,false);
       assert.equal(await page.locator('body.revealed').count(),1);
