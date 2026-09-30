@@ -223,9 +223,9 @@ html:not(.js) #stage,html:not(.js) #splash,html:not(.js) #intro,html:not(.js) #m
       <h1 id="headline"><span class="inner"><span class="word" style="--i:0">不同的生意，</span><br><span class="word" style="--i:1">各自合適的網站<span class="accent">。</span></span></span></h1>
     </div>
   </div>
-  <p id="gallery-help" class="sr-only">左右拖曳旋轉作品；上下滑動靠近作品。鍵盤左右方向鍵旋轉，Enter 開啟前方作品。作品一覽提供全部六件作品的文字選單。</p>
+  <p id="gallery-help" class="sr-only">左右拖曳旋轉作品；上下滑動靠近作品。鍵盤左右方向鍵旋轉，Enter 開啟前方作品。作品一覽提供全部作品的文字選單。</p>
   <section id="grid" aria-labelledby="grid-title" aria-hidden="true" inert>
-    <div class="grid-heading"><h1 id="grid-title" tabindex="-1">實際做過的網站。</h1><p>六種生意，六種數位體驗。</p></div>
+    <div class="grid-heading"><h1 id="grid-title" tabindex="-1">實際做過的作品。</h1><p>不同的生意，各自合適的數位體驗。</p></div>
     <div class="rows" id="grid-rows"></div>
   </section>
   <div id="content-panel">
@@ -318,7 +318,7 @@ html:not(.js) #stage,html:not(.js) #splash,html:not(.js) #intro,html:not(.js) #m
 </header>
 <aside class="bio chrome" inert><div class="who"><img id="avatar" src="assets/hey-cheng-icon.jpg" width="44" height="44" alt=""><div><b>從你的生意開始。</b><small>AI ASSISTED. HUMAN DIRECTED.</small></div></div><p>用設計整理特色，用 AI 推進想法。<br>每一個畫面，都是我們實際完成的網站。</p></aside>
 <footer class="colophon chrome" aria-label="品牌與內部入口"><p>HEY CHENG · NEW TAIPEI</p><a href="https://howard118008y-commits.github.io/spinprize/internal/">內部網頁 <span aria-hidden="true">↗</span></a></footer>
-<nav class="gallery-controls chrome" aria-label="作品瀏覽方式" inert><p class="gallery-count"><span>06</span> / 真實網站作品</p><button id="gridBtn" class="view-toggle" type="button" aria-controls="grid" aria-expanded="false"><span class="grid-icon" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="grid-label">作品一覽</span></button></nav>
+<nav class="gallery-controls chrome" aria-label="作品瀏覽方式" inert><p class="gallery-count"><span></span> / 真實作品</p><button id="gridBtn" class="view-toggle" type="button" aria-controls="grid" aria-expanded="false"><span class="grid-icon" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="grid-label">作品一覽</span></button></nav>
 <p class="cue chrome" aria-hidden="true"><s></s>拖曳旋轉 · 點選探索</p>
 <div id="menu" role="dialog" aria-modal="true" aria-labelledby="menu-title" aria-hidden="true" inert>
   <h2 class="sr-only" id="menu-title">網站選單</h2><button class="menu-close" type="button" id="menuClose">關閉 <span aria-hidden="true">×</span></button>
@@ -356,7 +356,7 @@ const projects = [
   {id:'jianan',name:'台北建安宮',url:'https://taipeijianantemple.com.tw',kind:'文化信仰 / 活動與線上登記',note:'整理廟宇介紹、活動資訊與線上登記入口，讓不同年齡的訪客都能找到需要的資訊。此預覽為平板響應式版本。',width:900,height:3914},
   {id:'cx468',name:'鋮馨租賃',url:'https://cx468.com.tw',kind:'企業服務 / 諮詢與 AI 助理',note:'把服務、諮詢流程與 AI 助理串成清楚的數位入口，讓訪客了解企業，也能順手開始詢問。',width:1440,height:4400},
   {id:'ichiban',name:'線上一番賞平台',url:'https://goshoot-ichiban.vercel.app',kind:'客製系統 / 商品與會員流程',note:'整合會員、點數、金流、庫存與亂數驗證，依照實際營運流程安排操作介面。功能與體驗一起設計。',width:1440,height:2679}
-].map((project,index)=>({...project,index,thumb:`assets/case-${project.id}.webp`,overview:`assets/work-${project.id}-overview.webp`,full:`assets/work-${project.id}-full.webp`}));
+].map((project,index)=>({capturedAt:'2026.09.18',status:project.url?'公開網站':'作品預覽',...project,index,thumb:`assets/case-${project.id}.webp`,overview:`assets/work-${project.id}-overview.webp`,full:`assets/work-${project.id}-full.webp`}));
 const stage=$('#stage'), world=$('#world'), orb=$('#orb'), headline=$('#headline');
 const grid=$('#grid'), gridButton=$('#gridBtn'), panel=$('#content-panel'), menu=$('#menu');
 const lit=$('#lit'), plate=$('.plate'), fullImage=$('#work-full-image'), shot=$('#work-scroll'), zoomButton=$('#work-zoom');
@@ -366,10 +366,12 @@ let currentView='works', gridOpen=false, menuOpen=false, litOpen=false, revealed
 let gesture=null, focusedCard=-1, sourceElement=null, imageToken=0, closeTimer=0, introStarted=false, revealStarted=false;
 let lastFrame=0, previousTransform='', dirty=true, selectedProject=0;
 const cards=[], gridButtons=[], objectURLs=[];
-const sphereVariants=Array.from({length:21},(_,index)=>({project:projects[index%6],variant:Math.floor(index/6)%3,tall:index===19}));
+const projectCount=String(projects.length).padStart(2,'0');
+$('.gallery-count span').textContent=projectCount;
+const sphereVariants=Array.from({length:Math.max(21,projects.length)},(_,index)=>({project:projects[index%projects.length],variant:Math.floor(index/projects.length)%3,tall:index===19}));
 const goldenAngle=Math.PI*(3-Math.sqrt(5));
 sphereVariants.forEach((record,index)=>{
-  const y=1-(index/20)*2, rad=Math.sqrt(Math.max(0,1-y*y)), theta=index*goldenAngle;
+  const y=1-(index/(sphereVariants.length-1))*2, rad=Math.sqrt(Math.max(0,1-y*y)), theta=index*goldenAngle;
   const x=Math.cos(theta)*rad, z=Math.sin(theta)*rad;
   const node=document.createElement('div'); node.className=`card${record.tall?' tall':''}`; node.dataset.idx=index;
   node.dataset.project=record.project.id; node.setAttribute('role','button'); node.setAttribute('tabindex','-1');
@@ -385,7 +387,7 @@ sphereVariants.forEach((record,index)=>{
 projects.forEach((project,index)=>{
   const button=document.createElement('button');button.type='button';button.className='grid-card';button.id=`work-${project.id}`;button.dataset.project=project.id;
   button.setAttribute('aria-label',`${project.name}，查看完整網站`);button.setAttribute('aria-haspopup','dialog');button.setAttribute('aria-controls','lit');
-  button.innerHTML=`<figure><img src="${project.thumb}" alt="${project.name}網站首頁" width="1440" height="900" decoding="async"><span class="grid-number">0${index+1} / 06</span></figure><span class="grid-caption"><span>${project.name}</span><span aria-hidden="true">↗</span></span><small>${project.kind}</small>`;
+  button.innerHTML=`<figure><img src="${project.thumb}" alt="${project.name}網站首頁" width="1440" height="900" decoding="async"><span class="grid-number">${String(index+1).padStart(2,'0')} / ${projectCount}</span></figure><span class="grid-caption"><span>${project.name}</span><span aria-hidden="true">↗</span></span><small>${project.kind}${project.url?'':` · ${project.status}`}</small>`;
   button.addEventListener('click',()=>openProject(project,button));$('#grid-rows').append(button);gridButtons.push(button);
 });
 function setInactive(element,inactive){element.inert=inactive;element.setAttribute('aria-hidden',String(inactive))}
@@ -552,9 +554,10 @@ window.addEventListener('hashchange',()=>showRoute());
 function openProject(project,source,cardIndex=-1){
   clearTimeout(closeTimer);const token=++imageToken;sourceElement=source;focusedCard=cardIndex;litOpen=true;
   body.classList.remove('lit-closing');body.classList.add('lit');cancelGesture();dirty=true;
-  $('#litTitle').textContent=project.name;$('#litWhere').textContent=project.kind;$('#litNote').textContent=project.note;
-  $('#lit-capture').textContent=project.id==='jianan'?'完整網站預覽 · 平板版':'完整網站預覽';
-  $('#work-live-link').href=project.url;$('#work-load-status').textContent='正在載入完整頁面…';
+  $('#litTitle').textContent=project.name;$('#litWhere').textContent=project.kind+(project.url?'':` · ${project.status}`);$('#litNote').textContent=project.note;
+  $('#lit-capture').textContent=project.previewLabel||(project.url?(project.id==='jianan'?'完整網站預覽 · 平板版':'完整網站預覽'):'作品預覽');
+  const liveLink=$('#work-live-link');liveLink.hidden=!project.url;if(project.url)liveLink.href=project.url;else liveLink.removeAttribute('href');
+  $('#work-load-status').textContent='正在載入完整頁面…';
   fullImage.alt=`${project.name}網站完整頁面，由頁首至頁尾`;fullImage.width=project.width;fullImage.height=900;
   const immediate=source?.querySelector('img')?.src||project.thumb;fullImage.src=immediate;
   shot.classList.remove('zoomed');shot.scrollTop=0;shot.scrollLeft=0;shot.style.setProperty('--full-width',`${project.width}px`);
@@ -568,8 +571,8 @@ function openProject(project,source,cardIndex=-1){
   requestAnimationFrame(()=>{if(token!==imageToken)return;plate.style.transition='';plate.style.transform='';plate.style.opacity=''});
   $('[data-close]',plate).focus({preventScroll:true});
   const full=new Image();full.decoding='async';
-  full.onload=()=>{if(token!==imageToken||!litOpen)return;fullImage.src=project.full;fullImage.height=project.height;$('#work-load-status').textContent='全頁截圖 · 2026.09.18';$('#shot-hint').textContent='上下滑動，查看完整頁面';zoomButton.disabled=false;shot.scrollTop=0};
-  full.onerror=()=>{if(token!==imageToken||!litOpen)return;$('#work-load-status').textContent='全頁圖片暫時無法載入，仍可前往原網站。';$('#shot-hint').textContent='目前顯示作品預覽'};
+  full.onload=()=>{if(token!==imageToken||!litOpen)return;fullImage.src=project.full;fullImage.height=project.height;$('#work-load-status').textContent=`全頁截圖 · ${project.capturedAt}`;$('#shot-hint').textContent='上下滑動，查看完整頁面';zoomButton.disabled=false;shot.scrollTop=0};
+  full.onerror=()=>{if(token!==imageToken||!litOpen)return;$('#work-load-status').textContent=project.url?'全頁圖片暫時無法載入，仍可前往原網站。':'全頁圖片暫時無法載入，目前顯示作品預覽。';$('#shot-hint').textContent='目前顯示作品預覽'};
   full.src=project.full;
 }
 function closeProject(immediate=false){
@@ -652,7 +655,7 @@ async function prepareProject(project){
   const variants=[];
   try{const image=await loadImage(project.thumb);variants[0]=await cropImage(image);image.src=''}catch{variants[0]=project.thumb}
   try{const image=await loadImage(project.overview);variants[1]=await cropImage(image,.36);variants[2]=await cropImage(image,.71);image.src=''}catch{variants[1]=variants[0];variants[2]=variants[0]}
-  for(const card of cards.filter(item=>item.project===project)){card.img.src=variants[card.variant]||project.thumb;loaded++;if($('#bar'))$('#bar').style.transform=`scaleX(${loaded/21})`}
+  for(const card of cards.filter(item=>item.project===project)){card.img.src=variants[card.variant]||project.thumb;loaded++;if($('#bar'))$('#bar').style.transform=`scaleX(${loaded/sphereVariants.length})`}
   const thumb=variants[0];if(thumb)gridButtons[project.index].querySelector('img').src=thumb;
 }
 async function loadPortfolio(){
