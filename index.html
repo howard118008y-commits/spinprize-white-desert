@@ -136,14 +136,8 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 #content-panel .content-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;filter:none;opacity:1}
 #content-panel .content-image-food img{object-position:center 34%}
 #content-panel figcaption{padding-top:11px;color:var(--content-muted);font-size:12px;line-height:1.8}
-#content-panel .service-editorial{display:grid;gap:48px}
-#content-panel .service-copy{position:relative;margin-top:21px}
 #content-panel .content-index{display:block;margin-bottom:10px;color:var(--content-accent);font-size:12px;letter-spacing:.12em;font-variant-numeric:tabular-nums}
-#content-panel .service-copy>p{margin-top:16px;color:#d2cfca}
-#content-panel .content-tags{display:flex;flex-wrap:wrap;gap:7px 18px;margin:19px 0 0;padding:0;list-style:none;color:var(--content-muted);font-size:13px}
-#content-panel .content-tags li{padding-bottom:3px;border-bottom:1px solid var(--content-line)}
 #content-panel .content-fine-print{font-size:13px;line-height:1.9;color:var(--content-muted)}
-#content-panel .service-copy>.content-fine-print{font-size:13px;color:var(--content-muted)}
 #content-panel .content-next{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:54px;padding-top:25px;border-top:1px solid var(--content-line)}
 #content-panel .content-next>p{color:var(--content-muted);font-size:15px}
 #content-panel .content-link{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;min-height:48px;border:0;border-bottom:1px solid var(--content-accent);background:none;color:var(--content-ink);font-size:15px}
@@ -228,8 +222,6 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
   #content-panel .content-page{padding-top:20px;padding-bottom:60px}
   #content-panel .content-heading{padding-bottom:62px}
   #content-panel .content-eyebrow{margin-bottom:28px}
-  #content-panel .service-editorial{grid-template-columns:repeat(2,minmax(0,1fr));gap:66px 40px}
-  #content-panel .service-story:nth-child(even){padding-top:75px}
   #content-panel .content-next{flex-direction:row;align-items:center;justify-content:space-between;margin-top:75px;padding-top:30px}
   html:not([data-view="mobile"]) #content-panel :is(.price-grid,.price-duo){grid-template-columns:repeat(2,minmax(0,1fr))}
   html:not([data-view="mobile"]) #content-panel .price-card.is-wide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);column-gap:40px}
@@ -246,8 +238,6 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 }
 @media(min-width:1024px){
   #content-panel .content-heading{padding-bottom:75px}
-  #content-panel .service-editorial{gap:75px 70px}
-  #content-panel .service-copy{max-width:470px;margin-top:26px}
   html:not([data-view="mobile"]) #content-panel .price-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   html:not([data-view="mobile"]) #content-panel .price-modules{grid-template-columns:repeat(3,minmax(0,1fr))}
   #content-panel .about-feature{gap:70px}
@@ -274,8 +264,9 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
 /* Brand films load only after an explicit play action. */
 #brand-films .content-heading{margin-bottom:28px}#brand-films h2{font-size:clamp(34px,5.5vw,70px)}.brand-film-picker{display:grid;gap:10px;margin:0 0 24px;color:var(--dim);font-size:14px}.brand-film-select{box-sizing:border-box;width:100%;min-width:0;min-height:48px;padding:12px 40px 12px 16px;border:1px solid #40514c;border-radius:4px;background:#080e0c;color:var(--ink);font:inherit;font-size:16px;color-scheme:dark}.brand-film-stage{margin:0 auto 24px;background:#000;border:1px solid #2d3a36;border-radius:5px;overflow:hidden;max-width:100%}.brand-film-stage{--film-ratio:.5625;width:min(100%,calc(64dvh * var(--film-ratio)));aspect-ratio:var(--film-ratio)}.brand-film-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#000}.brand-film-info{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px}.brand-film-info h3{font-size:20px;margin:0 0 7px}.brand-film-info p{color:var(--dim);font-size:14px;line-height:1.6;margin:0}.brand-film-play{min-height:48px;padding:13px 24px;border-radius:4px;background:var(--accent);color:#04130f;font-size:16px;font-weight:600;flex-shrink:0}.brand-film-status{min-height:1.7em;margin-top:14px;color:var(--dim);font-size:14px;line-height:1.7}.brand-film-select:focus-visible,.brand-film-play:focus-visible,.brand-film-stage video:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:640px){.brand-film-info{align-items:stretch;flex-direction:column}.brand-film-play{width:100%}}
 </style>
-<link rel="stylesheet" href="assets/site-refinement.css?v=20260929-safearea">
-<link rel="stylesheet" href="assets/home-landing.css?v=20260929-reel2">
+<link rel="stylesheet" href="assets/site-refinement.css?v=20260930-services">
+<link rel="stylesheet" href="assets/home-landing.css?v=20260930-strip2">
+<link rel="stylesheet" href="assets/services-page.css?v=20260930-services">
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
@@ -387,28 +378,36 @@ html.js #content-panel .content-page{scroll-margin-block-start:calc(120px + 44px
   <div id="content-panel">
     <div class="panel-bar"><a href="#works"><span aria-hidden="true">←</span>回到作品</a><p>HEY CHENG / DIGITAL EXPERIENCES</p></div>
     <h1 class="sr-only" id="content-view-title" tabindex="-1">Hey Cheng</h1>
-    <section class="content-page" id="services" aria-labelledby="services-title" hidden>
-  <header class="content-heading">
-    <p class="content-eyebrow"><span>01 / 04</span> SERVICES</p>
-    <h2 id="services-title" tabindex="-1">從形象網站，<br><span>到日常營運。</span></h2>
+    <section class="content-page svc-page" id="services" aria-labelledby="services-title" hidden>
+  <header class="svc-hero">
+    <div class="svc-hero-copy">
+      <p class="svc-eyebrow"><span>01 / 04</span> SERVICES</p>
+      <h2 id="services-title" tabindex="-1">從形象網站，<br>到日常營運。</h2>
+      <p class="svc-hero-sub">不只做一個網站：從內容、拍攝、導覽到 AI 與客製系統，依你的生意安排，把特色說清楚，把客人接進來。</p>
+      <button type="button" class="hb-btn" data-scroll-target="svc-all">查看所有服務</button>
+    </div>
+    <figure class="svc-hero-video" data-video-slot aria-label="服務介紹影片（製作中）"><img src="assets/hey-cheng-logo.png" alt="" width="2061" height="763" loading="lazy" decoding="async"><p>服務介紹影片</p><small>製作中</small></figure>
   </header>
-  <div class="service-editorial">
-    <article class="service-story">
-      <figure class="content-figure"><div class="content-image"><img src="assets/case-shanyu.webp" alt="山遇民宿網站的全彩外觀與品牌畫面" width="1440" height="900" loading="lazy" decoding="async"></div><figcaption>山遇民宿 · 網站作品</figcaption></figure>
-      <div class="service-copy"><span class="content-index" aria-hidden="true">01</span><h3><a href="/services/brand-websites/">網站建置 <span aria-hidden="true">↗</span></a></h3><p>把商家資訊、產品與服務整理清楚，讓客戶找到你，也知道下一步怎麼聯絡。</p><ul class="content-tags" aria-label="網站建置服務"><li>五頁形象站</li><li>品牌網站</li><li>接單網站</li><li>立體導覽</li></ul></div>
-    </article>
-    <article class="service-story">
-      <figure class="content-figure"><div class="content-image content-image-food"><img src="assets/work-tofu-overview.webp" alt="永貞豆腐店網站呈現的餐點照片" width="960" height="5169" loading="lazy" decoding="async"></div><figcaption>永貞豆腐店 · 內容呈現</figcaption></figure>
-      <div class="service-copy"><span class="content-index" aria-hidden="true">02</span><h3><a href="/services/brand-content/">品牌與內容 <span aria-hidden="true">↗</span></a></h3><p>從現場拍攝到五頁文案，讓網站裡的每一張照片、每一段介紹，都說得出你的特色。</p><ul class="content-tags" aria-label="品牌與內容服務"><li>現場拍攝</li><li>文案代筆</li><li>LINE 官方帳號</li></ul></div>
-    </article>
-    <article class="service-story">
-      <figure class="content-figure"><div class="content-image"><img src="assets/work-cx468-overview.webp" alt="鋮馨租賃網站的企業服務與諮詢入口" width="960" height="2933" loading="lazy" decoding="async"></div><figcaption>鋮馨租賃 · 企業服務作品</figcaption></figure>
-      <div class="service-copy"><span class="content-index" aria-hidden="true">03</span><h3>企業形象＋<br>企業貸款輔助</h3><p>整合企業官網、品牌介紹與公開資訊，讓客戶與金融機構更清楚認識你的事業。協助整理真實營運資料與申貸文件，提供企業貸款申請諮詢。</p><ul class="content-tags" aria-label="企業形象與企業貸款輔助服務"><li>企業形象規劃</li><li>官網資訊整合</li><li>申貸資料整理</li><li>企業貸款諮詢</li></ul><p class="content-fine-print">實際核貸、額度與利率由金融機構依企業條件審核。</p></div>
-    </article>
-    <article class="service-story">
-      <figure class="content-figure"><div class="content-image"><img src="assets/case-ichiban.webp" alt="線上一番賞平台的商品、點數及操作介面" width="1440" height="900" loading="lazy" decoding="async"></div><figcaption>線上一番賞 · 客製系統作品</figcaption></figure>
-      <div class="service-copy"><span class="content-index" aria-hidden="true">04</span><h3><a href="/services/ai-custom-systems/">系統與維運 <span aria-hidden="true">↗</span></a></h3><p>依實際流程整合工具，從諮詢、資料處理到報表，讓網站接上你的日常工作。</p><ul class="content-tags" aria-label="系統與維運服務"><li>客製系統</li><li>AI 助理</li><li>資料串接</li><li>續約維運</li><li>社群自動發文</li></ul></div>
-    </article>
+  <div class="hb-strip" aria-label="已上線的網站作品"><p>已上線的網站</p><div class="hb-strip-track"><ul><li>山遇民宿</li><li>鋮馨租賃</li><li>Go Shoot</li><li>永貞豆腐店</li><li>台北建安宮</li><li>線上一番賞平台</li></ul><ul aria-hidden="true"><li>山遇民宿</li><li>鋮馨租賃</li><li>Go Shoot</li><li>永貞豆腐店</li><li>台北建安宮</li><li>線上一番賞平台</li></ul></div></div>
+  <div class="svc-rows svc-block">
+    <article class="svc-row"><img src="assets/case-shanyu.webp" alt="山遇民宿網站的空間與房型介紹畫面" width="1440" height="900" loading="lazy" decoding="async"><div class="svc-row-copy"><h3>讓好生意，被好好看見。</h3><p>我們是陪你長期經營的網站夥伴：先弄懂你的生意為什麼存在、想服務哪些客人，再把服務、照片與文案整理成他們看得懂、找得到、願意聯絡的樣子。</p></div></article>
+    <article class="svc-row is-flip"><img src="assets/case-tofu.webp" alt="永貞豆腐店網站的餐點與品牌畫面" width="1440" height="900" loading="lazy" decoding="async"><div class="svc-row-copy"><h3>Hey Cheng 的做法</h3><p>從民宿、餐飲、廟宇到零售與企業服務，我們從實際營運出發；運用 AI 協助設計、內容整理與開發，把時間留給品牌細節與實際使用體驗。</p></div></article>
+  </div>
+  <section class="svc-all svc-block" id="svc-all" aria-labelledby="svc-all-title">
+    <h3 class="svc-title svc-bar svc-center" id="svc-all-title">讓你的網站，值得被點開</h3>
+    <p class="svc-lede svc-center">作品不只好看，也要好用。無論你需要什麼，都可以從這裡開始——瀏覽我們的所有服務。</p>
+    <ul class="svc-tiles"><li><a href="/services/brand-websites/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 8h18M8 21h8"/></svg><span>形象網站</span></a></li><li><a href="/services/brand-websites/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.3 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg><span>品牌網站</span></a></li><li><a href="/services/brand-websites/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h2l2 10h10l2-7H7"/><circle cx="10" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/></svg><span>接單網站</span></a></li><li><a href="#pricing"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>立體導覽</span></a></li><li><a href="/services/brand-content/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="1"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span>現場拍攝</span></a></li><li><a href="/services/brand-content/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg><span>文案代筆</span></a></li><li><a href="/services/brand-content/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg><span>LINE 官方帳號</span></a></li><li><a href="#pricing"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6"/></svg><span>社群自動發文</span></a></li><li><a href="#pricing"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg><span>Google 商家綁定</span></a></li><li><a href="#pricing"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg><span>GA4 流量分析</span></a></li><li><a href="/services/ai-custom-systems/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg><span>AI 助理</span></a></li><li><a href="/services/ai-custom-systems/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span>客製系統</span></a></li><li><a href="/services/ai-custom-systems/"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg><span>資料串接</span></a></li><li><a href="/services/ai-custom-systems/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></svg><span>文件解析</span></a></li><li><a href="/faq/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M21 4v5h-5"/><path d="M12 7v5l3 2"/></svg><span>年度維運</span></a></li><li><a href="#pricing"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h14M13 7l5 5-5 5"/><path d="M21 5v14"/></svg><span>網站搬遷</span></a></li><li><a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-5h6v5M8 10h2M14 10h2"/></svg><span>企業形象規劃</span></a></li><li><a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9v.01M18 15v.01"/></svg><span>企業貸款諮詢</span></a></li></ul>
+    <p class="svc-note">企業貸款諮詢：協助整理真實營運資料與申貸文件；實際核貸、額度與利率由金融機構依企業條件審核。</p>
+  </section>
+  <section class="svc-block" aria-labelledby="svc-steps-title">
+    <h3 class="svc-title svc-bar svc-center" id="svc-steps-title">合作流程</h3>
+    <ol class="svc-steps"><li><span class="svc-step-num" aria-hidden="true">1</span><div><h4>需求洽談</h4><p>告訴我們你的生意與目標。</p></div></li><li><span class="svc-step-num" aria-hidden="true">2</span><div><h4>建議與報價</h4><p>收到具體建議與逐項報價。</p></div></li><li><span class="svc-step-num" aria-hidden="true">3</span><div><h4>內容準備</h4><p>照片、文案與素材一起整理。</p></div></li><li><span class="svc-step-num" aria-hidden="true">4</span><div><h4>製作確認</h4><p>逐階段確認，含 2 輪整批修改。</p></div></li><li><span class="svc-step-num" aria-hidden="true">5</span><div><h4>上線維運</h4><p>驗收上線，第 2 年起年度維運。</p></div></li></ol>
+  </section>
+  <section class="svc-band svc-block" aria-labelledby="svc-band-title"><p>我們在乎的是</p><h3 id="svc-band-title">讓你的特色，<br>成為被看見的理由。</h3><a class="hb-btn hb-btn-dark" href="#contact">出發吧</a></section>
+  <section class="svc-case svc-block" aria-labelledby="svc-case-title"><p>看看我們怎麼替這間民宿整理網站</p><strong aria-hidden="true">山遇民宿</strong><h3 id="svc-case-title">從庭園、房型到立體導覽</h3><a class="hb-btn" href="/work/shanyu/">看完整案例</a></section>
+  <div class="svc-cards svc-block">
+    <article><img src="assets/case-goshoot.webp" alt="Go Shoot 品牌網站的立體門市開場" width="1440" height="900" loading="lazy" decoding="async"><h3>品牌網站</h3><p>讓客人搜尋得到、看得懂、找得到你：從五頁形象站到品牌網站與立體導覽，依規模選擇。</p><a class="hb-btn" href="/services/brand-websites/">了解品牌網站</a></article>
+    <article><img src="assets/case-ichiban.webp" alt="線上一番賞平台的商品與會員介面" width="1440" height="900" loading="lazy" decoding="async"><h3>AI 與客製系統</h3><p>網站之外，把諮詢、會員、文件與報表接進日常工作；依流程訂製，依規格報價。</p><a class="hb-btn" href="/services/ai-custom-systems/">了解 AI 與客製系統</a></article>
   </div>
   <div class="content-next"><p>從需要的規模，開始。</p><a class="content-link" href="#pricing">查看方案與價格 <span aria-hidden="true">↗</span></a></div>
 </section>
@@ -622,6 +621,7 @@ if(siteHeader&&'ResizeObserver' in window)new ResizeObserver(()=>document.docume
 const serviceTabs=$$('.hb-svc-tabs [role="tab"]');
 function selectServiceTab(index,focus){serviceTabs.forEach((tab,i)=>{const on=i===index;tab.setAttribute('aria-selected',String(on));tab.tabIndex=on?0:-1;$(`#${tab.getAttribute('aria-controls')}`).hidden=!on;});if(focus)serviceTabs[index].focus();}
 serviceTabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectServiceTab(i,false));tab.addEventListener('keydown',event=>{const keys={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1};if(event.key in keys){event.preventDefault();selectServiceTab((i+keys[event.key]+serviceTabs.length)%serviceTabs.length,true);}else if(event.key==='Home'||event.key==='End'){event.preventDefault();selectServiceTab(event.key==='Home'?0:serviceTabs.length-1,true);}});});
+$$('[data-scroll-target]').forEach(button=>button.addEventListener('click',()=>{const target=$(`#${button.dataset.scrollTarget}`);if(!target)return;const offset=$('.site-header').getBoundingClientRect().bottom+16;panel.scrollTo({top:panel.scrollTop+target.getBoundingClientRect().top-offset,behavior:reducedMotion.matches?'instant':'smooth'});}));
 let gesture=null, focusedCard=-1, sourceElement=null, imageToken=0, closeTimer=0;
 let lastFrame=0, cameraFrame=0, previousTransform='', dirty=true, selectedProject=0;
 const touchPointers=new Set();

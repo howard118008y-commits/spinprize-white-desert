@@ -54,7 +54,9 @@ html[data-view="mobile"] .hb-wrap{width:min(636px,calc(100% - 44px))}
 
 /* Client strip */
 .hb-strip{display:flex;align-items:center;gap:28px;padding:22px 0;background:var(--hb-soft);color:#56615e;overflow:hidden}
-.hb-strip>p{flex:none;padding-left:var(--home-pad);font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--hb-teal)}
+.hb-strip>p{position:relative;z-index:1;flex:none;align-self:stretch;display:flex;align-items:center;padding:0 20px 0 var(--home-pad);background:var(--hb-soft);box-shadow:16px 0 16px var(--hb-soft);font-size:12px;font-weight:700;letter-spacing:.14em;color:#00544a}
+.hb-strip{padding-block:0}
+.hb-strip-track{padding-block:22px}
 .hb-strip-track{display:flex;gap:56px;width:max-content;animation:hb-marquee 36s linear infinite}
 .hb-strip ul{display:flex;gap:56px;margin:0;padding:0;list-style:none}
 .hb-strip li{font-size:20px;font-weight:700;letter-spacing:.04em;white-space:nowrap}

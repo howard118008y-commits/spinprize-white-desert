@@ -55,10 +55,6 @@
 #content-panel .content-eyebrow{margin-bottom:14px}
 #content-panel h2{font-size:clamp(32px,4.4vw,54px);line-height:1.25}
 #content-panel .content-intro{margin-top:18px;line-height:1.8}
-#content-panel .service-editorial{grid-template-columns:minmax(0,1fr);gap:46px}
-#content-panel .service-story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:32px}
-#content-panel .service-story:nth-child(even){padding-top:0}
-#content-panel .service-copy{margin-top:0;max-width:none}
 #content-panel .content-line-block{padding-block:20px}
 #content-panel .content-line-actions{margin-top:16px}
 .gridview .gallery-controls{display:none}
@@ -90,11 +86,6 @@ html[data-view="mobile"] #content-panel .panel-bar{margin-bottom:20px}
 html[data-view="mobile"] #content-panel .content-heading{padding-bottom:24px}
 html[data-view="mobile"] #content-panel h2{font-size:32px}
 html[data-view="mobile"] #content-panel .content-intro{font-size:15px;margin-top:14px}
-html[data-view="mobile"] #content-panel .service-story{grid-template-columns:minmax(0,1fr);gap:20px}
-html[data-view="mobile"] #content-panel .service-copy{order:0}
-html[data-view="mobile"] #content-panel .service-story .content-figure{order:1}
-html[data-view="mobile"] #content-panel .service-copy>p{margin-top:12px}
-html[data-view="mobile"] #content-panel .content-tags{margin-top:12px}
 html[data-view="mobile"] .grid-back{margin-bottom:10px}
 html[data-view="mobile"] .menu-nav{gap:10px}
 html[data-view="mobile"] .menu-nav a{font-size:32px}
@@ -154,7 +145,6 @@ html[data-view="mobile"] .case-study-links{flex-wrap:wrap}
   html[data-view="desktop"] .hero-actions{margin-top:10px;flex-wrap:wrap}
   html[data-view="desktop"] .hero-gallery{height:calc(100svh - 294px);min-height:270px}
   html[data-view="desktop"] #grid,html[data-view="desktop"] #content-panel{padding-top:calc(196px + env(safe-area-inset-top,0px))}
-  html[data-view="desktop"] #content-panel .service-story{grid-template-columns:minmax(0,1fr)}
 }
 @media(pointer:coarse){.menu-btn{min-height:44px}.policy-links a{min-height:44px;display:inline-flex;align-items:center}}
 }
