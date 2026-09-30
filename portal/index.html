@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'self'; connect-src 'self' https://mcgmpxrpdhjpmvtbxfmj.supabase.co; img-src 'self' blob: data:; frame-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>文件工作台｜旋賞數位</title>
-<link rel="stylesheet" href="./app.css?v=20260930-tiles-fit"><link rel="stylesheet" href="./contract.css?v=20260930-tiles-fit"><script type="module" src="./app.js?v=20260930-tiles-fit"></script>
+<link rel="stylesheet" href="./app.css?v=20260930-qa-fixes"><link rel="stylesheet" href="./contract.css?v=20260930-qa-fixes"><script type="module" src="./app.js?v=20260930-qa-fixes"></script>
 <script src="/assets/view-mode.js?v=20260928-modes"></script><link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
 <body>
@@ -17,15 +17,15 @@
 <div class="heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>文件工作台</h1></div><button id="refresh" class="quiet">重新整理</button></div>
 <nav aria-label="工作台"><button id="documents-tab" aria-current="page">文件</button><button id="admin-tab" hidden>帳號與權限</button><button id="play-open" class="play-entry" hidden>休息一下 · 小遊戲</button><a id="checkout-admin" class="checkout-admin" href="https://checkout-api-production-9f95.up.railway.app/admin" target="_blank" rel="noopener noreferrer" hidden>收單後台 <span aria-hidden="true">↗</span></a></nav>
 <section id="documents-panel"><article id="contract-entry" class="document contract-entry" hidden><div><p class="eyebrow">SIGNING WORKFLOW</p><h2>01 合約文件</h2><p>選擇方案與金額、確認條款，雙方可直接手寫簽名並匯出 PDF。</p><p>內容只保留在這次開啟的頁面；匯出後，可依既有流程上傳及指定文件權限。</p></div><button id="contract-open">建立合約</button></article><div id="document-list"></div><p id="empty-documents" hidden>目前沒有可查看的文件。</p>
-<section id="upload-panel" class="panel" hidden><h2>新增文件</h2><p class="muted">PDF、PNG、JPEG 或 WebP，每份最多 10 MiB。</p><form id="upload-form"><label>文件名稱<input name="title" maxlength="160" required></label><label>檔案<input name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" required></label><label>開放方式<select name="scope"><option value="assigned">只限逐件指定的帳號</option value="internal">內部共用（管理者與同事）</option></select></label><button type="submit">上傳文件</button></form></section>
+<section id="upload-panel" class="panel" hidden><h2>新增文件</h2><p class="muted">PDF、PNG、JPEG 或 WebP，每份最多 10 MiB。</p><form id="upload-form"><label>文件名稱<input name="title" maxlength="160" required></label><label>檔案<input name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" required></label><label>開放方式<select name="scope"><option value="assigned">只限逐件指定的帳號</option><option value="internal">內部共用（管理者與同事）</option></select></label><button type="submit">上傳文件</button></form></section>
 </section>
-<section id="admin-panel" hidden><section class="panel"><h2>新增 Google 帳號</h2><p class="muted">加入後即可使用該 Gmail 登入。這項操作不會寄送邀請信。</p><form id="member-form"><label>Gmail<input type="email" name="email" required maxlength="254" autocomplete="off" placeholder="name@gmail.com"></label><label>角色<select name="role"><option value="staff">同事</option><option value="client">客戶</option></select></label><button type="submit">加入帳號</button></form></section><section class="panel"><h2>帳號管理</h2><div id="member-list"></div></section><section class="panel"><h2>最近權限異動</h2><div id="audit-list"></div></section></section>
+<section id="admin-panel" hidden><section class="panel"><h2>新增名單帳號</h2><p class="muted">此名單只用於指定文件權限，不再授予登入；工作台一律以通行碼登入。這項操作不會寄送邀請信。</p><form id="member-form"><label>Email<input type="email" name="email" required maxlength="254" autocomplete="off" placeholder="name@example.com"></label><label>角色<select name="role"><option value="staff">同事</option><option value="client">客戶</option></select></label><button type="submit">加入帳號</button></form></section><section class="panel"><h2>帳號管理</h2><div id="member-list"></div></section><section class="panel"><h2>最近權限異動</h2><div id="audit-list"></div></section></section>
 </section>
 <p id="notice" role="status" aria-live="polite"></p>
 </main>
-<dialog id="viewer"><div class="dialog-heading"><h2 id="viewer-title"></h2><button id="close-viewer" class="quiet">關閉</button></div><div id="viewer-external" class="panel" role="status" hidden></div><div id="viewer-body"></div><button id="viewer-download">下載檔案</button></dialog>
-<dialog id="permissions"><div class="dialog-heading"><h2 id="permissions-title">文件權限</h2><button id="close-permissions" class="quiet">關閉</button></div><p id="permissions-note"></p><div id="permissions-list"></div></dialog>
-<dialog id="contract-dialog" aria-label="合約文件工作台"><div class="contract-shell-toolbar"><strong>合約文件</strong><div data-view-mode-host></div></div><div id="contract-body"></div></dialog>
-<dialog id="game-dialog" aria-labelledby="game-title"><div class="dialog-heading"><h2 id="game-title">組裝官網挑戰</h2><button id="game-close" class="quiet">回文件工作台</button></div><div id="game-body"></div></dialog>
+<dialog id="viewer" tabindex="-1"><div class="dialog-heading"><h2 id="viewer-title"></h2><button id="close-viewer" class="quiet">關閉</button></div><div id="viewer-external" class="panel" role="status" hidden></div><div id="viewer-body"></div><button id="viewer-download">下載檔案</button></dialog>
+<dialog id="permissions" tabindex="-1"><div class="dialog-heading"><h2 id="permissions-title">文件權限</h2><button id="close-permissions" class="quiet">關閉</button></div><p id="permissions-note"></p><div id="permissions-list"></div></dialog>
+<dialog id="contract-dialog" tabindex="-1" aria-label="合約文件工作台"><div class="contract-shell-toolbar"><strong>合約文件</strong><div data-view-mode-host></div></div><div id="contract-body"></div></dialog>
+<dialog id="game-dialog" tabindex="-1" aria-labelledby="game-title"><div class="dialog-heading"><h2 id="game-title">組裝官網挑戰</h2><button id="game-close" class="quiet">回文件工作台</button></div><div id="game-body"></div></dialog>
 <footer>旋賞數位有限公司 · 私人文件工作台</footer>
 </body></html>

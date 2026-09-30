@@ -106,3 +106,5 @@ html[data-view="mobile"] footer{padding:22px 18px;flex-direction:column;gap:8px;
 }
 @media(pointer:coarse){.site-header nav a,.after-game-link{min-height:44px;display:inline-flex;align-items:center}.mode-choice label{min-height:48px}}
 }
+/* Only ever shown inside the portal dialog, whose heading already carries the title and the way back. */
+body>.site-header{display:none}
