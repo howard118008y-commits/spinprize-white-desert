@@ -74,14 +74,14 @@ test('any catalog entry uses its own title, duration and actual ratio, including
   const pauses=f.video.pauses,loads=f.video.loads;f.select.choose(3);assert.equal(f.video.pauses,pauses);assert.equal(f.video.loads,loads);
 });
 
-test('production catalog contains exactly the six approved root videos and complete public metadata',()=>{
+test('production catalog contains exactly the eight approved root videos and complete public metadata',()=>{
   const section=html.match(/<select class="brand-film-select"[\s\S]*?<\/select>/)[0];
   const entries=[...section.matchAll(/<option ([^>]+)>([^<]+)<\/option>/g)].map(([,attributes,label])=>({...Object.fromEntries([...attributes.matchAll(/([a-z-]+)="([^"]*)"/g)].map(([,key,value])=>[key,value])),label}));
-  assert.deepEqual(entries.map(entry=>entry.value),['brand-portrait','brand-landscape','restaurant-portrait','restaurant-landscape','faq-portrait','faq-landscape']);
+  assert.deepEqual(entries.map(entry=>entry.value),['ad-portrait','ad-landscape','brand-portrait','brand-landscape','restaurant-portrait','restaurant-landscape','faq-portrait','faq-landscape']);
   const expectedFiles=[];
   for(const entry of entries){
-    const [kind,orientation]=entry.value.split('-'),title={brand:'品牌形象',restaurant:'餐飲廣告',faq:'網站FAQ'}[kind]+(orientation==='portrait'?'｜直式':'｜橫式');
-    assert.equal(entry['data-title'],title);assert.equal(Number(entry['data-duration']),{brand:26.726009,restaurant:13.141995,faq:43.816009}[kind]);
+    const [kind,orientation]=entry.value.split('-'),title={ad:'官方廣告',brand:'品牌形象',restaurant:'餐飲廣告',faq:'網站FAQ'}[kind]+(orientation==='portrait'?'｜直式':'｜橫式');
+    assert.equal(entry['data-title'],title);assert.equal(Number(entry['data-duration']),{ad:45,brand:26.718005,restaurant:13.125011,faq:43.808005}[kind]);
     assert.deepEqual([Number(entry['data-width']),Number(entry['data-height'])],orientation==='portrait'?[1080,1920]:[1920,1080]);
     assert.equal(entry.label,`${title} · ${Math.round(Number(entry['data-duration']))} 秒`);
     for(const [attribute,extension] of [['data-src','mp4'],['data-poster','webp']]){
@@ -91,7 +91,7 @@ test('production catalog contains exactly the six approved root videos and compl
       if(extension==='mp4')assert.equal(header.toString('ascii',4,8),'ftyp');else{assert.equal(header.toString('ascii',0,4),'RIFF');assert.equal(header.toString('ascii',8,12),'WEBP');}
     }
   }
-  assert.equal(new Set(expectedFiles).size,12);assert.deepEqual(readdirSync(new URL('../assets/brand-films/',import.meta.url)).sort(),expectedFiles.sort());
+  assert.equal(new Set(expectedFiles).size,16);assert.deepEqual(readdirSync(new URL('../assets/brand-films/',import.meta.url)).sort(),expectedFiles.sort());
 });
 
 
