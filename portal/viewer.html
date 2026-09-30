@@ -16,10 +16,12 @@ function render(event) {
     layout(event.data.preference);
   });
   document.addEventListener('click', click => {
-    const anchor = click.target.closest?.('a[data-portal-external]');
+    // Script-built links keep their raw href; the parent only offers ones found in the source.
+    const anchor = click.target.closest?.('a[data-portal-external],a[href^="http"]');
     if (!anchor) return;
     click.preventDefault(); click.stopImmediatePropagation();
-    parent.postMessage({type:'portal-external-link',id:anchor.getAttribute('data-portal-external')}, '*');
+    const id = anchor.getAttribute('data-portal-external');
+    parent.postMessage(id ? {type:'portal-external-link',id} : {type:'portal-external-url',url:anchor.getAttribute('href')}, '*');
   }, true);
 }
 window.addEventListener('message', render);
