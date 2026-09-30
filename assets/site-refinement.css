@@ -32,6 +32,7 @@
 .card.brand-preview figure,.grid-card.brand-preview figure{background:#fff}
 .card.brand-preview img,.grid-card.brand-preview img{object-fit:contain}
 .grid-card.brand-preview img{padding:20px}
+#work-salf img{object-position:0 50%}
 .shot.brand-preview{height:clamp(240px,45dvh,420px);overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fff}
 .shot.brand-preview img{width:auto;height:auto;max-width:85%;max-height:calc(100% - 56px);object-fit:contain;flex-shrink:1}
 .shot.brand-preview figcaption{position:absolute;bottom:0;left:0;width:100%;text-align:center;background:#fff;color:#435248}
@@ -42,10 +43,10 @@
 .gallery-count span{color:var(--accent);font-variant-numeric:tabular-nums}
 .gallery-count small{display:block;font-size:11px;color:#9caaa3}
 .view-toggle{background:#07100c;border-color:#455b50;min-width:112px}
-.colophon{position:relative;inset:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 24px;padding:12px var(--home-pad);max-width:1600px;margin:auto;text-align:left;letter-spacing:.04em;border-top:1px solid #1c2622}
-.colophon p{font-size:10px}
-.colophon a{font-size:12px;justify-content:flex-start}
-.colophon .policy-links{display:flex;gap:22px}
+.colophon{position:relative;inset:auto;display:grid;grid-template-columns:2fr repeat(3,minmax(0,1fr));align-items:start;gap:24px 35px;padding:40px var(--home-pad);max-width:1600px;margin:auto;text-align:left;letter-spacing:.04em;border-top:1px solid #1c2622}
+.colophon p{font-size:12px}
+.colophon a{font-size:13px;justify-content:flex-start}
+.colophon .colophon-label{margin-bottom:6px;font-size:11px;letter-spacing:.17em;color:var(--accent)}
 .gridview #home-hero,.contentview #home-hero,.gridview .colophon,.contentview .colophon{display:none}
 .lit #home-hero,.menu-open #home-hero{pointer-events:none}
 .grid-back{display:inline-flex;align-items:center;min-height:44px;margin-bottom:14px;color:var(--accent);font-size:13px}
@@ -78,8 +79,8 @@ html[data-view="mobile"] .hero-actions{margin-top:9px;gap:10px;flex-wrap:nowrap}
 html[data-view="mobile"] .hero-actions a{gap:16px;padding:8px 12px;font-size:12px;min-height:44px}
 html[data-view="mobile"] .hero-gallery{width:calc(100% + var(--home-pad)*2);height:min(calc(100vw + 56px),calc(100svh - 226px - env(safe-area-inset-bottom,0px)));min-height:270px;padding-bottom:52px;margin-inline:calc(var(--home-pad)*-1)}
 html[data-view="mobile"] .gallery-controls{padding-inline:var(--home-pad)}
-html[data-view="mobile"] .colophon{display:flex;padding-block:18px;gap:4px 20px}
-html[data-view="mobile"] .colophon p{width:100%}
+html[data-view="mobile"] .colophon{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding-block:28px;gap:20px}
+html[data-view="mobile"] .colophon>div:first-child{grid-column:1/-1}
 html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:96px;padding-bottom:calc(98px + env(safe-area-inset-bottom,0px))}
 html[data-view="mobile"] #content-panel .panel-bar{margin-bottom:20px}
 html[data-view="mobile"] #content-panel .content-heading{padding-bottom:24px}
@@ -111,7 +112,7 @@ html:not(.js) .primary-nav{display:flex}
 #grid,#content-panel{padding-top:calc(146px + env(safe-area-inset-top,0px))}
 html[data-view="desktop"] body{padding-bottom:0}
 html[data-view="desktop"] .primary-nav{position:static;display:flex;flex-wrap:wrap;gap:8px 24px;padding:0;border:0;background:transparent}
-html[data-view="desktop"] .primary-nav a{min-height:44px;border:0}
+html[data-view="desktop"] .primary-nav a{min-height:44px;border:0;padding-inline:8px;margin-inline:-8px}
 html[data-view="desktop"] .rows{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
 html[data-view="mobile"]{--home-pad:22px}
 html[data-view="mobile"] .site-header{padding-inline:max(22px,calc((100% - 636px)/2));row-gap:6px}

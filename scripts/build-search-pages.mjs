@@ -111,7 +111,7 @@ function pricingBlock(ids) {
   }).join('');
   const m = pricing.maintenance;
   const s = pricing.socialAutopost;
-  const social = ids.includes('system') && s ? `<p>${escape(s.name)}另有明列價目：建置 NT$${money(s.setup)}，月費自助版 NT$${money(s.monthly.selfServe)}／月或代寫代發 NT$${money(s.monthly.managed)}／月（每月 ${escape(s.postsPerMonth)} 篇），均${escape(s.tax)}。 <a class="text-link" href="/#pricing">查看社群自動發文價目 <span aria-hidden="true">↗</span></a></p>` : '';
+  const social = ids.includes('system') && s ? `<p>${escape(s.name)}另有明列價目：建置 NT$${money(s.setup)}，月費自助版 NT$${money(s.monthly.selfServe)}／月或代寫代發每月 ${escape(s.postsPerMonth)} 篇 NT$${money(s.monthly.managed)}／月，均${escape(s.tax)}。 <a class="text-link" href="/#pricing">查看社群自動發文價目 <span aria-hidden="true">↗</span></a></p>` : '';
   return `<section class="section" id="plans"><div class="section-head"><p class="eyebrow">PLANS & SCOPE</p><h2>${ids.includes('plus')?'包含拍攝文案的建置方案':'從需要的規模開始'}</h2><p>${ids.includes('plus')?'本區顯示整套網站建置方案，不是單項攝影或文案的報價。':'以下為公開建置方案，作品畫面不代表個別方案的交付範圍。'}</p></div><div class="plans">${plans}</div>${social}<details class="terms"><summary>維運與合作條件</summary><div><p>${escape(m.firstYear)}</p><p>第 ${escape(m.startsYear)} 年起，基本維運每年 NT$${money(m.annual)}（${escape(m.tax)}）。${escape(m.service)}${escape(m.excluded)}</p><p>${escape(pricing.terms.payment)}${escape(pricing.terms.schedule)}${escape(pricing.terms.productionRevisions)}</p><p>${escape(pricing.terms.addons)}</p><p>${escape(pricing.terms.documentCopyright)}${escape(pricing.terms.websiteRights)}</p></div></details><a class="text-link" href="/#pricing">查看全部方案與完整條件 <span aria-hidden="true">↗</span></a></section>`;
 }
 const paragraphs = sections => sections.map(([title, text], i) => `<section class="story-row"><p class="number" aria-hidden="true">0${i+1}</p><div><h2>${escape(title)}</h2><p>${escape(text)}</p></div></section>`).join('');
@@ -137,20 +137,20 @@ function document(page, type, body) {
   <meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta property="og:url" content="${url}">
   <meta property="og:image" content="${origin}/assets/${page.image}"><meta property="og:image:alt" content="${escape(page.imageAlt)}">
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(page.title)}"><meta name="twitter:description" content="${escape(page.description)}"><meta name="twitter:image" content="${origin}/assets/${page.image}">
-  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20260929-safearea">
+  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20260930-qa">
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
 <body>
   <a class="skip-link" href="#main">跳至內容</a>
-  <header class="site-header"><a href="/" class="brand" aria-label="Hey Cheng 首頁"><img src="/assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763"></a><nav aria-label="主要導覽"><a href="/#grid">作品</a><a href="/#services">服務</a><a href="/#pricing">方案</a><a class="contact-link" href="/#contact">聯絡 <span aria-hidden="true">↗</span></a></nav><div class="page-view-mode" data-view-mode-host></div></header>
+  <header class="site-header"><a href="/" class="brand" aria-label="Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent.png" alt="Hey Cheng" width="1377" height="763"></a><nav aria-label="主要導覽"><a href="/#grid">作品</a><a href="/#services">服務</a><a href="/#pricing">方案</a><a class="contact-link" href="/#contact">聯絡 <span aria-hidden="true">↗</span></a></nav><div class="page-view-mode" data-view-mode-host></div></header>
   <main id="main"><nav class="breadcrumb" aria-label="麵包屑"><a href="/">首頁</a><span aria-hidden="true">/</span><span aria-current="page">${escape(page.name)}</span></nav>
   <header class="hero"><p class="eyebrow">${escape(page.label)}</p><h1>${escape(page.name)}</h1><p class="hero-lead">${escape(page.lead)}</p><p class="intro">${escape(page.intro)}</p></header>
   ${body}
   <section class="contact section"><p class="eyebrow">LET'S TALK</p><h2>你的下一個網站，<br>從一段對話開始。</h2><a class="button" href="/#contact">和 Hey Cheng 聊聊 <span aria-hidden="true">↗</span></a></section>
   </main>
-  <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo.png" alt="Hey Cheng" width="2061" height="763" loading="lazy"></a><p>旋賞數位有限公司 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/#pricing">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="/portal/">文件工作台</a><a href="/privacy/">隱私說明</a><a href="/terms/">使用說明</a></div></footer>
+  <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent.png" alt="Hey Cheng" width="1377" height="763" loading="lazy"></a><p>旋賞數位有限公司 · 統一編號 62149294 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/#pricing">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="/portal/">文件工作台</a><a href="/privacy/">隱私說明</a><a href="/terms/">服務條款</a></div></footer>
 </body>
 </html>
 `;
@@ -175,7 +175,7 @@ const faqGroups = [
   ['方案與內容', [
     ['建立一個品牌網站要多少錢？',`入門方案為 NT$${money(plan('entry').price)}（${pricing.constructionTax}）。${plan('entry').includes}需要品牌視覺客製、文案、SEO 架構與可自行編輯的後台，可參考標準方案 NT$${money(plan('standard').price)}（${pricing.constructionTax}）。`,'/services/brand-websites/','了解品牌形象網站'],
     ['還沒有照片和文案，可以一起準備嗎？',`入門＋為整套網站建置方案，NT$${money(plan('plus').price)}（${pricing.constructionTax}）。${plan('plus').includes}品牌需提供並確認實際產品、服務與對外資訊；既有素材的使用權限，也會先確認。`,'/services/brand-content/','了解品牌攝影與文案'],
-    ['什麼情況需要 AI 或客製系統？',`若需求涉及諮詢流程、會員、文件解析、報表或資料串接，可從實際工作步驟、資料來源與使用權限開始討論。系統方案 NT$${money(plan('system').price)} 起（${pricing.constructionTax}），依規格報價；系統工具依約定授權。`,'/services/ai-custom-systems/','了解 AI 與客製系統'],
+    ['什麼情況需要 AI 或客製系統？',`若需求涉及諮詢流程、會員、文件解析、報表或資料串接，可從實際工作步驟、資料來源與使用權限開始討論。系統方案${pricing.constructionTax} NT$${money(plan('system').price)} 起，依規格報價；系統工具依約定授權。`,'/services/ai-custom-systems/','了解 AI 與客製系統'],
     ['AI 會用在哪些地方？相關費用包含嗎？',`Hey Cheng 運用 AI 協助設計、內容整理與開發。若要在客戶系統中加入 AI 助理、文件解析或自動發文，會先確認資料使用方式、人工檢查位置與功能範圍。${pricing.maintenance.excluded}`,'/services/ai-custom-systems/','查看系統需求的準備方式']
   ]],
   ['交付與維運', [

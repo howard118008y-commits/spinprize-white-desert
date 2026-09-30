@@ -13,7 +13,7 @@
 
 /* Hero */
 #content-panel .svc-hero{position:relative;display:grid;gap:22px;padding:18px;overflow:hidden;isolation:isolate}
-#content-panel .svc-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:#111 url("case-shanyu.webp") center/cover;filter:grayscale(1) brightness(.45)}
+#content-panel .svc-hero::before{content:"";position:absolute;inset:0 0 -8%;z-index:-1;background:#111 url("case-shanyu.webp") center/cover;filter:grayscale(1) brightness(.45)}
 #content-panel .svc-hero-copy{display:grid;align-content:end;gap:16px;padding:34px 28px 48px;background:linear-gradient(120deg,rgba(0,226,193,.94),rgba(0,168,143,.94));color:#001b16;clip-path:polygon(0 0,100% 0,100% calc(100% - 26px),0 100%)}
 #content-panel .svc-eyebrow{display:flex;gap:14px;font-size:12px;font-weight:700;letter-spacing:.16em;color:#00352d}
 #content-panel .svc-hero h2{font-size:clamp(34px,5vw,56px);font-weight:700;line-height:1.2;letter-spacing:.02em;color:#001b16}
