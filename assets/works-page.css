@@ -17,7 +17,7 @@
 #grid .wk-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.55)),url("case-jianan.webp") center/cover;filter:grayscale(1) blur(10px);transform:scale(1.08)}
 #grid .wk-hero .grid-back{color:var(--accent)}
 #grid .wk-hero .wk-kicker{margin-top:6px;color:var(--accent)}
-#grid .wk-hero h1{margin-top:10px;font-size:clamp(34px,5vw,56px);font-weight:700;line-height:1.2;letter-spacing:.02em}
+#grid .wk-hero #grid-title{margin-top:10px;font-size:clamp(34px,5vw,56px);font-weight:700;line-height:1.2;letter-spacing:.02em}
 #grid .wk-hero-sub{max-width:30em;margin-top:16px;font-size:17px;font-style:italic;line-height:1.85;color:#d3dad7}
 #grid .wk-hero .hb-btn{margin-top:26px}
 #grid .wk-film{position:relative;margin:0;aspect-ratio:16/9;border:1px solid rgba(244,242,239,.28);background:#000}

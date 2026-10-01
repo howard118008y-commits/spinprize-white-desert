@@ -248,7 +248,7 @@
         if (!data.plans.length || !data.methods.length) throw new Error('no plans');
         const selected = data.plans.some((p) => p.id === wanted) ? wanted : data.plans[0].id;
         $('#plans').innerHTML = data.plans.map((p) => `<label class="choice"><input type="radio" name="plan" value="${esc(p.id)}"${p.id === selected ? ' checked' : ''}><span>${esc(p.name)}<small>${esc(p.purpose)}</small></span><span class="price">${money(p.price)}</span></label>`).join('');
-        $('#methods').innerHTML = data.methods.map((m) => `<label class="choice"><input type="radio" name="method" value="${esc(m.id)}"><span>${esc(m.label)}</span></label>`).join('');
+        $('#methods').innerHTML = data.methods.map((m) => `<label class="choice"><input type="radio" name="method" value="${esc(m.id)}"${data.methods.length === 1 ? ' checked' : ''}><span>${esc(m.label)}</span></label>`).join('');
         $('#gateway-note').hidden = !data.methods.some((m) => m.id !== 'cash');
         form.action = `${API}/checkout`;
         form.hidden = false;

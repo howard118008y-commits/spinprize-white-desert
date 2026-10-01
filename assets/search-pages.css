@@ -76,3 +76,9 @@ html[data-view="mobile"] .full-capture figcaption{display:block}
 }
 @media(pointer:coarse){.project-facts a{min-height:44px}.faqs summary{min-height:44px}}
 }
+/* Contact band: LINE, phone and pricing side by side; display-mode picker lives in the footer. */
+.contact-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:32px}
+.contact-actions .button{margin-top:0;gap:24px}
+.button-outline{background:transparent;color:var(--accent)}
+.button-outline:hover{background:var(--accent);color:#071210}
+.site-footer .page-view-mode{flex:0 0 auto}

@@ -8,11 +8,15 @@ const origin = 'https://heycheng.com.tw';
 const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const money = value => new Intl.NumberFormat('en-US').format(value);
 const organization = {
-  '@type':'Organization', '@id':`${origin}/#organization`, name:'Hey Cheng',
+  '@type':['Organization','ProfessionalService'], '@id':`${origin}/#organization`, name:'Hey Cheng',
   alternateName:'旋賞數位', legalName:'旋賞數位有限公司', url:`${origin}/`, taxID:'62149294',
   logo:{'@type':'ImageObject',url:`${origin}/assets/hey-cheng-logo.png`,width:2061,height:763},
   telephone:'+886-2-2226-2678', email:'howard118008y@gmail.com',
-  address:{'@type':'PostalAddress',streetAddress:'景平路593號之1',addressLocality:'中和區',addressRegion:'新北市',addressCountry:'TW'},
+  address:{'@type':'PostalAddress',streetAddress:'景平路593號之1',addressLocality:'中和區',addressRegion:'新北市',postalCode:'235',addressCountry:'TW'},
+  image:`${origin}/assets/og-heycheng-1200x630.jpg`,
+  priceRange:`NT$${pricing.plans[0].price.toLocaleString('en-US')} 起`,
+  areaServed:['中和區','永和區','新北市','臺北市'].map(name=>({'@type':'AdministrativeArea',name})),
+  hasOfferCatalog:{'@type':'OfferCatalog',name:'網站建置方案',itemListElement:pricing.plans.map(item=>({'@type':'Offer',name:`${item.name}方案`,description:item.includes,priceCurrency:'TWD',priceSpecification:{'@type':'PriceSpecification',price:item.price,priceCurrency:'TWD',...(item.from?{minPrice:item.price}:{}),valueAddedTaxIncluded:true}}))},
   sameAs:['https://www.instagram.com/heychengtw/']
 };
 const website = {'@type':'WebSite','@id':`${origin}/#website`,url:`${origin}/`,name:'Hey Cheng',alternateName:['HeyCheng','旋賞數位'],inLanguage:'zh-Hant',publisher:{'@id':organization['@id']}};
@@ -124,6 +128,7 @@ function document(page, type, body) {
     organization, website,
     {'@type':'WebPage','@id':`${url}#page`,url,name:page.title,description:page.description,inLanguage:'zh-Hant',isPartOf:{'@id':website['@id']},publisher:{'@id':organization['@id']},breadcrumb:{'@id':`${url}#breadcrumb`},about:{'@id':type==='services'?`${url}#service`:organization['@id']},...(type==='services'?{mainEntity:{'@id':`${url}#service`}}:{})},
     {'@type':'BreadcrumbList','@id':`${url}#breadcrumb`,itemListElement:[{'@type':'ListItem',position:1,name:'Hey Cheng',item:`${origin}/`},{'@type':'ListItem',position:2,name:page.name,item:url}]},
+    ...(type==='faq' ? [{'@type':'FAQPage','@id':`${url}#faq`,mainEntity:faqGroups.flatMap(([,questions])=>questions.map(([question,answer])=>({'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:answer}})))}] : []),
     ...(type==='services' ? [{'@type':'Service','@id':`${url}#service`,name:page.name,serviceType:page.name,description:page.intro,url,provider:{'@id':organization['@id']},mainEntityOfPage:{'@id':`${url}#page`}}] : [])
   ]};
   return `<!doctype html>
@@ -137,20 +142,20 @@ function document(page, type, body) {
   <meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta property="og:url" content="${url}">
   <meta property="og:image" content="${origin}/assets/${page.image}"><meta property="og:image:alt" content="${escape(page.imageAlt)}">
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(page.title)}"><meta name="twitter:description" content="${escape(page.description)}"><meta name="twitter:image" content="${origin}/assets/${page.image}">
-  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20260930-qa">
+  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20261001-audit">
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
 <body>
   <a class="skip-link" href="#main">跳至內容</a>
-  <header class="site-header"><a href="/" class="brand" aria-label="Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent.png" alt="Hey Cheng" width="1377" height="763"></a><nav aria-label="主要導覽"><a href="/#grid">作品</a><a href="/#services">服務</a><a href="/#pricing">方案</a><a class="contact-link" href="/#contact">聯絡 <span aria-hidden="true">↗</span></a></nav><div class="page-view-mode" data-view-mode-host></div></header>
+  <header class="site-header"><a href="/" class="brand" aria-label="Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent-480.webp" alt="Hey Cheng" width="480" height="266"></a><nav aria-label="主要導覽"><a href="/#grid">作品</a><a href="/#services">服務</a><a href="/#pricing">方案</a><a class="contact-link" href="/#contact">聯絡 <span aria-hidden="true">↗</span></a></nav></header>
   <main id="main"><nav class="breadcrumb" aria-label="麵包屑"><a href="/">首頁</a><span aria-hidden="true">/</span><span aria-current="page">${escape(page.name)}</span></nav>
   <header class="hero"><p class="eyebrow">${escape(page.label)}</p><h1>${escape(page.name)}</h1><p class="hero-lead">${escape(page.lead)}</p><p class="intro">${escape(page.intro)}</p></header>
   ${body}
-  <section class="contact section"><p class="eyebrow">LET'S TALK</p><h2>你的下一個網站，<br>從一段對話開始。</h2><a class="button" href="/#contact">和 Hey Cheng 聊聊 <span aria-hidden="true">↗</span></a></section>
+  <section class="contact section"><p class="eyebrow">LET'S TALK</p><h2>你的下一個網站，<br>從一段對話開始。</h2><div class="contact-actions"><a class="button" href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊 <span aria-hidden="true">↗</span></a><a class="button button-outline" href="tel:+886222262678">打電話 02-2226-2678</a><a class="text-link" href="/#pricing">看方案價格 <span aria-hidden="true">↗</span></a></div></section>
   </main>
-  <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent.png" alt="Hey Cheng" width="1377" height="763" loading="lazy"></a><p>旋賞數位有限公司 · 統一編號 62149294 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/#pricing">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="/portal/">文件工作台</a><a href="/privacy/">隱私說明</a><a href="/terms/">服務條款</a></div></footer>
+  <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent-480.webp" alt="Hey Cheng" width="480" height="266" loading="lazy"></a><p>旋賞數位有限公司 · 統一編號 62149294 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/#pricing">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊</a><a href="/privacy/">隱私說明</a><a href="/terms/">服務條款</a></div><div class="page-view-mode" data-view-mode-host></div></footer>
 </body>
 </html>
 `;
@@ -169,7 +174,7 @@ const faq = {
   name:'合作常見問題', label:'WORKING TOGETHER', title:'網站建置常見問題｜費用、交付、維運與 AI 系統｜Hey Cheng',
   description:`Hey Cheng 旋賞數位網站合作問答：入門網站 NT$${money(plan('entry').price)} ${pricing.constructionTax}、拍攝文案、付款與修改、第二年維運、網域與成果權利、搬遷及 AI 系統費用，一次了解公開合作條件。`,
   lead:'先把合作的細節，說清楚。', intro:'從第一個網站到需要串接營運的系統，先了解費用包含什麼、交付如何約定，以及上線後怎麼維護。以下依公開方案整理；實際範圍與交期，會在正式報價與合約中確認。',
-  image:'hey-cheng-logo.png', imageAlt:'Hey Cheng 黑色與 Tiffany 綠品牌標誌'
+  image:'og-heycheng-1200x630.jpg', imageAlt:'Hey Cheng 中和網頁設計：客人找不到你，多半不是生意不好。'
 };
 const faqGroups = [
   ['方案與內容', [

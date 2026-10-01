@@ -49,7 +49,8 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
     await context.close();
     if(name==='chromium'){
       const scrollContext=await browser.newContext(mobile);const scrollPage=await scrollContext.newPage();
-      await scrollPage.route('**/assets/**',async route=>{await new Promise(resolve=>setTimeout(resolve,1200));await route.continue()});
+      // Films keep a media request open while buffering, which would stall the networkidle wait below.
+      await scrollPage.route('**/assets/**',async route=>{if(route.request().url().endsWith('.mp4'))return route.abort();await new Promise(resolve=>setTimeout(resolve,1200));await route.continue()});
       await scrollPage.goto(`${baseURL}#services`,{waitUntil:'domcontentloaded'});
       await scrollPage.waitForTimeout(100);await assertPosition(scrollPage,'chromium slow images before user scroll');
       const client=await scrollContext.newCDPSession(scrollPage);
