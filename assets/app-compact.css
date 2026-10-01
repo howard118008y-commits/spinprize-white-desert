@@ -18,14 +18,8 @@ html[data-view="mobile"] .page-view-mode .view-mode-control select{grid-area:1/2
   html[data-view="mobile"] .page-view-mode{order:3;flex:0 0 100%;margin-left:0}
 }
 
-/* Bottom tab bar */
-html[data-view="mobile"]{--hb-nav-h:calc(47px + env(safe-area-inset-bottom,0px))}
-html[data-view="mobile"] body{padding-bottom:calc(50px + env(safe-area-inset-bottom,0px))}
-html[data-view="mobile"] .primary-nav{padding:3px 10px calc(3px + env(safe-area-inset-bottom,0px))}
-html[data-view="mobile"] .primary-nav a{min-height:40px;font-size:13px}
-
 /* Panels: start below the measured header and use more of the width. */
-html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:calc(var(--site-header-h,calc(48px + env(safe-area-inset-top,0px))) + 12px);padding-bottom:calc(60px + env(safe-area-inset-bottom,0px));padding-inline:max(14px,calc((100% - 652px)/2))}
+html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:calc(var(--site-header-h,calc(48px + env(safe-area-inset-top,0px))) + 12px);padding-bottom:calc(13px + env(safe-area-inset-bottom,0px));padding-inline:max(14px,calc((100% - 652px)/2))}
 html[data-view="mobile"] #content-panel .panel-bar{margin-bottom:12px;padding-bottom:4px}
 html[data-view="mobile"] .panel-bar a{min-height:36px;gap:12px;font-size:12px}
 html[data-view="mobile"] #content-panel .content-page{padding:4px 0 28px;font-size:14px;line-height:1.7}

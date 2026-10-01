@@ -66,12 +66,10 @@
 /* The selected viewing mode controls layout; input capability stays independent. */
 
 html[data-view="mobile"]{--home-pad:22px}
-html[data-view="mobile"] body{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+html[data-view="mobile"] body{padding-bottom:env(safe-area-inset-bottom,0px)}
 html[data-view="mobile"] .site-header{min-height:68px;padding:8px var(--home-pad);padding-top:calc(8px + env(safe-area-inset-top,0px));gap:20px;justify-content:space-between}
 html[data-view="mobile"] .site-header .wordmark{width:148px;height:48px}
-html[data-view="mobile"] .primary-nav{position:fixed;left:0;right:0;bottom:0;z-index:65;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:5px 12px calc(5px + env(safe-area-inset-bottom,0px));background:#07100d;border-top:1px solid #34483e}
-html[data-view="mobile"] .primary-nav a{min-height:52px;font-size:14px;border-bottom:0;border-top:2px solid transparent}
-html[data-view="mobile"] .primary-nav a[aria-current="page"]{border-top-color:var(--accent);background:#11231c;border-bottom:0}
+html[data-view="mobile"] .primary-nav{display:none}
 html[data-view="mobile"] #home-hero{gap:8px;padding:82px var(--home-pad) 24px}
 html[data-view="mobile"] .hero-copy{display:block}
 html[data-view="mobile"] #headline{font-size:clamp(19px,5.2vw,28px);line-height:1.4;letter-spacing:-.04em}
@@ -81,7 +79,7 @@ html[data-view="mobile"] .hero-gallery{width:calc(100% + var(--home-pad)*2);heig
 html[data-view="mobile"] .gallery-controls{padding-inline:var(--home-pad)}
 html[data-view="mobile"] .colophon{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding-block:28px;gap:20px}
 html[data-view="mobile"] .colophon>div:first-child{grid-column:1/-1}
-html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:96px;padding-bottom:calc(98px + env(safe-area-inset-bottom,0px))}
+html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:96px;padding-bottom:calc(35px + env(safe-area-inset-bottom,0px))}
 html[data-view="mobile"] #content-panel .panel-bar{margin-bottom:20px}
 html[data-view="mobile"] #content-panel .content-heading{padding-bottom:24px}
 html[data-view="mobile"] #content-panel h2{font-size:32px}
@@ -117,8 +115,7 @@ html[data-view="desktop"] .rows{grid-template-columns:repeat(auto-fit,minmax(min
 html[data-view="mobile"]{--home-pad:22px}
 html[data-view="mobile"] .site-header{padding-inline:max(22px,calc((100% - 636px)/2));row-gap:6px}
 html[data-view="mobile"] .page-view-mode .view-mode-control{justify-content:flex-start}
-html[data-view="mobile"] .primary-nav{left:50%;right:auto;transform:translateX(-50%);width:min(100%,680px)}
-html[data-view="mobile"] #home-hero{width:min(100%,680px);height:calc(100svh - 90px - env(safe-area-inset-bottom,0px));min-height:510px;padding-top:calc(132px + env(safe-area-inset-top,0px));padding-bottom:0}
+html[data-view="mobile"] #home-hero{width:min(100%,680px);height:calc(100svh - 27px - env(safe-area-inset-bottom,0px));min-height:510px;padding-top:calc(132px + env(safe-area-inset-top,0px));padding-bottom:0}
 html[data-view="mobile"] #headline{font-size:clamp(19px,4vw,28px)}
 html[data-view="mobile"] .hero-gallery{flex:1;min-height:270px;height:auto}
 html[data-view="mobile"] #grid,html[data-view="mobile"] #content-panel{padding-top:calc(var(--site-header-h,calc(76px + env(safe-area-inset-top,0px))) + 28px);padding-inline:max(22px,calc((100% - 636px)/2))}
@@ -145,9 +142,5 @@ html[data-view="mobile"] #content-panel .content-contact-info{padding:22px}
 }
 @media(pointer:coarse){.menu-btn{min-height:44px}.policy-links a{min-height:44px;display:inline-flex;align-items:center}}
 }
-/* Mobile tab bar leads with call and LINE; services and contact stay in the menu. */
+/* Call and LINE stay out of the desktop navigation; the mobile view has no bottom tab bar, so the menu carries them. */
 .primary-nav .nav-action{display:none}
-html[data-view="mobile"] .primary-nav .nav-action{display:flex;color:var(--accent);font-weight:600}
-html[data-view="mobile"] .primary-nav [data-nav="services"],html[data-view="mobile"] .primary-nav [data-nav="contact"]{display:none}
-html[data-view="mobile"] .primary-nav [data-nav="pricing"]{order:3}
-html[data-view="mobile"] .primary-nav [data-nav="works"]{order:4}
