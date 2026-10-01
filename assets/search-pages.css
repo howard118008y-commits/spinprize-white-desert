@@ -83,3 +83,34 @@ html[data-view="mobile"] .full-capture figcaption{display:block}
 .site-header nav .nav-action{display:none}
 .mid-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:28px}
 .mid-cta .button{margin-top:0}
+/* Phone view: the homepage's top-right 選單 button and full-screen menu (open/close in page-menu.js). */
+.site-header .menu-btn,html:not([data-view="mobile"]) #menu{display:none}
+.menu-btn,#menu{--ink:#f4f2ef;--dim:#a1aaa7;--home-font:"Helvetica Neue",Arial,"PingFang TC","Microsoft JhengHei",sans-serif;font:400 16px/1.65 var(--home-font);color:var(--ink)}
+.menu-btn,.menu-close{border:0;background:none;cursor:pointer;min-height:44px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.menu-close{font:inherit;color:inherit}
+:is(.menu-btn,.menu-close,#menu a):focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+html[data-view="mobile"] .site-header .menu-btn{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:46px;padding:8px 0}
+.menu-label{font-size:10px;letter-spacing:.08em;color:var(--dim)}
+.bars{position:relative;width:28px;height:14px}
+.bars i{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--ink);transform:translateY(-5px);transition:transform .4s,width .4s}
+.bars i+i{width:28px;transform:translateY(5px)}
+body.menu-open{overflow:hidden}
+#menu{--pad:clamp(14px,2.6vw,34px);position:fixed;inset:0;z-index:80;background:#050505;display:grid;place-items:center;clip-path:inset(0 0 100% 0);visibility:hidden;pointer-events:none;transition:clip-path .85s cubic-bezier(.22,.61,.36,1),visibility 0s .85s;padding:90px var(--pad) 100px;overflow:auto}
+.menu-open #menu{clip-path:inset(0);visibility:visible;pointer-events:auto;transition:clip-path .85s cubic-bezier(.22,.61,.36,1)}
+.menu-close{position:absolute;right:calc(var(--pad) + env(safe-area-inset-right,0px));top:calc(var(--pad) + env(safe-area-inset-top,0px));padding:8px 4px;min-width:70px;display:flex;gap:14px;align-items:center;font-size:13px}
+.menu-close span{font-size:24px;font-weight:300;color:var(--accent)}
+.menu-inner{width:min(100%,636px)}
+.menu-nav{display:flex;flex-direction:column;gap:10px}
+.menu-nav a{display:flex;align-items:center;justify-content:space-between;gap:30px;font-size:32px;line-height:1.28;letter-spacing:-.04em;min-height:44px}
+.menu-nav a span{font:400 12px var(--home-font);letter-spacing:.08em;color:var(--dim)}
+.menu-nav a:last-child{font:400 32px var(--home-font);color:var(--accent);margin-top:4px}
+.addr{position:absolute;left:calc(var(--pad) + env(safe-area-inset-left,0px));right:calc(var(--pad) + env(safe-area-inset-right,0px));bottom:calc(var(--pad) + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--dim);font-size:12px;line-height:1.7}
+.addr a{min-height:44px;display:flex;align-items:center}
+.policy-links{display:flex;flex-wrap:wrap;gap:0 20px}
+.policy-links a{display:inline-flex;align-items:center;min-height:44px;font-size:12px;color:var(--dim);letter-spacing:0}
+#menu .addr>a:hover,#menu .menu-nav a:not(:last-child):hover{color:inherit}
+@media(hover:hover) and (pointer:fine){.menu-btn:hover .bars i+i{transform:translate(-8px,5px)}#menu .menu-nav a:not(:last-child):hover{color:var(--accent)}}
+@media(display-mode:standalone){html[data-view="mobile"] .site-header .menu-btn{gap:4px;padding:2px 0}}
+@media(max-width:640px){#menu{--pad:clamp(12px,4vw,18px)}.menu-inner{max-width:320px}.addr{flex-direction:column;align-items:flex-start;gap:0}}
+@media(max-height:520px) and (orientation:landscape){#menu{padding:75px var(--pad) 25px}.menu-nav{display:grid;grid-template-columns:1fr 1fr}.addr{display:none}}
+@media(prefers-reduced-motion:reduce){#menu,.menu-open #menu,.bars i{transition-duration:.14s;transition-delay:0ms}}
