@@ -61,6 +61,7 @@ html[data-view="mobile"] .hb-reel-copy{bottom:92px;padding-top:36px}
 html[data-view="mobile"] .hb-reel-copy h1{font-size:clamp(24px,7vw,30px)}
 html[data-view="mobile"] .hb-reel-cta .hb-btn{min-height:46px;padding:0 18px;font-size:14px}
 /* LINE QR is for desktop visitors; phones use the add-friend button. */
+.content-line-promise{margin-left:10px;font-size:13px;font-weight:500;color:var(--content-accent,#00d9ba)}
 .content-line-qr{display:flex;align-items:center;gap:14px;margin:18px 0 0}
 .content-line-qr img{width:120px;height:120px;padding:6px;background:#fff}
 .content-line-qr figcaption{font-size:13px;color:var(--content-muted,#aca9a2)}

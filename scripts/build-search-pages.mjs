@@ -142,7 +142,7 @@ function document(page, type, body) {
   <meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta property="og:url" content="${url}">
   <meta property="og:image" content="${origin}/assets/${page.image}"><meta property="og:image:alt" content="${escape(page.imageAlt)}">
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(page.title)}"><meta name="twitter:description" content="${escape(page.description)}"><meta name="twitter:image" content="${origin}/assets/${page.image}">
-  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20261001-audit">
+  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20261001-promise">
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
@@ -153,7 +153,7 @@ function document(page, type, body) {
   <main id="main"><nav class="breadcrumb" aria-label="麵包屑"><a href="/">首頁</a><span aria-hidden="true">/</span><span aria-current="page">${escape(page.name)}</span></nav>
   <header class="hero"><p class="eyebrow">${escape(page.label)}</p><h1>${escape(page.name)}</h1><p class="hero-lead">${escape(page.lead)}</p><p class="intro">${escape(page.intro)}</p></header>
   ${body}
-  <section class="contact section"><p class="eyebrow">LET'S TALK</p><h2>你的下一個網站，<br>從一段對話開始。</h2><div class="contact-actions"><a class="button" href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊 <span aria-hidden="true">↗</span></a><a class="button button-outline" href="tel:+886222262678">打電話 02-2226-2678</a><a class="text-link" href="/#pricing">看方案價格 <span aria-hidden="true">↗</span></a></div></section>
+  <section class="contact section"><p class="eyebrow">LET'S TALK</p><h2>你的下一個網站，<br>從一段對話開始。</h2><div class="contact-actions"><a class="button" href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊 <span aria-hidden="true">↗</span></a><a class="button button-outline" href="tel:+886222262678">打電話 02-2226-2678</a><a class="text-link" href="/#pricing">看方案價格 <span aria-hidden="true">↗</span></a></div><p class="contact-note">LINE 平日 2 小時內回覆</p></section>
   </main>
   <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent-480.webp" alt="Hey Cheng" width="480" height="266" loading="lazy"></a><p>旋賞數位有限公司 · 統一編號 62149294 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/#pricing">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊</a><a href="/privacy/">隱私說明</a><a href="/terms/">服務條款</a></div><div class="page-view-mode" data-view-mode-host></div></footer>
 </body>

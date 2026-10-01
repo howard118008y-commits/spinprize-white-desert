@@ -40,12 +40,8 @@
 #grid .wk-count h2{font-size:clamp(22px,2.8vw,32px);font-weight:700}
 
 /* Filterable grid */
-#grid .wk-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:34px}
-#grid .wk-filters button{min-height:48px;padding:0 20px;border:2px solid var(--wk-ink);background:transparent;color:var(--wk-ink);font:inherit;font-size:14px;font-weight:700;letter-spacing:.08em;cursor:pointer;transition:background .2s,color .2s}
-#grid .wk-filters [aria-pressed="true"]{background:var(--wk-ink);color:#fff}
 #grid .rows{max-width:1184px;margin-top:40px;gap:44px 28px}
 #grid .grid-card{color:var(--wk-ink)}
-#grid .grid-card[hidden]{display:none}
 #grid .grid-card figure{border-radius:0;aspect-ratio:16/10;background:var(--wk-soft)}
 #grid .grid-card .grid-number{border-radius:0;background:rgba(11,16,15,.86)}
 #grid .grid-card .grid-kicker{display:block;margin-top:16px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--wk-teal)}
@@ -61,7 +57,6 @@
 
 @media(hover:hover) and (pointer:fine){
   #grid .grid-card:hover .grid-caption>span:first-child{color:var(--wk-teal)}
-  #grid .wk-filters button:hover{background:var(--wk-ink);color:#fff}
   #grid .wk-featured .hb-btn:hover{color:var(--wk-teal)}
   #grid .wk-cta .hb-btn:hover{background:transparent;border-color:#001b16;color:#001b16}
 }
@@ -73,4 +68,3 @@
   html:not([data-view="mobile"]) #grid .wk-hero{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;gap:48px;min-height:460px;padding:56px 48px}
   html:not([data-view="mobile"]) #grid .rows{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
-@media(prefers-reduced-motion:reduce){#grid .wk-filters button{transition:none}}
