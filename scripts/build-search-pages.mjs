@@ -7,6 +7,8 @@ const pricing = JSON.parse(await readFile(resolve(process.env.PRICING_DATA || re
 const origin = 'https://heycheng.com.tw';
 const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const money = value => new Intl.NumberFormat('en-US').format(value);
+// Plain-language site rights promise shared by service pages and the FAQ.
+const plainRights = '網域一律登記在客戶名下。尾款付清後，網站上的文字、照片與完成的網站內容歸客戶使用；不續約時，可以把網站完整搬走。旋賞保留製作用的底層模板與元件，系統級的線上流程與工具依合約授權使用。';
 const organization = {
   '@type':['Organization','ProfessionalService'], '@id':`${origin}/#organization`, name:'Hey Cheng',
   alternateName:'旋賞數位', legalName:'旋賞數位有限公司', url:`${origin}/`, taxID:'62149294',
@@ -104,6 +106,19 @@ const works = [
       ['從認識品牌，走向各自的入口','頁面安排新手說明、相關服務連結與店面資訊。品牌網站負責建立理解與導引，連結的線上平台則承接各自的操作情境；案例不把品牌頁面與獨立平台視為同一個功能。']
     ],
     takeaways:['適合用於討論：有多種服務、活動或新品資訊的零售品牌。','可參考的內容安排：品牌、主力服務、情報、新手說明與到店。','品牌入口與交易或會員平台的功能範圍，應分別確認。'], services:['brand-websites','ai-custom-systems']
+  },
+  {
+    slug:'cx468', id:'cx468', name:'鋮馨租賃', label:'BUSINESS SERVICES / INQUIRY FLOW', title:'鋮馨租賃網站案例｜諮詢動線、AI 助理與搜尋曝光成長｜Hey Cheng',
+    description:'鋮馨租賃（Hey Cheng 創辦人自營品牌）網站案例：以需求分類、電話與 LINE 入口安排諮詢動線，結合 AI 助理與試算工具；Google Search Console 月曝光由 5 月 1,133 次成長到 9 月 14,870 次（統計至 9/28）。',
+    lead:'把複雜的問題，整理成一通打得出去的電話。', intro:'鋮馨租賃是 Hey Cheng 創辦人自營的企業服務品牌。網站把常見的資金需求整理成清楚的分類，再接上電話、LINE、AI 助理與試算工具，讓訪客先看懂自己的狀況，再決定怎麼聯絡。',
+    image:'case-cx468.webp', imageAlt:'鋮馨租賃網站首頁的諮詢入口與品牌吉祥物', kind:'企業服務', focus:'諮詢動線 · AI 助理 · 搜尋曝光', live:'https://cx468.com.tw/', height:6493, overviewHeight:4329, captured:'2026 年 10 月 1 日',
+    context:'金融相關服務的訪客，常帶著焦慮和一連串問題上門。網站要先讓人看懂「我是哪一種需求」，再提供低門檻的聯絡方式；內容也要能被 Google 搜尋到，讓需要的人找得到。',
+    sections:[
+      ['先分類需求，再談下一步','首頁以常見的資金需求分類作為入口，訪客依自己的狀況選擇，再看到對應說明；電話與 LINE 按鈕在第一屏就看得到。'],
+      ['AI 助理與試算，降低詢問門檻','頁面內建 AI 助理與試算工具，訪客可以先整理問題、試算條件，再帶著具體問題聯絡，雙方都省下來回確認的時間。'],
+      ['持續更新內容，累積搜尋曝光','網站持續發布知識文章與常見問題。依 Google Search Console 紀錄，月曝光次數從 2026 年 5 月的 1,133 次，成長到 9 月的 14,870 次（9 月統計至 9/28）。']
+    ],
+    takeaways:['適合用於討論：需要電話或 LINE 諮詢的服務業網站。','可參考的內容安排：需求分類、低門檻聯絡、試算工具與知識文章。','曝光數字來自自營網站的 Search Console 紀錄，不代表其他網站必然得到相同結果。'], services:['ai-custom-systems','brand-websites']
   }
 ];
 
@@ -116,14 +131,14 @@ function pricingBlock(ids) {
   const m = pricing.maintenance;
   const s = pricing.socialAutopost;
   const social = ids.includes('system') && s ? `<p>${escape(s.name)}另有明列價目：建置 NT$${money(s.setup)}，月費自助版 NT$${money(s.monthly.selfServe)}／月或代寫代發每月 ${escape(s.postsPerMonth)} 篇 NT$${money(s.monthly.managed)}／月，均${escape(s.tax)}。 <a class="text-link" href="/#pricing">查看社群自動發文價目 <span aria-hidden="true">↗</span></a></p>` : '';
-  return `<section class="section" id="plans"><div class="section-head"><p class="eyebrow">PLANS & SCOPE</p><h2>${ids.includes('plus')?'包含拍攝文案的建置方案':'從需要的規模開始'}</h2><p>${ids.includes('plus')?'本區顯示整套網站建置方案，不是單項攝影或文案的報價。':'以下為公開建置方案，作品畫面不代表個別方案的交付範圍。'}</p></div><div class="plans">${plans}</div>${social}<details class="terms"><summary>維運與合作條件</summary><div><p>${escape(m.firstYear)}</p><p>第 ${escape(m.startsYear)} 年起，基本維運每年 NT$${money(m.annual)}（${escape(m.tax)}）。${escape(m.service)}${escape(m.excluded)}</p><p>${escape(pricing.terms.payment)}${escape(pricing.terms.schedule)}${escape(pricing.terms.productionRevisions)}</p><p>${escape(pricing.terms.addons)}</p><p>${escape(pricing.terms.documentCopyright)}${escape(pricing.terms.websiteRights)}</p></div></details><a class="text-link" href="/#pricing">查看全部方案與完整條件 <span aria-hidden="true">↗</span></a></section>`;
+  return `<section class="section" id="plans"><div class="section-head"><p class="eyebrow">PLANS & SCOPE</p><h2>${ids.includes('plus')?'包含拍攝文案的建置方案':'從需要的規模開始'}</h2><p>${ids.includes('plus')?'本區顯示整套網站建置方案，不是單項攝影或文案的報價。':'以下為公開建置方案，作品畫面不代表個別方案的交付範圍。'}</p></div><div class="plans">${plans}</div>${social}<details class="terms"><summary>維運與合作條件</summary><div><p>${escape(m.firstYear)}</p><p>第 ${escape(m.startsYear)} 年起，基本維運每年 NT$${money(m.annual)}（${escape(m.tax)}）。${escape(m.service)}${escape(m.excluded)}</p><p>${escape(pricing.terms.payment)}${escape(pricing.terms.schedule)}${escape(pricing.terms.productionRevisions)}</p><p>${escape(pricing.terms.addons)}</p><p>${escape(plainRights)}</p></div></details><a class="text-link" href="/#pricing">查看全部方案與完整條件 <span aria-hidden="true">↗</span></a></section>`;
 }
 const paragraphs = sections => sections.map(([title, text], i) => `<section class="story-row"><p class="number" aria-hidden="true">0${i+1}</p><div><h2>${escape(title)}</h2><p>${escape(text)}</p></div></section>`).join('');
 const workCards = slugs => `<div class="related-grid">${slugs.map(slug => { const w = works.find(item => item.slug === slug); return `<a class="work-card" href="/work/${w.slug}/"><img src="/assets/${w.image}" alt="${escape(w.imageAlt)}" width="1440" height="900" loading="lazy" decoding="async"><p class="eyebrow">${escape(w.kind)}</p><h3>${escape(w.name)} <span aria-hidden="true">↗</span></h3><p>${escape(w.focus)}</p></a>`; }).join('')}</div>`;
 const serviceLinks = slugs => `<div class="service-links">${slugs.map(slug => { const s = services.find(item => item.slug === slug); return `<a href="/services/${slug}/"><span>${escape(s.name)}</span><span aria-hidden="true">↗</span></a>`; }).join('')}</div>`;
 
 function document(page, type, body) {
-  const url = `${origin}${type==='faq' ? '/faq/' : `/${type}/${page.slug}/`}`;
+  const url = `${origin}${type==='faq' ? '/faq/' : type==='pricing' ? '/pricing/' : `/${type}/${page.slug}/`}`;
   const schema = {'@context':'https://schema.org','@graph':[
     organization, website,
     {'@type':'WebPage','@id':`${url}#page`,url,name:page.title,description:page.description,inLanguage:'zh-Hant',isPartOf:{'@id':website['@id']},publisher:{'@id':organization['@id']},breadcrumb:{'@id':`${url}#breadcrumb`},about:{'@id':type==='services'?`${url}#service`:organization['@id']},...(type==='services'?{mainEntity:{'@id':`${url}#service`}}:{})},
@@ -142,27 +157,27 @@ function document(page, type, body) {
   <meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta property="og:url" content="${url}">
   <meta property="og:image" content="${origin}/assets/${page.image}"><meta property="og:image:alt" content="${escape(page.imageAlt)}">
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(page.title)}"><meta name="twitter:description" content="${escape(page.description)}"><meta name="twitter:image" content="${origin}/assets/${page.image}">
-  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20261001-promise">
+  <meta name="theme-color" content="#080d0c"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/search-pages.css?v=20261001-nav">
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>
 <script src="/assets/view-mode.js?v=20260928-modes"></script>
 <link rel="stylesheet" href="/assets/view-mode.css?v=20260928-modes">
 </head>
 <body>
   <a class="skip-link" href="#main">跳至內容</a>
-  <header class="site-header"><a href="/" class="brand" aria-label="Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent-480.webp" alt="Hey Cheng" width="480" height="266"></a><nav aria-label="主要導覽"><a href="/#grid">作品</a><a href="/#services">服務</a><a href="/#pricing">方案</a><a class="contact-link" href="/#contact">聯絡 <span aria-hidden="true">↗</span></a></nav></header>
+  <header class="site-header"><a href="/" class="brand" aria-label="Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent-480.webp" alt="Hey Cheng" width="480" height="266"></a><nav aria-label="主要導覽"><a class="nav-action" href="tel:+886222262678">電話</a><a class="nav-action" href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE</a><a href="/#grid">作品</a><a href="/#services">服務</a><a href="/#pricing">方案</a><a class="contact-link" href="/#contact">聯絡 <span aria-hidden="true">↗</span></a></nav></header>
   <main id="main"><nav class="breadcrumb" aria-label="麵包屑"><a href="/">首頁</a><span aria-hidden="true">/</span><span aria-current="page">${escape(page.name)}</span></nav>
   <header class="hero"><p class="eyebrow">${escape(page.label)}</p><h1>${escape(page.name)}</h1><p class="hero-lead">${escape(page.lead)}</p><p class="intro">${escape(page.intro)}</p></header>
   ${body}
   <section class="contact section"><p class="eyebrow">LET'S TALK</p><h2>你的下一個網站，<br>從一段對話開始。</h2><div class="contact-actions"><a class="button" href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊 <span aria-hidden="true">↗</span></a><a class="button button-outline" href="tel:+886222262678">打電話 02-2226-2678</a><a class="text-link" href="/#pricing">看方案價格 <span aria-hidden="true">↗</span></a></div><p class="contact-note">LINE 平日 2 小時內回覆</p></section>
   </main>
-  <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent-480.webp" alt="Hey Cheng" width="480" height="266" loading="lazy"></a><p>旋賞數位有限公司 · 統一編號 62149294 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/#pricing">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊</a><a href="/privacy/">隱私說明</a><a href="/terms/">服務條款</a></div><div class="page-view-mode" data-view-mode-host></div></footer>
+  <footer class="site-footer"><div><a class="brand" href="/" aria-label="回到 Hey Cheng 首頁"><img src="/assets/hey-cheng-logo-transparent-480.webp" alt="Hey Cheng" width="480" height="266" loading="lazy"></a><p>旋賞數位有限公司 · 統一編號 62149294 · 新北中和</p><a href="tel:+886222262678">02-2226-2678</a></div><div><p class="eyebrow">服務</p>${services.map(s => `<a href="/services/${s.slug}/">${escape(s.name)}</a>`).join('')}</div><div><p class="eyebrow">完整案例</p>${works.map(w => `<a href="/work/${w.slug}/">${escape(w.name)}</a>`).join('')}</div><div><a href="/#about">關於我們</a><a href="/pricing/">方案與價格</a><a href="/faq/">合作常見問題</a><a href="/#contact">聯絡方式</a><a href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊</a><a href="/privacy/">隱私說明</a><a href="/terms/">服務條款</a></div><div class="page-view-mode" data-view-mode-host></div></footer>
 </body>
 </html>
 `;
 }
 
 for (const s of services) {
-  const body = `<figure class="hero-image${s.heroImage?' food-image':''}"><img src="/assets/${s.heroImage||s.image}" alt="${escape(s.heroAlt||s.imageAlt)}" width="${s.heroImage?960:1440}" height="${s.heroImage?5169:900}" fetchpriority="high"><figcaption>${escape(s.caption)}</figcaption></figure><div class="story section">${paragraphs(s.sections)}</div><section class="preparation section"><div><p class="eyebrow">BEFORE WE START</p><h2>先準備這些，<br>討論會更具體。</h2></div><ul>${s.checklist.map(item=>`<li>${escape(item)}</li>`).join('')}</ul></section>${pricingBlock(s.planIds)}<section class="section"><div class="section-head"><p class="eyebrow">SELECTED WORK</p><h2>用實際作品，看看不同做法</h2><p>以下為已公開的網站作品；各案內容與交付範圍不同。</p></div>${workCards(s.related)}</section><section class="section faqs"><div class="section-head"><p class="eyebrow">QUESTIONS</p><h2>開始之前，你可能想知道</h2></div>${s.faqs.map(([q,a])=>`<details><summary>${escape(q)}</summary><p>${escape(a)}</p></details>`).join('')}</section>`;
+  const body = `<figure class="hero-image${s.heroImage?' food-image':''}"><img src="/assets/${s.heroImage||s.image}" alt="${escape(s.heroAlt||s.imageAlt)}" width="${s.heroImage?960:1440}" height="${s.heroImage?5169:900}" fetchpriority="high"><figcaption>${escape(s.caption)}</figcaption></figure><div class="story section">${paragraphs(s.sections)}</div><section class="preparation section"><div><p class="eyebrow">BEFORE WE START</p><h2>先準備這些，<br>討論會更具體。</h2></div><ul>${s.checklist.map(item=>`<li>${escape(item)}</li>`).join('')}</ul></section>${pricingBlock(s.planIds)}<div class="mid-cta"><a class="button" href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 聊聊這個方案 <span aria-hidden="true">↗</span></a><a class="text-link" href="/pricing/">看全部方案價格 <span aria-hidden="true">↗</span></a></div><section class="section"><div class="section-head"><p class="eyebrow">SELECTED WORK</p><h2>用實際作品，看看不同做法</h2><p>以下為已公開的網站作品；各案內容與交付範圍不同。</p></div>${workCards(s.related)}</section><section class="section faqs"><div class="section-head"><p class="eyebrow">QUESTIONS</p><h2>開始之前，你可能想知道</h2></div>${s.faqs.map(([q,a])=>`<details><summary>${escape(q)}</summary><p>${escape(a)}</p></details>`).join('')}</section>`;
   const path = resolve(root, `services/${s.slug}/index.html`); await mkdir(dirname(path), {recursive:true}); await writeFile(path, document(s,'services',body));
 }
 for (const w of works) {
@@ -170,6 +185,7 @@ for (const w of works) {
   const path = resolve(root, `work/${w.slug}/index.html`); await mkdir(dirname(path), {recursive:true}); await writeFile(path, document(w,'work',body));
 }
 const plan = id => pricing.plans.find(item=>item.id===id);
+
 const faq = {
   name:'合作常見問題', label:'WORKING TOGETHER', title:'網站建置常見問題｜費用、交付、維運與 AI 系統｜Hey Cheng',
   description:`Hey Cheng 旋賞數位網站合作問答：入門網站 NT$${money(plan('entry').price)} ${pricing.constructionTax}、拍攝文案、付款與修改、第二年維運、網域與成果權利、搬遷及 AI 系統費用，一次了解公開合作條件。`,
@@ -186,17 +202,30 @@ const faqGroups = [
   ['交付與維運', [
     ['網站上線後，每年要付多少維運費？',`${pricing.maintenance.firstYear}一般網站新案第 ${pricing.maintenance.startsYear} 年起，基本維運 NT$${money(pricing.maintenance.annual)}／年（${pricing.maintenance.tax}）。${pricing.maintenance.service}${pricing.maintenance.excluded}`,'/#pricing','查看完整方案與價格'],
     ['可以修改幾次？年度更新和製作修改相同嗎？',`${pricing.terms.productionRevisions}年度維運另包含每年 ${pricing.maintenance.updatesPerYear} 次內容更新，適用上線後的維運階段；製作修改與年度更新分別計算。超出約定範圍的項目另行報價。`],
-    ['網域、網站和交付文件的權利怎麼約定？',`網域登記在客戶名下。${pricing.terms.websiteRights}${pricing.terms.documentCopyright}實際交付項目會在合作前說明，並於合約中約定。`,'/#about','了解 Hey Cheng 的交付原則'],
+    ['網站是誰的？不續約怎麼辦？',`${plainRights}實際交付項目會在合作前說明，並於合約中約定。`,'/terms/#rights','看服務條款第 5 點'],
     ['既有網站需要搬遷，費用怎麼算？',`搬遷協助為 NT$${money(pricing.migration.price)}（${pricing.migration.tax}）。平台部署、DNS、教學及資料搬移的實際範圍於個案報價確認；請先提供現有網址、使用平台，以及需要保留的內容與資料。`]
   ]],
   ['合作與聯絡', [
-    ['如何付款？報價和製作時程怎麼安排？',`${pricing.terms.payment}正式報價有效期為 ${pricing.terms.quoteValidityDays} 日。${pricing.terms.schedule}洽談時可先提供希望上線的時間、內容與功能，確認範圍後再安排。`,'/#contact','開始討論需求'],
+    ['如何付款？報價和製作時程怎麼安排？',`${pricing.terms.payment}正式報價有效期為 ${pricing.terms.quoteValidityDays} 日。入門方案自需求訪談當天起 7 個工作天交件，其他方案${pricing.terms.schedule}洽談時可先提供希望上線的時間、內容與功能，確認範圍後再安排。`,'/#contact','開始討論需求'],
     ['Hey Cheng 是哪家公司？如何聯絡？','Hey Cheng 是旋賞數位有限公司的品牌，統一編號 62149294，位於新北市中和區景平路593號之1。聯絡窗口為程子顥；電話 02-2226-2678、手機 0983-158-911，LINE ID 為 hao__cheng。來店前請先電話聯絡。','/#contact','查看 Email 與社群聯絡方式']
   ]]
 ];
 const faqBody = faqGroups.map(([heading, questions])=>`<section class="section faqs"><div class="section-head"><h2>${escape(heading)}</h2></div>${questions.map(([q,a,href,label],i)=>`<details${i===0?' open':''}><summary>${escape(q)}</summary><p>${escape(a)}${href?` <a class="text-link" href="${href}">${escape(label)} <span aria-hidden="true">↗</span></a>`:''}</p></details>`).join('')}</section>`).join('');
 await mkdir(resolve(root,'faq'),{recursive:true});
 await writeFile(resolve(root,'faq/index.html'), document(faq,'faq',faqBody));
+// Standalone pricing page so search engines can index the plans on their own URL.
+const offerText = '新北中和、永和的店家，首批 10 案入門方案折抵 NT$10,000，適用後 NT$32,000（含稅）。限 10 案，額滿為止；條件是同意網站作為本站公開作品，並在上線 30 天後提供一段使用心得供本站刊登。資格與名額於洽談時確認。';
+const pricingPage = {
+  name:'方案與價格', label:'PRICING', slug:'pricing',
+  title:`網頁設計價格｜形象網站含稅 NT$${money(plan('entry').price)} 起・五級方案｜Hey Cheng 中和網頁設計`,
+  description:`中和網頁設計 Hey Cheng 公開五級含稅價格：${pricing.plans.map(item=>`${item.name} NT$${money(item.price)}${item.from?' 起':''}`).join('、')}；第 ${pricing.maintenance.startsYear} 年起維運 NT$${money(pricing.maintenance.annual)}／年。付款、交期與加購一次看懂。`,
+  lead:'先看清楚價格，再決定要不要開始。', intro:'以下為新臺幣含稅建置價，開立統一發票。方案內容、加購項目、付款方式與上線後的費用都在這一頁。',
+  image:'og-heycheng-1200x630.jpg', imageAlt:'Hey Cheng 中和網頁設計：客人找不到你，多半不是生意不好。'
+};
+const pricingBody = `${pricingBlock(pricing.plans.map(item=>item.id)).replace('包含拍攝文案的建置方案','五級含稅建置方案').replace('本區顯示整套網站建置方案，不是單項攝影或文案的報價。','以下為新臺幣含稅價，開立統一發票；作品畫面不代表個別方案的交付範圍。')}<section class="section"><div class="section-head"><p class="eyebrow">LAUNCH OFFER</p><h2>中永和首批 10 案</h2><p>${escape(offerText)}</p></div><a class="text-link" href="https://line.me/ti/p/~hao__cheng" target="_blank" rel="noopener noreferrer">LINE 詢問名額 <span aria-hidden="true">↗</span></a></section><section class="section"><div class="section-head"><p class="eyebrow">ADD-ONS</p><h2>加購與上線後費用</h2></div><div class="plans"><article class="plan"><div><h3>${escape(pricing.socialAutopost.name)}</h3><p>${escape(pricing.socialAutopost.scope)}</p></div><p class="price"><span>NT$</span> ${money(pricing.socialAutopost.setup)}<small>建置・${escape(pricing.socialAutopost.tax)}</small></p><p>月費二選一：自助版 NT$${money(pricing.socialAutopost.monthly.selfServe)}／月，代寫代發每月 ${pricing.socialAutopost.postsPerMonth} 篇 NT$${money(pricing.socialAutopost.monthly.managed)}／月。</p></article><article class="plan"><div><h3>網站搬遷協助</h3><p>${escape(pricing.migration.scope)}</p></div><p class="price"><span>NT$</span> ${money(pricing.migration.price)}<small>${escape(pricing.migration.tax)}</small></p><p>不續約要把網站搬走時使用；網站內容本身依服務條款交付。</p></article><article class="plan"><div><h3>年度維運</h3><p>${escape(pricing.maintenance.firstYear)}${escape(pricing.maintenance.service)}</p></div><p class="price"><span>NT$</span> ${money(pricing.maintenance.annual)}<small>／年・第 ${pricing.maintenance.startsYear} 年起・${escape(pricing.maintenance.tax)}</small></p><p>${escape(pricing.maintenance.excluded)}</p></article></div></section>`;
+await mkdir(resolve(root,'pricing'),{recursive:true});
+await writeFile(resolve(root,'pricing/index.html'), document(pricingPage,'pricing',pricingBody));
+
 
 // Keep the homepage and generated pages on the same public brand identity.
 const homePath = resolve(root,'index.html');
@@ -208,7 +237,7 @@ const homeSchema = {'@context':'https://schema.org','@graph':[organization,websi
 }]};
 await writeFile(homePath,home.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/,`<script type="application/ld+json">\n${JSON.stringify(homeSchema,null,2).replace(/</g,'\\u003c')}\n  </script>`));
 
-const routes = ['/', ...services.map(s=>`/services/${s.slug}/`), ...works.map(w=>`/work/${w.slug}/`), '/faq/'];
-await writeFile(resolve(root,'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map(route=>`  <url><loc>${origin}${route}</loc></url>`).join('\n')}\n</urlset>\n`);
+const routes = ['/', '/pricing/', ...services.map(s=>`/services/${s.slug}/`), ...works.map(w=>`/work/${w.slug}/`), '/faq/'];
+await writeFile(resolve(root,'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map(route=>`  <url><loc>${origin}${route}</loc><lastmod>${new Date().toISOString().slice(0,10)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 await writeFile(resolve(root,'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`);
 console.log(`Generated ${services.length} service pages, ${works.length} case pages and the FAQ from public pricing data (${pricing.asOf}); synchronized homepage schema.`);

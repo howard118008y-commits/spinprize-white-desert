@@ -83,3 +83,11 @@ html[data-view="mobile"] .full-capture figcaption{display:block}
 .button-outline:hover{background:var(--accent);color:#071210}
 .site-footer .page-view-mode{flex:0 0 auto}
 .contact-note{margin-top:14px;font-size:14px;color:var(--dim)}
+/* Mobile tab bar leads with call and LINE. */
+.site-header nav .nav-action{display:none}
+html[data-view="mobile"] .site-header nav .nav-action{display:flex;justify-content:center;color:var(--accent);font-weight:600}
+html[data-view="mobile"] .site-header nav a[href="/#services"],html[data-view="mobile"] .site-header nav .contact-link{display:none}
+html[data-view="mobile"] .site-header nav a[href="/#pricing"]{order:3}
+html[data-view="mobile"] .site-header nav a[href="/#grid"]{order:4}
+.mid-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:28px}
+.mid-cta .button{margin-top:0}

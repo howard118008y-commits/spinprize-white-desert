@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://heycheng.com.tw/</loc></url>
-  <url><loc>https://heycheng.com.tw/services/brand-websites/</loc></url>
-  <url><loc>https://heycheng.com.tw/services/brand-content/</loc></url>
-  <url><loc>https://heycheng.com.tw/services/ai-custom-systems/</loc></url>
-  <url><loc>https://heycheng.com.tw/work/shanyu/</loc></url>
-  <url><loc>https://heycheng.com.tw/work/yongzhen-tofu/</loc></url>
-  <url><loc>https://heycheng.com.tw/work/goshoot/</loc></url>
-  <url><loc>https://heycheng.com.tw/faq/</loc></url>
+  <url><loc>https://heycheng.com.tw/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/pricing/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/services/brand-websites/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/services/brand-content/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/services/ai-custom-systems/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/work/shanyu/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/work/yongzhen-tofu/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/work/goshoot/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/work/cx468/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://heycheng.com.tw/faq/</loc><lastmod>2026-10-01</lastmod></url>
 </urlset>

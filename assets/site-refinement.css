@@ -145,3 +145,9 @@ html[data-view="mobile"] #content-panel .content-contact-info{padding:22px}
 }
 @media(pointer:coarse){.menu-btn{min-height:44px}.policy-links a{min-height:44px;display:inline-flex;align-items:center}}
 }
+/* Mobile tab bar leads with call and LINE; services and contact stay in the menu. */
+.primary-nav .nav-action{display:none}
+html[data-view="mobile"] .primary-nav .nav-action{display:flex;color:var(--accent);font-weight:600}
+html[data-view="mobile"] .primary-nav [data-nav="services"],html[data-view="mobile"] .primary-nav [data-nav="contact"]{display:none}
+html[data-view="mobile"] .primary-nav [data-nav="pricing"]{order:3}
+html[data-view="mobile"] .primary-nav [data-nav="works"]{order:4}
