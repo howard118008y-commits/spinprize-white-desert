@@ -1,6 +1,6 @@
 # 旋賞數位展示網站
 
-旋賞數位有限公司的靜態展示頁，使用公開公司內容與既有作品素材。頁面與互動集中在 `index.html`：主要樣式內嵌，版面調整使用 `assets/site-refinement.css`，頁尾使用原生 JavaScript；圖片仍使用 `assets/` 本機素材。無框架、無建置步驟、無執行時套件或 CDN、無分析追蹤程式；開發套件僅供交付驗收使用。
+旋賞數位有限公司的靜態展示頁，使用公開公司內容與既有作品素材。頁面與互動集中在 `index.html`：主要樣式內嵌，版面調整使用 `assets/site-refinement.css`，頁尾使用原生 JavaScript；圖片仍使用 `assets/` 本機素材。無框架、無建置步驟、無執行時套件或 CDN；唯一外部腳本是 Google Analytics 4（`G-7GMBE0Q0LE`，只在公開頁載入，`portal/` 不載入）；開發套件僅供交付驗收使用。
 
 ## 本機啟動
 
@@ -50,7 +50,7 @@ API 與結果欄位依據：[axe-core 官方文件](https://github.com/dequelabs
 - 2026-10-01 全站影片改用高畫質版本（檔名 `*-hq.mp4`）：8 支直接用原始成片重新封裝、官方廣告以 CRF 20 重新壓縮，舊的低畫質 `*-web.mp4` 已刪除。首頁影片輪播改為滿版，並預先載入下一支影片。
 - 圖片沿用既有公開官網素材，轉換為 WebP 降低傳輸量。出處見 `assets/CREDITS.md`。
 - 電話與 Email 直接使用 `tel:`、`mailto:`；Email 連結開啟使用者郵件程式。唯一收集資料的表單是線上訂購頁（見下方「線上訂購」）。
-- 頁面所列 GA4 是建置方案包含項目，本展示頁並未加入 GA4 或其他追蹤程式。
+- 2026-10-01 起公開頁加入 GA4（`G-7GMBE0Q0LE`）：首頁 hash 路由切換另送 `page_view`，免費估價成功送出記 `generate_lead`（不含任何欄位內容）；隱私說明同步揭露。子頁的程式碼片段在 `scripts/build-search-pages.mjs` 範本內。
 
 ## 版型來源與調整
 

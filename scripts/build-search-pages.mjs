@@ -150,6 +150,8 @@ function document(page, type, body) {
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7GMBE0Q0LE"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7GMBE0Q0LE');</script>
   <title>${escape(page.title)}</title>
   <meta name="description" content="${escape(page.description)}">
   <link rel="canonical" href="${url}">

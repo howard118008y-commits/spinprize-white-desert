@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="yeO2H4QhcfutWsfI4dkoMGMUMNntgWnOriHbDMPOoFU" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7GMBE0Q0LE"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7GMBE0Q0LE',{page_location:location.href});addEventListener('hashchange',()=>gtag('event','page_view',{page_location:location.href,page_title:document.title}));</script>
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#000000">
   <title>中和網頁設計・新北形象網站｜含稅 NT$42,000 起｜Hey Cheng 旋賞數位</title>
@@ -805,7 +807,7 @@ if(leadForm)leadForm.addEventListener('submit',async event=>{
   try{
     const response=await fetch(leadForm.action,{method:'POST',body:new URLSearchParams(new FormData(leadForm))});
     const data=await response.json().catch(()=>({}));
-    if(response.ok&&data.ok){leadForm.reset();status.textContent='已收到！我們會在平日 2 小時內與你聯絡。';}
+    if(response.ok&&data.ok){leadForm.reset();status.textContent='已收到！我們會在平日 2 小時內與你聯絡。';if(typeof gtag==='function')gtag('event','generate_lead',{form:'lead-form'});}
     else status.textContent=data.error||'暫時無法送出，請改用 LINE 或電話聯絡。';
   }catch{status.textContent='暫時無法送出，請改用 LINE 或電話聯絡。';}
   finally{button.disabled=false;}
