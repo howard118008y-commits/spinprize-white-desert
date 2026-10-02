@@ -33,33 +33,27 @@ html[data-view="mobile"] .hb-wrap{width:min(636px,calc(100% - 44px))}
 }
 .home-block a:focus-visible,.home-block button:focus-visible{outline:3px solid var(--hb-accent);outline-offset:3px}
 
-/* Film reel */
+/* Film hero: one quiet film and one sentence. */
 .hb-reel{background:#000;padding-top:var(--site-header-h,calc(120px + env(safe-area-inset-top,0px)))}
-/* The reel fills the screen below the header (and above the bottom safe area on phones); tabs sit on the film. */
+/* The film fills the screen below the header (and above the bottom safe area on phones). */
 html[data-view="mobile"]{--hb-nav-h:env(safe-area-inset-bottom,0px)}
 .hb-reel-frame{position:relative;width:100%;height:calc(100svh - var(--site-header-h,120px) - var(--hb-nav-h,0px));min-height:320px;overflow:hidden}
 .hb-reel-stage{position:absolute;inset:0;background:#000;overflow:hidden}
-.hb-reel-stage video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;background:#000;transition:opacity .4s ease}
-.hb-reel-stage video.is-buffer{opacity:0;pointer-events:none}
-.hb-reel-stage:is(:fullscreen,:-webkit-full-screen) video{object-fit:contain}
-.hb-reel .hb-reel-controls{top:14px;bottom:auto;z-index:3}
-.hb-reel .hb-reel-tabs{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:36px max(8px,env(safe-area-inset-left,0px)) 0;background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.45) 60%,rgba(0,0,0,0))}
-.hb-reel .hb-reel-tabs button{color:#b7c1be;text-shadow:0 1px 8px rgba(0,0,0,.6)}
-.hb-reel .hb-reel-tabs [aria-current="true"]{color:#fff}
-/* Headline and calls to action sit on the film, above the tabs. */
-.hb-reel-copy{position:absolute;left:0;right:0;bottom:96px;z-index:2;padding:48px max(var(--home-pad),env(safe-area-inset-left,0px)) 12px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.38) 65%,rgba(0,0,0,0));color:#fff;pointer-events:none}
-.hb-reel-copy>*{max-width:760px}
-.hb-reel-copy a{pointer-events:auto}
-.hb-reel-kicker{font-size:13px;font-weight:700;letter-spacing:.16em;color:var(--hb-accent);text-shadow:0 1px 10px rgba(0,0,0,.7)}
-.hb-reel-copy h1{margin-top:8px;font-size:clamp(28px,4.2vw,56px);font-weight:700;line-height:1.22;letter-spacing:.01em;text-shadow:0 2px 18px rgba(0,0,0,.65)}
-.hb-reel-sub{margin-top:10px;font-size:clamp(14px,1.4vw,18px);color:#e4ebe8;text-shadow:0 1px 10px rgba(0,0,0,.7)}
-.hb-reel-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.hb-reel-cta .hb-btn-line{color:#fff;border-color:rgba(255,255,255,.75)}
-html:not([data-view="mobile"]) .hb-reel-copy{top:0;right:auto;width:min(44%,620px);display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:24px;background:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.7) 72%,rgba(0,0,0,0))}
-html:not([data-view="mobile"]) .hb-reel-copy h1{font-size:clamp(28px,3.1vw,46px)}
-html[data-view="mobile"] .hb-reel-copy{bottom:92px;padding-top:36px}
-html[data-view="mobile"] .hb-reel-copy h1{font-size:clamp(24px,7vw,30px)}
-html[data-view="mobile"] .hb-reel-cta .hb-btn{min-height:46px;padding:0 18px;font-size:14px}
+.hb-reel-stage video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;background:#000}
+/* The sentence sits bottom left. Its scrim is sized from the text (em), so it stays at 62%+ black behind every line on any frame and screen. */
+.hb-reel-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 max(var(--home-pad),env(safe-area-inset-left,0px)) 72px;font-size:clamp(30px,8.6vw,36px);color:#fff;pointer-events:none}
+.hb-reel-copy::before{content:"";position:absolute;left:0;right:0;bottom:0;z-index:-1;height:calc(100% + 2.6em);background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.66) calc(100% - 2.6em),rgba(0,0,0,.4) calc(100% - 1.6em),rgba(0,0,0,0))}
+.hb-reel-copy h1{font-size:1em;font-weight:700;line-height:1.25;letter-spacing:.02em;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+html:not([data-view="mobile"]) .hb-reel-copy{padding-bottom:clamp(48px,10vh,104px);font-size:clamp(40px,5vw,76px)}
+/* Landscape screens: the scrim fades out to the right of the sentence so the rest of the frame stays bright. */
+@media(orientation:landscape){.hb-reel-copy::before{-webkit-mask-image:linear-gradient(to right,#000 calc(var(--home-pad) + 10em),transparent calc(var(--home-pad) + 10em + 30vw));mask-image:linear-gradient(to right,#000 calc(var(--home-pad) + 10em),transparent calc(var(--home-pad) + 10em + 30vw))}}
+/* Pause stays small and quiet in the opposite corner. */
+.hb-reel .hb-reel-controls{right:max(var(--home-pad),env(safe-area-inset-right,0px));bottom:18px;z-index:3}
+html:not([data-view="mobile"]) .hb-reel .hb-reel-controls{bottom:clamp(48px,10vh,104px)}
+.hb-reel .hb-reel-controls button{width:38px;height:38px;border-color:rgba(255,255,255,.5);background:rgba(0,0,0,.45);color:rgba(255,255,255,.92)}
+.hb-reel .hb-reel-controls svg{width:15px;height:15px}
+/* Short landscape phones: the frame can run past the fold, so the sentence lifts and pause moves to the top corner. */
+@media(max-height:500px){html[data-view="mobile"] .hb-reel-copy{padding-bottom:104px}html[data-view="mobile"] .hb-reel .hb-reel-controls{top:14px;bottom:auto}}
 /* LINE QR is for desktop visitors; phones use the add-friend button. */
 .content-line-promise{margin-left:10px;font-size:13px;font-weight:500;color:var(--content-accent,#00d9ba)}
 .content-line-qr{display:flex;align-items:center;gap:14px;margin:18px 0 0}
@@ -71,15 +65,6 @@ html[data-view="mobile"] .content-line-qr{display:none}
 .hb-reel-controls button{display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(11,16,15,.72);color:#fff;cursor:pointer}
 .hb-reel-controls svg{width:20px;height:20px;fill:currentColor}
 .hb-reel-controls [data-state="off"] .hb-on,.hb-reel-controls [data-state="on"] .hb-off{display:none}
-.hb-reel-tabs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);margin:0;padding:0;list-style:none}
-.hb-reel-tabs button{position:relative;display:grid;gap:2px;width:100%;min-height:62px;padding:14px 12px 12px;border:0;background:none;color:#8f9a97;font:inherit;text-align:left;cursor:pointer}
-.hb-reel-tabs button::before,.hb-reel-tabs button::after{content:"";position:absolute;top:0;left:0;height:3px}
-.hb-reel-tabs button::before{right:0;background:rgba(255,255,255,.14)}
-.hb-reel-tabs button::after{width:calc(var(--p,0)*100%);background:var(--hb-accent)}
-.hb-reel-tabs strong{font-size:14px;font-weight:600;line-height:1.4;text-wrap:balance}
-.hb-reel-tabs small{font-size:12px;letter-spacing:.06em}
-.hb-reel-tabs [aria-current="true"]{color:#fff}
-@media(hover:hover) and (pointer:fine){.hb-reel-tabs button:hover{color:#fff}}
 
 /* Client strip */
 .hb-strip{display:flex;align-items:center;gap:28px;padding:22px 0;background:var(--hb-soft);color:#56615e;overflow:hidden}
@@ -177,12 +162,9 @@ html #home-hero,html[data-view] #home-hero{padding-top:clamp(56px,7vw,88px)}
   html:not([data-view="mobile"]) .hb-steps{grid-template-columns:repeat(6,minmax(0,1fr));gap:24px}
 }
 @media(max-width:699px){
-  .hb-reel-tabs strong{font-size:13px}
-  .hb-reel-tabs button{padding-inline:8px}
   .hb-strip>p{display:none}
   .hb-strip li{font-size:17px}
 }
-html[data-view="mobile"] .hb-reel-tabs button{padding-inline:8px}
 @media(prefers-reduced-motion:reduce){
   .hb-strip-track{animation:none}
   .hb-btn,.hb-svc-panel{transition:none;animation:none}

@@ -127,13 +127,8 @@ html[data-view="mobile"] #content-panel .svc-cards article{gap:10px}
 html[data-view="mobile"] #content-panel .svc-cards h3{margin-top:6px;font-size:19px}
 html[data-view="mobile"] #content-panel .svc-cards p{font-size:14px;line-height:1.75}
 
-/* Works opening screen: film tabs and controls */
-html[data-view="mobile"] .hb-reel .hb-reel-tabs{padding-top:22px}
-html[data-view="mobile"] .hb-reel-tabs button{min-height:46px;gap:0;padding:8px 6px 6px}
-html[data-view="mobile"] .hb-reel-tabs strong{font-size:12px;line-height:1.3}
-html[data-view="mobile"] .hb-reel-tabs small{line-height:1.35}
+/* Film controls */
 html[data-view="mobile"] .hb-reel-controls{gap:8px}
-html[data-view="mobile"] .hb-reel .hb-reel-controls{top:10px;right:10px}
 html[data-view="mobile"] .hb-reel-controls button{width:40px;height:40px;min-height:40px}
 
 /* Home sections and shared buttons */
